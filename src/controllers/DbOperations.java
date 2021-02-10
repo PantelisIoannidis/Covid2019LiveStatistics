@@ -235,4 +235,34 @@ public class DbOperations {
         }
     }
     
+    //Επιστρέφει την λίστα των χωρών που υπάρχουν στην βάση
+    public List<Country> GetCountriesListFromDb(){
+        List<Country> countries = (List<Country>)em.createQuery("SELECT c FROM Country c",Country.class)
+                    .getResultList();
+        return  countries;
+    }
+    
+    //Επιστρέφει την χώρα με βάση το όνομα
+    public Country GetCountryFromDb(String countryName){
+        List<Country> countries = (List<Country>)em.createQuery("SELECT c FROM Country c WHERE c.name = :name",Country.class)
+                    .setParameter("name",countryName)
+                    .getResultList();
+        return countries.get(0);
+    }
+    
+   
+    //Επιστρέφει τα covid data μιας χώρας μιας κατηγορίας ανάμεσα σε 2 ημερομηνίες
+    public List<Coviddata> GetCoviddataFromDb(String countryName,TimeSeriesCase tmCase,Date dateFrom,Date dateTo){
+        List<Coviddata> data = em.createQuery("SELECT d FROM Coviddata d JOIN d.country c "
+                +"WHERE c.name= :name AND d.datakind = :datakind "
+                +"AND d.trndate >= :dateFrom AND d.trndate <= :dateTo "
+                +" order by d.trndate",Coviddata.class)
+                .setParameter("name", countryName)
+                .setParameter("datakind", (short)tmCase.ordinal())
+                .setParameter("dateFrom", dateFrom)
+                .setParameter("dateTo", dateTo)
+                .getResultList();
+        return data;
+    }
+        
 }

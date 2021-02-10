@@ -121,14 +121,15 @@ public class APIController {
                 for (Map.Entry item : countryData.entrySet()) {
                     String key = item.getKey().toString();
                     String value = item.getValue().toString();
+                    if (key.equals("Province/State")) {
+                        country.state = value;
+                    } else
                     if (key.equals("Country/Region")) {
                         country.country = value;
-                    } else if (key.equals("Province/State")) {
-                        country.state = value;
                     } else if (key.equals("Lat")) {
-                        country.Lat = value;
+                            country.Lat = value;
                     } else if (key.equals("Long")) {
-                        country.Long = value;
+                            country.Long = value;
                     } else {
                         int val = Integer.parseInt(value);
                         SimpleDateFormat formatter1 = new SimpleDateFormat("MM/dd/yy");
@@ -143,7 +144,27 @@ public class APIController {
                 }
                 return country;
             }
-
+            //Προσθεσε τα data της πολιτείας στην χώρα. Κάνουμε αυτή την διαδικασία για να έχουμε μόνο
+            //μια καταχώρηση ανα χώρα
+            private CountryTimeSeries CombineStates(CountryTimeSeries ltm1,CountryTimeSeries ltm2){
+                //Κράτησε τα lat και Long της χώρας και όχι της πολιτείας
+                if(ltm2.state.equals("")){
+                    ltm1.Lat=ltm2.Lat;
+                    ltm2.Long=ltm2.Long;
+                }
+                //Διέτρεξε όλα τα data της λίστας2
+                for(Map.Entry<Date,Integer> tm2 : ltm2.data.entrySet()){
+                    //Αν η ημερομηνία υπάρχει και στις δύο λίστες πρόσθεσε τις και βάλτην στην λίστα1
+                    if(ltm1.data.containsKey(tm2.getKey())){
+                        ltm1.data.put(tm2.getKey(), ltm1.data.get(tm2.getKey())+tm2.getValue()); 
+                    } else {
+                        //Αν δεν υπάρχει πρόσθεσε την καταχώρηση της λίστας2 στην λίστα1
+                        ltm1.data.put(tm2.getKey(), tm2.getValue());
+                    }
+                }
+                return ltm1;
+            }
+            
         }
         //Φτιάχνουμε την βοηθητική κλάση
         ConvertMethods cm = new ConvertMethods();
@@ -159,9 +180,27 @@ public class APIController {
             country = new CountryTimeSeries();
             //Μετατρέπουμε το jsonstring σε CountryTimeSeries αντικείμενο
             CountryTimeSeries item = cm.ConvertDataToCountry(country, singleCountryString, tmCase);
+            
+            //Παρακάτω προσθέτουμε τα data της πολιτείας στην χώρα
+            CountryTimeSeries alreadyInList = null;
+            //ελέγχουμε την λίστα με τα αντικείμενα CountryTimeSeries που έχουμε μέχρι στιγμής
+            for(CountryTimeSeries c : countryTimeSeries)
+                //αν υπάρχει η χώρα ήδη στην λίστα σημαίνει πως μια απο τις δύο εγγραφές είναι
+                //πολιτεία και θα πρέπει να συγχωνευτούν μεταξύ τους
+                if(c.country.equals(item.country)){
+                    alreadyInList=c;
+                    //σβήνουμε απο την λίστα την παλιά εγγραφή
+                    countryTimeSeries.remove(alreadyInList);
+                    //στην νέα εγγραφή προσθέτουμε τα στοιχεία της παλιάς
+                    cm.CombineStates(item,alreadyInList);
+                    break;
+                }
+            
+            
             //Το προσθέτουμε στην λίστα με τα covid data της κατηγορίας
             countryTimeSeries.add(item);
-        }
+        }      
+        
         //Επιστρέφουμε την λίστα με τα covid data
         return countryTimeSeries;
     }

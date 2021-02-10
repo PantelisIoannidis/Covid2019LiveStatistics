@@ -28,7 +28,7 @@ public class CountryTimeSeries {
         data = new TreeMap<>(comp);
     }
     
-    // Θέλουμε να ταξινομούμε τα δεδομένα των TreeMap με βάση την ημερομηνία
+    // Θέλουμε να ταξινομούμε τα δεδομένα των TreeMap με βάση την ημερομηνία και το State
     Comparator comp = new Comparator<Date>(){
         @Override
         public int compare(Date t, Date t1) {

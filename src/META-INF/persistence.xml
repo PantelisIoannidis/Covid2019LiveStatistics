@@ -6,6 +6,7 @@
     <class>entities.Coviddata</class>
     <class>controllers.Country</class>
     <class>controllers.Coviddata</class>
+    <class>helpers.DateValidator</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/covid19stats"/>
       <property name="javax.persistence.jdbc.user" value="plh24"/>
