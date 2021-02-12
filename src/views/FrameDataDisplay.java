@@ -8,22 +8,33 @@ package views;
 import controllers.DbOperations;
 import entities.Country;
 import entities.Coviddata;
-import helpers.ComboItem;
 import helpers.DateValidator;
+import java.awt.Container;
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.PointerInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
+import models.PlottingData;
 import models.TimeSeriesCase;
+import org.jfree.ui.RefineryUtilities;
 
 /**
  *
@@ -36,8 +47,18 @@ public class FrameDataDisplay extends javax.swing.JFrame {
      */
     DbOperations db;
     static final String dateFormatPattern = "dd/MM/yyyy";
-    static final String minDate = "01/01/2000";
+    static final String minDate = "01/01/2019";
     SimpleDateFormat simpleDateFormat ;
+    
+    //Οι παρακάτω μεταβλητές πέρνουν τιμές όταν επιλέγεται μια χώρα και είναι 
+    //διαθέσιμες σε όλο το jframe
+    List<Coviddata> confirmedList=null;
+    List<Coviddata> recoveredList=null;
+    List<Coviddata> deathsList=null;
+    String selectedCountry;
+    
+    FramePlotLineChart chartFrame = new FramePlotLineChart();
+    JPopupMenu popupmenu;
     
     public FrameDataDisplay() {
         initComponents();
@@ -76,6 +97,18 @@ public class FrameDataDisplay extends javax.swing.JFrame {
         btnFilter = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        btnShowMap = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        btnShowPlot = new javax.swing.JButton();
+        chkConfirmed = new javax.swing.JCheckBox();
+        chkRecovered = new javax.swing.JCheckBox();
+        chkDeaths = new javax.swing.JCheckBox();
+        chkDailyData = new javax.swing.JCheckBox();
+        chkAccumulativeData = new javax.swing.JCheckBox();
+        jLabel3 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        btnDeleteData = new javax.swing.JButton();
 
         setTitle("Προβολή δεδομένων Covid19 ανά χώρα");
 
@@ -210,6 +243,116 @@ public class FrameDataDisplay extends javax.swing.JFrame {
 
         jLabel2.setText("Ημερομηνία");
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Απεικόνιση σε χάρτη"));
+
+        btnShowMap.setText("Προβολή σε χάρτη");
+        btnShowMap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShowMapActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(btnShowMap)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(btnShowMap)
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Απεικόνιση σε διάγραμμα"));
+
+        btnShowPlot.setText("Προβολή σε διάγραμμα");
+        btnShowPlot.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShowPlotActionPerformed(evt);
+            }
+        });
+
+        chkConfirmed.setSelected(true);
+        chkConfirmed.setText("Επιβεβαιωμένα");
+
+        chkRecovered.setText("Ανάρρωσαν");
+
+        chkDeaths.setText("Θανατοι");
+
+        chkDailyData.setSelected(true);
+        chkDailyData.setText("Καθημερινά");
+
+        chkAccumulativeData.setText("Σωρευτικά");
+
+        jLabel3.setText("Δεδομένα");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(chkConfirmed)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap(41, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(chkDeaths)
+                            .addComponent(chkRecovered))
+                        .addGap(157, 157, 157)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(chkAccumulativeData)
+                    .addComponent(chkDailyData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel3))
+                    .addComponent(jSeparator1))
+                .addGap(16, 16, 16))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnShowPlot)
+                .addGap(104, 104, 104))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(chkConfirmed))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(chkDailyData)
+                    .addComponent(chkRecovered, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(chkDeaths)
+                    .addComponent(chkAccumulativeData))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(btnShowPlot)
+                .addContainerGap())
+        );
+
+        btnDeleteData.setText("Διαγραφή δεδομένων");
+        btnDeleteData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteDataActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -222,7 +365,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(88, 88, 88)
                         .addComponent(jLabel1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 192, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(chkDateFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -237,6 +380,18 @@ public class FrameDataDisplay extends javax.swing.JFrame {
                 .addComponent(btnFilter)
                 .addGap(66, 66, 66))
             .addComponent(tabsCases)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(100, 100, 100))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addComponent(btnDeleteData)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,7 +410,16 @@ public class FrameDataDisplay extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addComponent(tabsCases, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(179, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(btnDeleteData)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         pack();
@@ -277,6 +441,18 @@ public class FrameDataDisplay extends javax.swing.JFrame {
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         onCountryChange();
     }//GEN-LAST:event_btnFilterActionPerformed
+
+    private void btnShowPlotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowPlotActionPerformed
+        plotLineChart();
+    }//GEN-LAST:event_btnShowPlotActionPerformed
+
+    private void btnShowMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowMapActionPerformed
+        showMap();
+    }//GEN-LAST:event_btnShowMapActionPerformed
+
+    private void btnDeleteDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteDataActionPerformed
+        removeCountrysCoviddata();
+    }//GEN-LAST:event_btnDeleteDataActionPerformed
 
     /**
      * @param args the command line arguments
@@ -314,17 +490,29 @@ public class FrameDataDisplay extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDeleteData;
     private javax.swing.JButton btnFilter;
+    private javax.swing.JButton btnShowMap;
+    private javax.swing.JButton btnShowPlot;
+    private javax.swing.JCheckBox chkAccumulativeData;
+    private javax.swing.JCheckBox chkConfirmed;
+    private javax.swing.JCheckBox chkDailyData;
     private javax.swing.JCheckBox chkDateFrom;
     private javax.swing.JCheckBox chkDateTo;
+    private javax.swing.JCheckBox chkDeaths;
+    private javax.swing.JCheckBox chkRecovered;
     private javax.swing.JComboBox<String> cmbCountry;
     private javax.swing.JFormattedTextField frmTxtDateFrom;
     private javax.swing.JFormattedTextField frmTxtDateTo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel tabConfirmed;
     private javax.swing.JPanel tabDeaths;
     private javax.swing.JPanel tabRecovered;
@@ -341,6 +529,70 @@ public class FrameDataDisplay extends javax.swing.JFrame {
         populateDatesRangeBoxes();
         //φτιάχνουμε άδεια grids απλά για να πιάνουν χώρο μέχρι να έρθουν τα data
         resetCoviddataGrids();
+        //Φτιάχνουμε Popup menu που βοηθάει στην επιλογή ημερομηνίων
+        datePopupMenu();
+    }
+    
+    
+    private void setDateBack(String time){
+        try {
+            //Πέρνουμε την τελική ημερομηνία και ανάλογα με την παράμετρο θα αφαιρούμε χρόνο
+            Date dateFrom = simpleDateFormat.parse(frmTxtDateTo.getText());
+            LocalDateTime localDateTime = dateFrom.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+            if(time.equals("aWeek"))
+               localDateTime = localDateTime.minusWeeks(1);
+            if(time.equals("aMonth"))
+               localDateTime = localDateTime.minusMonths(1);
+            if(time.equals("thisYear"))
+               localDateTime = localDateTime.withMonth(1).withDayOfMonth(1);
+            if(time.equals("all"))
+               localDateTime = localDateTime.withMonth(1).withDayOfMonth(1).withYear(2019);
+            dateFrom = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+            frmTxtDateFrom.setText( simpleDateFormat.format(dateFrom));
+            chkDateFrom.setSelected(true);
+            chkDateTo.setSelected(true);
+            onCountryChange();
+        } catch (ParseException ex) {
+            Logger.getLogger(FrameDataDisplay.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void datePopupMenu(){
+        //Φτιάχνουμε Popup menu που βοηθάει στην επιλογή ημερομηνίων
+        popupmenu = new JPopupMenu("Αφαίρεσε χρόνο");   
+        JMenuItem aWeek = new JMenuItem("Tελευταία εβδομάδα");  
+        JMenuItem aMonth = new JMenuItem("Tελευταίος μήνας");  
+        JMenuItem thisYear = new JMenuItem("Φέτος");  
+        JMenuItem all = new JMenuItem("Όλα");
+        aWeek.addActionListener(new ActionListener() { 
+            public void actionPerformed(ActionEvent e) 
+            { 
+                setDateBack("aWeek");
+            } 
+        }); 
+        aMonth.addActionListener(new ActionListener() { 
+            public void actionPerformed(ActionEvent e) 
+            { 
+                setDateBack("aMonth");
+            } 
+        }); 
+        thisYear.addActionListener(new ActionListener() { 
+            public void actionPerformed(ActionEvent e) 
+            { 
+                setDateBack("thisYear");
+            } 
+        });
+        all.addActionListener(new ActionListener() { 
+            public void actionPerformed(ActionEvent e) 
+            { 
+                setDateBack("all");
+            } 
+        });
+        popupmenu.add(aWeek); 
+        popupmenu.add(aMonth); 
+        popupmenu.add(thisYear); 
+        popupmenu.add(all); 
+        this.add(popupmenu);           
     }
     
     private void populateDatesRangeBoxes(){
@@ -356,6 +608,14 @@ public class FrameDataDisplay extends javax.swing.JFrame {
                 }
             }
         });
+        
+        //Listener για το Popup menu που βοηθάει στην επιλογή ημερομηνίων
+        frmTxtDateFrom.addMouseListener(new MouseAdapter() {  
+            public void mouseClicked(MouseEvent e) {              
+                 popupmenu.show(frmTxtDateFrom ,0,20 );
+            }   
+        });
+        
         
         //Βάζουμε την σημερινή ημερομηνία για το εώς
         frmTxtDateTo.setText(simpleDateFormat.format(new Date()));
@@ -414,7 +674,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
     //εκτελείται όταν επιλέγουμε χώρα ή πατάμε το πλήκτρο Φιλτρο
     private void onCountryChange(){
         //παίρνουμε απο το combo το όνομα τις επιλεγμένης χώρας 
-        String selectedCountry = cmbCountry.getSelectedItem().toString();      
+        selectedCountry = cmbCountry.getSelectedItem().toString();      
         
         Date dateFrom=null;
         Date dateTo=null;
@@ -436,7 +696,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
         DefaultTableModel modelConfirmed = new DefaultTableModel();
         modelConfirmed.setColumnIdentifiers(new String[]{"Ημερομηνία", "Κρούσματα","Συνολικά"});
         //παίρνουμε τα data απο την βάση
-        List<Coviddata> confirmedList = db.GetCoviddataFromDb(selectedCountry, TimeSeriesCase.CONFIRMED,dateFrom,dateTo);
+        confirmedList = db.GetCoviddataFromDb(selectedCountry, TimeSeriesCase.CONFIRMED,dateFrom,dateTo);
         //τα προσθέτουμε στο grid
         for(Coviddata coviddata : confirmedList)
             modelConfirmed.addRow(new Object[]{simpleDateFormat.format(coviddata.getTrndate()),coviddata.getQty(),coviddata.getProodqty()});
@@ -446,7 +706,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
         DefaultTableModel modelRecovered = new DefaultTableModel();
         modelRecovered.setColumnIdentifiers(new String[]{"Ημερομηνία", "Ανάρρωσαν","Συνολικά"});
         //παίρνουμε τα data απο την βάση
-        List<Coviddata> recoveredList = db.GetCoviddataFromDb(selectedCountry, TimeSeriesCase.RECOVERED,dateFrom,dateTo);
+        recoveredList = db.GetCoviddataFromDb(selectedCountry, TimeSeriesCase.RECOVERED,dateFrom,dateTo);
         //τα προσθέτουμε στο grid
         for(Coviddata coviddata : recoveredList)
             modelRecovered.addRow(new Object[]{simpleDateFormat.format(coviddata.getTrndate()),coviddata.getQty(),coviddata.getProodqty()});
@@ -456,11 +716,48 @@ public class FrameDataDisplay extends javax.swing.JFrame {
         DefaultTableModel modelDeaths = new DefaultTableModel();
         modelDeaths.setColumnIdentifiers(new String[]{"Ημερομηνία", "Θάνατοι","Συνολικά"});
         //παίρνουμε τα data απο την βάση
-        List<Coviddata> deathsList = db.GetCoviddataFromDb(selectedCountry, TimeSeriesCase.DEATHS,dateFrom,dateTo);
+        deathsList = db.GetCoviddataFromDb(selectedCountry, TimeSeriesCase.DEATHS,dateFrom,dateTo);
         //τα προσθέτουμε στο grid
         for(Coviddata coviddata : deathsList)
             modelDeaths.addRow(new Object[]{simpleDateFormat.format(coviddata.getTrndate()),coviddata.getQty(),coviddata.getProodqty()});
         tblDeaths.setModel(modelDeaths);
     }    
+
+    private void plotLineChart() {
+              
+        
+        String title=selectedCountry;
+        List<Coviddata> confirmeddata= new ArrayList<Coviddata>();
+        List<Coviddata> recovereddata= new ArrayList<Coviddata>();
+        List<Coviddata> deathsdata= new ArrayList<Coviddata>();
+        
+        if(chkConfirmed.isSelected())
+            confirmeddata= confirmedList;
+        if(chkRecovered.isSelected())
+            recovereddata= recoveredList;
+        if(chkDeaths.isSelected())
+            deathsdata= deathsList;
+        
+        PlottingData plottingData = new PlottingData
+            (title,confirmeddata,recovereddata,deathsdata,chkDailyData.isSelected(),chkAccumulativeData.isSelected());
+
+        if (chartFrame == null){
+             chartFrame = new FramePlotLineChart();
+        }
+        chartFrame.CalculatePlot(plottingData);
+        chartFrame.setVisible(true);
+        
+    }
+
+    private void showMap() {
+        ShowMap showMap = new ShowMap();
+        showMap.Display();
+    }
+
+    //Διαγραφή των covid δεδομένων της χώρας με την σύμφωνη γνώμη του χρήστη
+    private void removeCountrysCoviddata() {
+        Country country = db.GetCountryFromDb(selectedCountry);
+        db.AskAndDeleteCovidData(country);
+    }
     
 }

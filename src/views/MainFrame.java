@@ -32,6 +32,11 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         Desktop = new javax.swing.JDesktopPane();
+        jPanel1 = new javax.swing.JPanel();
+        btnDataManagement = new javax.swing.JButton();
+        btnDataDisplay = new javax.swing.JButton();
+        btnMap = new javax.swing.JButton();
+        btnExit = new javax.swing.JButton();
         mnuBar = new javax.swing.JMenuBar();
         mnuFile = new javax.swing.JMenu();
         mnuExit = new javax.swing.JMenuItem();
@@ -43,16 +48,48 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Σύστημα Covid19-Stats");
 
+        jPanel1.setLayout(new java.awt.GridBagLayout());
+
+        Desktop.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout DesktopLayout = new javax.swing.GroupLayout(Desktop);
         Desktop.setLayout(DesktopLayout);
         DesktopLayout.setHorizontalGroup(
             DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         DesktopLayout.setVerticalGroup(
             DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 211, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        btnDataManagement.setText("Διαχείριση δεδομένων Covid19");
+        btnDataManagement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDataManagementActionPerformed(evt);
+            }
+        });
+
+        btnDataDisplay.setText("Προβολή δεδομένων Covid19 ανά χώρα");
+        btnDataDisplay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDataDisplayActionPerformed(evt);
+            }
+        });
+
+        btnMap.setText("Προβολή δεδομένων Covid19 σε χάρτη");
+        btnMap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMapActionPerformed(evt);
+            }
+        });
+
+        btnExit.setText("Έξοδος");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
 
         mnuFile.setText("Αρχείο");
 
@@ -101,10 +138,34 @@ public class MainFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(Desktop)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(280, 280, 280)
+                        .addComponent(btnDataManagement))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(263, 263, 263)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnMap)
+                            .addComponent(btnDataDisplay)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(348, 348, 348)
+                        .addComponent(btnExit)))
+                .addContainerGap(280, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Desktop)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(Desktop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(btnDataManagement)
+                .addGap(18, 18, 18)
+                .addComponent(btnDataDisplay)
+                .addGap(18, 18, 18)
+                .addComponent(btnMap)
+                .addGap(30, 30, 30)
+                .addComponent(btnExit)
+                .addGap(0, 143, Short.MAX_VALUE))
         );
 
         pack();
@@ -112,31 +173,37 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mnuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuExitActionPerformed
-        System.exit(0);
+        exitApp();
     }//GEN-LAST:event_mnuExitActionPerformed
 
     private void mnuDataManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuDataManagementActionPerformed
-        if (frameDataManagement == null){
-            frameDataManagement = new FrameDataManagement();
-            //Desktop.add(frameDataManagement);
-        }
-        frameDataManagement.setVisible(true);
-        //this.dispose();
+        showDataManagement();
     }//GEN-LAST:event_mnuDataManagementActionPerformed
 
     private void mnuDataDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuDataDisplayActionPerformed
-        if(frameDataDisplay==null){
-            frameDataDisplay = new FrameDataDisplay();
-            //Desktop.add(frameDataDisplay);
-        }
-        frameDataDisplay.setVisible(true);
-        //this.dispose();
+
+        showDataDisplay();
     }//GEN-LAST:event_mnuDataDisplayActionPerformed
 
     private void mnuMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuMapActionPerformed
-        ShowMap showMap = new ShowMap();
-        showMap.Display();
+        showMap();
     }//GEN-LAST:event_mnuMapActionPerformed
+
+    private void btnDataManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataManagementActionPerformed
+        showDataManagement();
+    }//GEN-LAST:event_btnDataManagementActionPerformed
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        exitApp();
+    }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnDataDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataDisplayActionPerformed
+        showDataDisplay();
+    }//GEN-LAST:event_btnDataDisplayActionPerformed
+
+    private void btnMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMapActionPerformed
+        showMap();
+    }//GEN-LAST:event_btnMapActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,6 +242,11 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane Desktop;
+    private javax.swing.JButton btnDataDisplay;
+    private javax.swing.JButton btnDataManagement;
+    private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnMap;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuBar mnuBar;
     private javax.swing.JMenuItem mnuDataDisplay;
     private javax.swing.JMenuItem mnuDataManagement;
@@ -183,4 +255,27 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenu mnuFrames;
     private javax.swing.JMenuItem mnuMap;
     // End of variables declaration//GEN-END:variables
+
+    private void showDataDisplay() {
+        if(frameDataDisplay==null){
+            frameDataDisplay = new FrameDataDisplay();
+        }
+        frameDataDisplay.setVisible(true);
+    }
+
+    private void showMap() {
+        ShowMap showMap = new ShowMap();
+        showMap.Display();
+    }
+
+    private void showDataManagement() {
+        if (frameDataManagement == null){
+            frameDataManagement = new FrameDataManagement();
+        }
+        frameDataManagement.setVisible(true);
+    }
+
+    private void exitApp() {
+        System.exit(0);
+    }
 }
