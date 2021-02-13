@@ -8,7 +8,6 @@ package covid19.stats;
 import controllers.APIController;
 import controllers.DbOperations;
 import helpers.DatabaseUtils;
-import models.CountriesList;
 import models.TimeSeriesCase;
 import java.util.List;
 import models.CountryTimeSeries;

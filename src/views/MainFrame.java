@@ -14,6 +14,7 @@ import helpers.DatabaseUtils;
 public class MainFrame extends javax.swing.JFrame {
     FrameDataManagement frameDataManagement = new FrameDataManagement();
     FrameDataDisplay frameDataDisplay = new FrameDataDisplay();
+    FrameMapSelection frameMapSelection = new FrameMapSelection();
     /**
      * Creates new form MainFrame
      */
@@ -264,8 +265,10 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     private void showMap() {
-        ShowMap showMap = new ShowMap();
-        showMap.Display();
+        if (frameMapSelection == null){
+            frameMapSelection = new FrameMapSelection();
+        }
+        frameMapSelection.setVisible(true);
     }
 
     private void showDataManagement() {

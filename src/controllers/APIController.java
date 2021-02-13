@@ -7,7 +7,6 @@ package controllers;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import models.CountriesList;
 import models.TimeSeriesCase;
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -55,29 +54,17 @@ public class APIController {
             return null;
         }
         return null;
-    }
-
-    //Ζήτα απο το API την λίστα των χωρών
-    public CountriesList GetCountriesList() {
+    }   
+    
+    //Ζήτα απο το API την λίστα των χωρών μαζί με γενικά στατιστικά
+    public MappingData GetCountrysMapData(String name) {
         // φτιάχνουμε το endpoint και κάνουμε την κλήση του API
-        String restPoint = "countries";
+        String restPoint = "v2/country/"+name;
         String stringResults = BaseCall(restPoint);
         //Μετατρέπουμε το jsonstring σε αντικείμενο με την βοήθεια τoυ gson 
-        CountriesList cl = new Gson().fromJson(stringResults, CountriesList.class);
-        return cl;
+        MappingData mp = new Gson().fromJson(stringResults, MappingData.class);
+        return mp;
     }
-
-//    private String GetCountryTimeSeriesNameFromData(String data){
-//        Gson gson = new Gson();
-//        Type keyPair = new TypeToken<Map<String, String>>() {}.getType();
-//        Map<String, String> countryData = gson.fromJson(data, keyPair);
-//        for(Map.Entry item : countryData.entrySet()){
-//            if(item.getKey().toString().equals("Country/Region")) 
-//                return item.getValue().toString();
-//        }
-//        return null;
-//    }
-    
     
     //Ζητάει απο το API μια κατηγορίας timeseries
     public List<CountryTimeSeries> GetTimeSeries(TimeSeriesCase tmCase) {

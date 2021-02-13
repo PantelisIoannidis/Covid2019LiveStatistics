@@ -15,24 +15,27 @@ import java.util.List;
 //DTO κλάση για να περάσουμε δεδομένα στην γραφική παράσταση
 public class PlottingData {
     String title="";
+    //Οι λίστες των 3 κατηγοριών με τα covid δεδομένα
     List<Coviddata> confirmedList;
     List<Coviddata> recoveredList;
     List<Coviddata> deathsList;
-    boolean dailyData=false;
-    boolean accumulativeData=false;
+    //Επέλεξε αν τα καθημερινά δεδομένα θα απεικονιστούν
+    boolean showDailyData=false;
+    //Επέλεξε αν τα σωρευτηκά δεδομένα θα απεικονιστούν
+    boolean showAccumulativeData=false;
     
     public PlottingData(String title , 
             List<Coviddata> confirmedList,
             List<Coviddata> recoveredList,
             List<Coviddata> deathsList,
-            boolean dailyData,
-            boolean accumulativeData){
+            boolean showDailyData,
+            boolean showAccumulativeData){
         this.title =title;
         this.confirmedList = confirmedList;
         this.recoveredList = recoveredList;
         this.deathsList = deathsList;
-        this.dailyData = dailyData;
-        this.accumulativeData = accumulativeData;
+        this.showDailyData = showDailyData;
+        this.showAccumulativeData = showAccumulativeData;
     }
     
     public List<Coviddata> getConfirmedList(){
@@ -44,11 +47,11 @@ public class PlottingData {
     public List<Coviddata> getDeathsList(){
         return deathsList;
     }
-    public boolean getDailyData(){
-        return dailyData;
+    public boolean getShowDailyData(){
+        return showDailyData;
     }
-    public boolean getAccumulativeData(){
-        return accumulativeData;
+    public boolean getShowAccumulativeData(){
+        return showAccumulativeData;
     }
     public String getTitle(){
         return title;

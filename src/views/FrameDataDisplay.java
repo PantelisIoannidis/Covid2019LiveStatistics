@@ -5,6 +5,7 @@
  */
 package views;
 
+import controllers.APIController;
 import controllers.DbOperations;
 import entities.Country;
 import entities.Coviddata;
@@ -32,6 +33,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
+import models.MappingData;
 import models.PlottingData;
 import models.TimeSeriesCase;
 import org.jfree.ui.RefineryUtilities;
@@ -46,6 +48,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
      * Creates new form FrameDataDisplay
      */
     DbOperations db;
+    APIController api;
     static final String dateFormatPattern = "dd/MM/yyyy";
     static final String minDate = "01/01/2019";
     SimpleDateFormat simpleDateFormat ;
@@ -66,6 +69,8 @@ public class FrameDataDisplay extends javax.swing.JFrame {
         simpleDateFormat = new SimpleDateFormat(dateFormatPattern);
         //Φτιάχνουμε το αντικείμενο που μεσολαβεί για την επικοινωνία με την βάση
         db = new DbOperations();
+        //Φτιάχνουμε το αντικείμενο που μεσολαβεί για την επικοινωνία με τo API
+        api = new APIController();
         //αρχικοποιούμε τα components
         populateComponents();
     }
@@ -281,8 +286,10 @@ public class FrameDataDisplay extends javax.swing.JFrame {
         chkConfirmed.setSelected(true);
         chkConfirmed.setText("Επιβεβαιωμένα");
 
+        chkRecovered.setSelected(true);
         chkRecovered.setText("Ανάρρωσαν");
 
+        chkDeaths.setSelected(true);
         chkDeaths.setText("Θανατοι");
 
         chkDailyData.setSelected(true);
@@ -341,7 +348,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chkDeaths)
                     .addComponent(chkAccumulativeData))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(btnShowPlot)
                 .addContainerGap())
         );
@@ -381,21 +388,20 @@ public class FrameDataDisplay extends javax.swing.JFrame {
                 .addGap(66, 66, 66))
             .addComponent(tabsCases)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(100, 100, 100))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
+                        .addGap(70, 70, 70)
                         .addComponent(btnDeleteData)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chkDateFrom)
@@ -410,16 +416,16 @@ public class FrameDataDisplay extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addComponent(tabsCases, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(btnDeleteData)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(btnDeleteData)
+                        .addGap(22, 22, 22))))
         );
 
         pack();
@@ -636,7 +642,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
         //φέρνουμε τις χώρες απο την βάση
         List<Country> countries = db.GetCountriesListFromDb();
         //προσθέτουμε μία επιλογή που ερμηνεύεται ως καμία χώρα
-        cmbCountry.addItem("---------");
+        cmbCountry.addItem("");
         
         //προσθέτουμε μια προς μια τις χώρες
         for(Country country : countries)
@@ -724,13 +730,20 @@ public class FrameDataDisplay extends javax.swing.JFrame {
     }    
 
     private void plotLineChart() {
-              
+        //Βεβαιωνόμαστε ότι ο χρήστης έχει επιλέξει μια χώρα
+        if(selectedCountry==null || selectedCountry.equals("")){
+            JOptionPane.showConfirmDialog(null, "Επιλέξτε πρώτα μια χώρα", "Γράφημα χώρας", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }      
         
+        //Αρχικοποιούμε τις λίστες με τα δεδομένα covid
         String title=selectedCountry;
         List<Coviddata> confirmeddata= new ArrayList<Coviddata>();
         List<Coviddata> recovereddata= new ArrayList<Coviddata>();
         List<Coviddata> deathsdata= new ArrayList<Coviddata>();
         
+        //Αν ο χρήστης έχει επιλέξει να εμφανιστεί η κατηγορία, φορτώνουμε τα 
+        //data απο τις λίστες της κλάσης που είναι ήδη στο grid
         if(chkConfirmed.isSelected())
             confirmeddata= confirmedList;
         if(chkRecovered.isSelected())
@@ -738,24 +751,44 @@ public class FrameDataDisplay extends javax.swing.JFrame {
         if(chkDeaths.isSelected())
             deathsdata= deathsList;
         
+        //Φορτώνουμε το dto που θα χρησιμοποιήσουμε για με μεταφορά δεδομένων
+        //και των επιλογών του χρήστη στο γράγημα.
         PlottingData plottingData = new PlottingData
             (title,confirmeddata,recovereddata,deathsdata,chkDailyData.isSelected(),chkAccumulativeData.isSelected());
 
+        //Φτιάχνουμε το frame με το γράφημα
         if (chartFrame == null){
              chartFrame = new FramePlotLineChart();
         }
+        //Περνάμε τα δεδομένα και το εμφανίζουμαι
         chartFrame.CalculatePlot(plottingData);
         chartFrame.setVisible(true);
         
     }
 
     private void showMap() {
+        //Βεβαιωνόμαστε ότι ο χρήστης έχει επιλέξει μια χώρα
+        if(selectedCountry==null || selectedCountry.equals("")){
+            JOptionPane.showConfirmDialog(null, "Επιλέξτε πρώτα μια χώρα", "Χάρτης χώρας", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+        //Πέρνουμε τα τελευταία covid data της χώρας απο το API
+        MappingData map = api.GetCountrysMapData(selectedCountry);
+        //Πέρνουμε τις συντεταγμένες της χώρας απο την βάση
+        Country country = db.GetCountryFromDb(selectedCountry);
+        map.setLat(country.getLat());
+        map.setLong1(country.getLong1());
         ShowMap showMap = new ShowMap();
-        showMap.Display();
+        showMap.Display(map);
     }
 
     //Διαγραφή των covid δεδομένων της χώρας με την σύμφωνη γνώμη του χρήστη
     private void removeCountrysCoviddata() {
+        //Βεβαιωνόμαστε ότι ο χρήστης έχει επιλέξει μια χώρα
+        if(selectedCountry==null || selectedCountry.equals("")){
+            JOptionPane.showConfirmDialog(null, "Επιλέξτε πρώτα μια χώρα", "Διαγραφή δεδομένων", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
         Country country = db.GetCountryFromDb(selectedCountry);
         db.AskAndDeleteCovidData(country);
     }

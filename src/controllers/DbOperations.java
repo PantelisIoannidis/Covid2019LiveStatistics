@@ -249,7 +249,7 @@ public class DbOperations {
                     .getResultList();
         return countries.get(0);
     }
-    
+       
    
     //Επιστρέφει τα covid data μιας χώρας μιας κατηγορίας ανάμεσα σε 2 ημερομηνίες
     public List<Coviddata> GetCoviddataFromDb(String countryName,TimeSeriesCase tmCase,Date dateFrom,Date dateTo){

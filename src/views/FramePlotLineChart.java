@@ -24,7 +24,6 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
-import static views.PlotLineChart.dateFormatPattern;
 
 /**
  *
@@ -51,28 +50,30 @@ public class FramePlotLineChart extends javax.swing.JFrame {
         this.setContentPane(chartPanel);
     }
     
+    //Περνάμε τα data σε δομές που καταλαβαίνει η βιβλιοθήκη Jfreechart
     private CategoryDataset createDataset() {
         
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        
-        int chartCount=0;
+
+        //Θα διαπεράσουμε τις 3 λίστες και θα τις προσθέσουμε στο dataset του jfreechart
+        //Ελέγχουμε αν είναι σωρευτικά ή καθημερινά δεδομένα για να επιλέξουμε το κατάλληλο πεδίο
         String date="";
         String series="Επιβεβαιωμένα";
         String series2="Επιβεβαιωμένα Συνολικά";
         for(Coviddata dtype : data.getConfirmedList()){
             date = simpleDateFormat.format(dtype.getTrndate());
-            if(data.getDailyData()) 
+            if(data.getShowDailyData()) 
                 dataset.addValue(dtype.getQty(), series, date);
-            if(data.getAccumulativeData())
+            if(data.getShowAccumulativeData())
                 dataset.addValue(dtype.getProodqty(), series2, date);
         }
         String series3="Ανάρρωσαν";
         String series4="Ανάρρωσαν Συνολικά";
         for(Coviddata dtype : data.getRecoveredList()){
             date = simpleDateFormat.format(dtype.getTrndate());
-            if(data.getDailyData()) 
+            if(data.getShowDailyData()) 
                 dataset.addValue(dtype.getQty(), series3, date);
-            if(data.getAccumulativeData())
+            if(data.getShowAccumulativeData())
                 dataset.addValue(dtype.getProodqty(), series4, date);
         }
         
@@ -80,9 +81,9 @@ public class FramePlotLineChart extends javax.swing.JFrame {
         String series6="Θανατοι Συνολικά";
         for(Coviddata dtype : data.getDeathsList()){
             date = simpleDateFormat.format(dtype.getTrndate());
-            if(data.getDailyData()) 
+            if(data.getShowDailyData()) 
                 dataset.addValue(dtype.getQty(), series5, date);
-            if(data.getAccumulativeData())
+            if(data.getShowAccumulativeData())
                 dataset.addValue(dtype.getProodqty(), series6, date);
         }
 
@@ -90,32 +91,34 @@ public class FramePlotLineChart extends javax.swing.JFrame {
         return dataset;
                 
     }
+    
+    // Εδώ κατασκευάζεται το chart περνόντας το dataset με τα δεδομένα
+    // και κάνοντας κάποιες ρυθμίσεις στην εμφάνιση
     private JFreeChart createChart(final CategoryDataset dataset) {
         final JFreeChart chart = ChartFactory.createLineChart(
-            data.getTitle(),       // chart title
-            "Ημερομηνία",                    // domain axis label
-            "Κρούσματα",                   // range axis label
-            dataset,                   // data
-            PlotOrientation.VERTICAL,  // orientation
-            true,                      // include legend
-            true,                      // tooltips
-            false                      // urls
+            data.getTitle(),      
+            "Ημερομηνία",                    
+            "Κρούσματα",                   
+            dataset,                   
+            PlotOrientation.VERTICAL,  
+            true,                      
+            true,                      
+            false                      
         );
 
+        //Τα χρώματα
         chart.setBackgroundPaint(Color.white);
-
         final CategoryPlot plot = (CategoryPlot) chart.getPlot();
         plot.setBackgroundPaint(Color.lightGray);
         plot.setRangeGridlinePaint(Color.white);
         
-
-        // customise the range axis...
+        //Ρυθμίσης για τον άξονα Υ
         final NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
-        //rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
         rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
         rangeAxis.setVerticalTickLabels(false);
         rangeAxis.setAutoRangeIncludesZero(true);
         
+        //Ρυθμίσεις για τον άξονα Χ
         final CategoryAxis categoryAxis = (CategoryAxis) plot.getDomainAxis();
         categoryAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_90);      
         
@@ -126,6 +129,8 @@ public class FramePlotLineChart extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
+        setTitle("Γράφημα δεδομένων covid19");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
