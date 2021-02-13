@@ -11,13 +11,12 @@
 
   <script type="text/javascript">
     var locations =[ 
-        ['Algeria: Κρούσματα:110303, Ανάρρωσαν:75628, Θάνατοι:2932',28.0339,1.6596 ],
- 
+       /@%locationsjson%@/
     ];
 
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 8,
-      center: new google.maps.LatLng(28.0339, 1.6596),
+      zoom: /@%zoomLevel%@/,
+      center: new google.maps.LatLng(/@%lat%@/, /@%long%@/),
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
