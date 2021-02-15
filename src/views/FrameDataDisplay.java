@@ -34,6 +34,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
 import models.MappingData;
+import models.MappingDataDb;
 import models.PlottingData;
 import models.TimeSeriesCase;
 import org.jfree.ui.RefineryUtilities;
@@ -772,12 +773,8 @@ public class FrameDataDisplay extends javax.swing.JFrame {
             JOptionPane.showConfirmDialog(null, "Επιλέξτε πρώτα μια χώρα", "Χάρτης χώρας", JOptionPane.PLAIN_MESSAGE);
             return;
         }
-        //Πέρνουμε τα τελευταία covid data της χώρας απο το API
-        MappingData map = api.GetCountrysMapData(selectedCountry);
-        //Πέρνουμε τις συντεταγμένες της χώρας απο την βάση
-        Country country = db.GetCountryFromDb(selectedCountry);
-        map.setLat(country.getLat());
-        map.setLong1(country.getLong1());
+        //Πέρνουμε τα τελευταία covid data της χώρας απο την βάση
+        MappingDataDb map = db.GetCountrysMapData(selectedCountry);
         ShowMap showMap = new ShowMap();
         showMap.Display(map);
     }

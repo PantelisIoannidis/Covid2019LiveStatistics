@@ -249,7 +249,32 @@ public class DbOperations {
                     .getResultList();
         return countries.get(0);
     }
-       
+    
+    //Επιστρέφει τα MappingdataDb για μια χώρα
+    public MappingDataDb GetCountrysMapData(String countryName) {
+        MappingDataDb mp = new MappingDataDb();
+        Country country = GetCountryFromDb(countryName);
+        mp.setLocation(countryName);
+        mp.setLat(country.getLat());
+        mp.setLong1(country.getLong1());
+        mp.setConfirmed(GetAccumulativeCases(countryName,TimeSeriesCase.CONFIRMED));
+        mp.setDeaths(GetAccumulativeCases(countryName,TimeSeriesCase.DEATHS));
+        mp.setRecovered(GetAccumulativeCases(countryName,TimeSeriesCase.RECOVERED));
+        return mp;
+    }
+    
+    public int GetAccumulativeCases(String countryName,TimeSeriesCase tmCase){
+        List<Coviddata> data = em.createQuery("SELECT d FROM Coviddata d JOIN d.country c "
+                +"WHERE c.name= :name AND d.datakind = :datakind "
+                +" order by d.trndate DESC ",Coviddata.class)
+                .setParameter("name", countryName)
+                .setParameter("datakind", (short)tmCase.ordinal())
+                .getResultList();
+        int cases=0;
+        if(data.size()>0)
+            cases=data.get(0).getProodqty();
+        return cases;
+    }
    
     //Επιστρέφει τα covid data μιας χώρας μιας κατηγορίας ανάμεσα σε 2 ημερομηνίες
     public List<Coviddata> GetCoviddataFromDb(String countryName,TimeSeriesCase tmCase,Date dateFrom,Date dateTo){

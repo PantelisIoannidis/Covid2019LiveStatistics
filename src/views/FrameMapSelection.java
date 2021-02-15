@@ -15,6 +15,7 @@ import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import models.MappingData;
+import models.MappingDataDb;
 
 /**
  *
@@ -193,16 +194,11 @@ public class FrameMapSelection extends javax.swing.JFrame {
             return;
         }
         
-        List<MappingData> mappingData = new ArrayList<MappingData>();
+        List<MappingDataDb> mappingData = new ArrayList<MappingDataDb>();
         //Φτιάχνουμε απο την λίστα των ονομάτων των χωρών μια λίστα mappingdata
         for(String name : selectedCountries){
-            //Πέρνουμε τα τελευταία covid data της χώρας απο το API
-            MappingData map = api.GetCountrysMapData(name);
-            //Προσθέτουμε τις συντεταγμένες που έχουμε ήδη στην βάση
-            Country country = db.GetCountryFromDb(name);
-            map.setLat(country.getLat());
-            map.setLong1(country.getLong1());
-            
+            //Πέρνουμε τα τελευταία covid data της χώρας απο την βάση
+            MappingDataDb map = db.GetCountrysMapData(name);
             mappingData.add(map);
         }
         //Καλούμε το παράθυρο του χάρτη και περνάμε τα δεδομένα

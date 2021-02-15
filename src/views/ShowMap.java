@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import models.MappingData;
+import models.MappingDataDb;
 
 /**
  *
@@ -39,14 +40,14 @@ public class ShowMap {
     }
     
     //Πέρνει μια μόνο χώρα, την κάνει λίστα και την περνάει στην Display
-    public void Display(MappingData data){
-        ArrayList<MappingData> mappingData = new ArrayList<MappingData>();
+    public void Display(MappingDataDb data){
+        ArrayList<MappingDataDb> mappingData = new ArrayList<MappingDataDb>();
         mappingData.add(data);
         Display(mappingData);
     }
     
     //Πέρνει μία mappingData λιστα και απεικονίζει τις χώρες
-    public void Display(List<MappingData> data){
+    public void Display(List<MappingDataDb> data){
         //Διαβάζει το html template απο τον κατάλογο του προγράμματος
         String html = ReadTemplate();
         //Μετατρέπει την λίστα των χωρών δομή location
@@ -84,14 +85,14 @@ public class ShowMap {
     
     //Μετατρέπει την λίστα των χωρών σε πίνακα javascript συμβατό 
     //με την δομή location της google
-    private String MappingDataToJSArray(List<MappingData> mappingData){
+    private String MappingDataToJSArray(List<MappingDataDb> mappingData){
         String countriesArray="";
-        for(MappingData data : mappingData){
+        for(MappingDataDb data : mappingData){
             countriesArray += String.format("['%s: %s, %s, %s',%s,%s ],\n",
-                    data.getData().getLocation(),
-                    "Κρούσματα:"+data.getData().getConfirmed(),
-                    "Ανάρρωσαν:"+data.getData().getRecovered(),
-                    "Θάνατοι:"+data.getData().getDeaths(),
+                    data.getLocation(),
+                    "Κρούσματα:"+data.getConfirmed(),
+                    "Ανάρρωσαν:"+data.getRecovered(),
+                    "Θάνατοι:"+data.getDeaths(),
                     String.valueOf(data.getLat()),
                     String.valueOf(data.getLong1()));
         }
