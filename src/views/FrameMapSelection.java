@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import models.MappingData;
@@ -164,7 +165,11 @@ public class FrameMapSelection extends javax.swing.JFrame {
 
 
     //Φορτώνουμε το combo και την λιστα με τις χώρες
-    private void populateCountryComboBoxAndList() {
+    public void populateCountryComboBoxAndList() {
+        //Καθαρίζουμε το combo
+        if(cmbCountry.getSelectedIndex()!=-1){
+            cmbCountry.setModel(new DefaultComboBoxModel());
+        }
        //φέρνουμε τις χώρες απο την βάση
         List<Country> countries = db.GetCountriesListFromDb();
         DefaultListModel listCountriesModel = new DefaultListModel();

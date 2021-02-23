@@ -29,6 +29,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
@@ -529,7 +531,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
     private javax.swing.JTable tblRecovered;
     // End of variables declaration//GEN-END:variables
 
-    private void populateComponents() {
+    public void populateComponents() {
         //γεμίζουμε το combo με τα ονόματα των χωρών
         populateCountryComboBox();
         //αρχικοποίηση των textfield με τις ημερομηνίες
@@ -640,6 +642,10 @@ public class FrameDataDisplay extends javax.swing.JFrame {
 
     //γεμίζουμε το combo με τα ονόματα των χωρών
     private void populateCountryComboBox() {
+        //Καθαρίζουμε το combo
+        if(cmbCountry.getSelectedIndex()!=-1){
+            cmbCountry.setModel(new DefaultComboBoxModel());
+        }
         //φέρνουμε τις χώρες απο την βάση
         List<Country> countries = db.GetCountriesListFromDb();
         //προσθέτουμε μία επιλογή που ερμηνεύεται ως καμία χώρα

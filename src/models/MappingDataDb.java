@@ -9,6 +9,7 @@ package models;
  *
  * @author panti
  */
+// Κρατάμε τα στοιχεία που χρειάζονται για να τυπώσουμε μια χώρα
 public class MappingDataDb {
      String location;
      int confirmed;

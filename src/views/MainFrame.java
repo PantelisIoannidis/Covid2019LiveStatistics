@@ -261,6 +261,7 @@ public class MainFrame extends javax.swing.JFrame {
         if(frameDataDisplay==null){
             frameDataDisplay = new FrameDataDisplay();
         }
+        frameDataDisplay.populateComponents();
         frameDataDisplay.setVisible(true);
     }
 
@@ -268,6 +269,7 @@ public class MainFrame extends javax.swing.JFrame {
         if (frameMapSelection == null){
             frameMapSelection = new FrameMapSelection();
         }
+        frameMapSelection.populateCountryComboBoxAndList();
         frameMapSelection.setVisible(true);
     }
 

@@ -20,14 +20,16 @@ import models.CountryTimeSeries;
  */
 public class FrameDataManagement extends javax.swing.JFrame {
 
-    APIController api = new APIController();
-    DbOperations dbOperations = new DbOperations();
+    APIController api;
+    DbOperations dbOperations;
 
     /**
      * Creates new form FrameDataManagement
      */
     public FrameDataManagement() {
         initComponents();
+        dbOperations = new DbOperations();
+        api = new APIController();
     }
 
     /**
@@ -100,6 +102,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
         gridBagConstraints.gridy = 8;
         getContentPane().add(btnDeleteData, gridBagConstraints);
 
+        chkDeaths.setSelected(true);
         chkDeaths.setText("Θάνατοι");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
@@ -107,6 +110,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         getContentPane().add(chkDeaths, gridBagConstraints);
 
+        chkConfirmed.setSelected(true);
         chkConfirmed.setText("Κρούσματα");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
@@ -114,6 +118,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         getContentPane().add(chkConfirmed, gridBagConstraints);
 
+        chkRecovered.setSelected(true);
         chkRecovered.setText("Αναρώσεις");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
@@ -126,7 +131,6 @@ public class FrameDataManagement extends javax.swing.JFrame {
         txtAreaMessage.setLineWrap(true);
         txtAreaMessage.setRows(5);
         txtAreaMessage.setWrapStyleWord(true);
-        txtAreaMessage.setOpaque(false);
         jScrollPane1.setViewportView(txtAreaMessage);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -167,7 +171,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
 
     private void btnInsertDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertDataActionPerformed
         DisableAllButtons();
-        txtAreaMessage.setText("ΠΑΡΑΚΑΛΩ ΠΕΡΙΜΕΝΕΤΕ.\n Εισαγωγή δεδομένων covid σε εξέλιξη.");
+        txtAreaMessage.setText("ΠΑΡΑΚΑΛΩ ΠΕΡΙΜΕΝΕΤΕ 2-7 λεπτά.\n Εισαγωγή δεδομένων covid σε εξέλιξη.");
         SwingWorker sw1 = new SwingWorker() {
 
             @Override

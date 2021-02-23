@@ -35,34 +35,46 @@ public class DbOperations {
     
     //Αρχικοποιούμε τους entity manager, entity manager factory και τους jpa controllers
     public DbOperations(){
-        emf = Persistence.createEntityManagerFactory("Covid19-StatsPU");
-        em = emf.createEntityManager();
-        countryJpaController = new CountryJpaController(emf);
-        coviddataJpaController = new CoviddataJpaController(emf);
+        try {
+            emf = Persistence.createEntityManagerFactory("Covid19-StatsPU");
+            em = emf.createEntityManager();
+            countryJpaController = new CountryJpaController(emf);
+            coviddataJpaController = new CoviddataJpaController(emf);
+        } catch (Exception ex) {
+            Logger.getLogger(DbOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     //Διέγραψε τα covid data της χώρας
     public void  DeleteCovidData(Country country){
-        em.getTransaction().begin();
-        //Πάρε τα covid data της συγκεκριμένης χώρας
-        List<Coviddata> covidDataList = (List<Coviddata>)em.createQuery("SELECT c FROM Coviddata c WHERE c.country = :country",Coviddata.class)
-                    .setParameter("country",country)
-                    .getResultList();
-        //Σβήσε ένα προς ένα όλα τα ζεύγοι τιμών
-        for(Coviddata cd : covidDataList)
-            em.remove(cd);
-        em.getTransaction().commit();
+        try {
+            em.getTransaction().begin();
+            //Πάρε τα covid data της συγκεκριμένης χώρας
+            List<Coviddata> covidDataList = (List<Coviddata>)em.createQuery("SELECT c FROM Coviddata c WHERE c.country = :country",Coviddata.class)
+                        .setParameter("country",country)
+                        .getResultList();
+            //Σβήσε ένα προς ένα όλα τα ζεύγοι τιμών
+            for(Coviddata cd : covidDataList)
+                em.remove(cd);
+            em.getTransaction().commit();
+        } catch (Exception ex) {
+            Logger.getLogger(DbOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     //Διέγραψε τα covid data της χώρας, εφόσον δώσει άδεια ο χρήστης
     public void  AskAndDeleteCovidData(Country country){
-        String title = "Διαγραφή απο την βάση";
-        String message ="Σίγουρα θέλετε να διαγράψετε τα δεδομένα για την χώρα : "+country.getName();
-        int reply = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
-        //Αν απαντήσει ναι, διέγραψε τα covid data της χώρας
-        if (reply == JOptionPane.YES_OPTION) {
-            DeleteCovidData(country);
-        } 
+        try {
+            String title = "Διαγραφή απο την βάση";
+            String message ="Σίγουρα θέλετε να διαγράψετε τα δεδομένα για την χώρα : "+country.getName();
+            int reply = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
+            //Αν απαντήσει ναι, διέγραψε τα covid data της χώρας
+            if (reply == JOptionPane.YES_OPTION) {
+                DeleteCovidData(country);
+            } 
+        } catch (Exception ex) {
+            Logger.getLogger(DbOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     //Διαγραφή όλων των covid Data
@@ -87,33 +99,38 @@ public class DbOperations {
     
     //Διαγραφή της χώρα
     public void  DeleteCountry(Country country){
-        em.getTransaction().begin();
-        //Δες αν υπάρχουν covid data για αυτή την χώρα
-        List<Coviddata> covidDataList = (List<Coviddata>)em.createQuery("SELECT c FROM Coviddata c WHERE c.country = :country",Coviddata.class)
-                    .setParameter("country",country)
-                    .getResultList();
-        //Αν υπάρχουν covid data, πάρε την έγκριση του χρήστη για να διαγράψεις την χώρα
-        if(covidDataList.size()>0){
-            String title = "Διαγραφή απο την βάση";
-            String message ="Η χώρα "+country.getName()
-                    +" έχει coviddata τα οποία θα πρέπει να διαγραφούν.\n"
-                    +" Να συνεχίσουμε με την διαγραφή;";
-            int reply = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
-            if (reply == JOptionPane.YES_OPTION) {
-                //Διέγραψε τα covid data της χώρας
-                for(Coviddata cd : covidDataList)
-                    em.remove(cd);
-            } 
+        try {
+            em.getTransaction().begin();
+            //Δες αν υπάρχουν covid data για αυτή την χώρα
+            List<Coviddata> covidDataList = (List<Coviddata>)em.createQuery("SELECT c FROM Coviddata c WHERE c.country = :country",Coviddata.class)
+                        .setParameter("country",country)
+                        .getResultList();
+            //Αν υπάρχουν covid data, πάρε την έγκριση του χρήστη για να διαγράψεις την χώρα
+            if(covidDataList.size()>0){
+                String title = "Διαγραφή απο την βάση";
+                String message ="Η χώρα "+country.getName()
+                        +" έχει coviddata τα οποία θα πρέπει να διαγραφούν.\n"
+                        +" Να συνεχίσουμε με την διαγραφή;";
+                int reply = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
+                if (reply == JOptionPane.YES_OPTION) {
+                    //Διέγραψε τα covid data της χώρας
+                    for(Coviddata cd : covidDataList)
+                        em.remove(cd);
+                } 
+            }
+            //Διέγραψε απο την βάση την χώρα
+            em.remove(country);
+            em.getTransaction().commit();
+        } catch (Exception ex) {
+            Logger.getLogger(DbOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //Διέγραψε απο την βάση την χώρα
-        em.remove(country);
-        em.getTransaction().commit();
     }
     
     //Διαγραφή όλων των χωρών
     public void DeleteAllCountries(){
-        //Ζήτα την άδεια του χρήστη
-        String title = "Διαγραφή απο την βάση";
+        try {
+            //Ζήτα την άδεια του χρήστη
+            String title = "Διαγραφή απο την βάση";
             String message ="Είστε σίγουρος ότι θέλετε να διαγράψετε όλες τις χώρες;";
             int reply = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
             if (reply == JOptionPane.YES_OPTION) {
@@ -124,6 +141,9 @@ public class DbOperations {
                 for(Country country : countries)
                     DeleteCountry(country);
             } 
+        } catch (Exception ex) {
+            Logger.getLogger(DbOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     //Διέγραψε την χώρα, εφόσον δώσει άδεια ο χρήστης
@@ -139,13 +159,17 @@ public class DbOperations {
     
     // Εξάγουμε απο τις timeseries τις χώρες και αν δεν υπάρχουν τις προσθέτουμε στην βάση.
     public void AddCountriesThatAreNotInDB(List<CountryTimeSeries> ltm){
-        // Διαβάζουμε όλες τις καταχωρήσεις γαι την συγκεκριμένη κατηγορία δεδομένων
-        for(CountryTimeSeries tm : ltm){
-            //Ψάχνουμε να δούμε αν υπάρχει χώρα με αυτό το όνομα στην βάση
-            List<Country> countriesInDatabase = (List<Country>)em.createNamedQuery("Country.findByName").setParameter("name", tm.country).getResultList();
-            //Αν όχι την προσθέτουμε
-            if (countriesInDatabase.size()<=0)
-                AddNewCountryInDb(tm);
+        try {
+            // Διαβάζουμε όλες τις καταχωρήσεις γαι την συγκεκριμένη κατηγορία δεδομένων
+            for(CountryTimeSeries tm : ltm){
+                //Ψάχνουμε να δούμε αν υπάρχει χώρα με αυτό το όνομα στην βάση
+                List<Country> countriesInDatabase = (List<Country>)em.createNamedQuery("Country.findByName").setParameter("name", tm.country).getResultList();
+                //Αν όχι την προσθέτουμε
+                if (countriesInDatabase.size()<=0)
+                    AddNewCountryInDb(tm);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(DbOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -169,13 +193,18 @@ public class DbOperations {
     
     //Διαβάζουμε το timeseries και η χώρα του υπάρχει στην βάση προσθέτουμε τα covid data.
     public void AddTimeSeriesInDatabase(List<CountryTimeSeries> ltm, TimeSeriesCase tmcase){
+        try {
         // Διαβάζουμε όλες τις καταχωρήσεις γαι την συγκεκριμένη κατηγορία δεδομένων
         for(CountryTimeSeries tm : ltm){
             //Ψάχνουμε να δούμε αν υπάρχει χώρα με αυτό το όνομα στην βάση
             List<Country> countriesInDatabase = (List<Country>)em.createNamedQuery("Country.findByName").setParameter("name", tm.country).getResultList();
             //Αν ναι, προσθέτουμε τα covid data για την συγκεκριμένη κατηγορία
-            if (countriesInDatabase.size()>=0)
+            if (countriesInDatabase.size()>=0){
                 AddCountrysDataInDatabase(countriesInDatabase.get(0),tm,tmcase);     
+            }
+        }
+        } catch (Exception ex) {
+            Logger.getLogger(DbOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -237,16 +266,26 @@ public class DbOperations {
     
     //Επιστρέφει την λίστα των χωρών που υπάρχουν στην βάση
     public List<Country> GetCountriesListFromDb(){
-        List<Country> countries = (List<Country>)em.createQuery("SELECT c FROM Country c",Country.class)
+        List<Country> countries = new ArrayList<>();
+        try {
+            countries = (List<Country>)em.createQuery("SELECT c FROM Country c",Country.class)
                     .getResultList();
+        } catch (Exception ex) {
+            Logger.getLogger(DbOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return  countries;
     }
     
     //Επιστρέφει την χώρα με βάση το όνομα
     public Country GetCountryFromDb(String countryName){
-        List<Country> countries = (List<Country>)em.createQuery("SELECT c FROM Country c WHERE c.name = :name",Country.class)
+        List<Country> countries = new ArrayList<>();
+        try {
+            countries = (List<Country>)em.createQuery("SELECT c FROM Country c WHERE c.name = :name",Country.class)
                     .setParameter("name",countryName)
                     .getResultList();
+        } catch (Exception ex) {
+            Logger.getLogger(DbOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return countries.get(0);
     }
     
@@ -264,21 +303,27 @@ public class DbOperations {
     }
     
     public int GetAccumulativeCases(String countryName,TimeSeriesCase tmCase){
-        List<Coviddata> data = em.createQuery("SELECT d FROM Coviddata d JOIN d.country c "
-                +"WHERE c.name= :name AND d.datakind = :datakind "
-                +" order by d.trndate DESC ",Coviddata.class)
-                .setParameter("name", countryName)
-                .setParameter("datakind", (short)tmCase.ordinal())
-                .getResultList();
         int cases=0;
-        if(data.size()>0)
-            cases=data.get(0).getProodqty();
+        try {
+            List<Coviddata> data = em.createQuery("SELECT d FROM Coviddata d JOIN d.country c "
+                    +"WHERE c.name= :name AND d.datakind = :datakind "
+                    +" order by d.trndate DESC ",Coviddata.class)
+                    .setParameter("name", countryName)
+                    .setParameter("datakind", (short)tmCase.ordinal())
+                    .getResultList();
+            if(data.size()>0)
+                cases=data.get(0).getProodqty();
+        } catch (Exception ex) {
+            Logger.getLogger(DbOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return cases;
     }
    
     //Επιστρέφει τα covid data μιας χώρας μιας κατηγορίας ανάμεσα σε 2 ημερομηνίες
     public List<Coviddata> GetCoviddataFromDb(String countryName,TimeSeriesCase tmCase,Date dateFrom,Date dateTo){
-        List<Coviddata> data = em.createQuery("SELECT d FROM Coviddata d JOIN d.country c "
+        List<Coviddata> data = new ArrayList<Coviddata>();
+        try {
+            data = em.createQuery("SELECT d FROM Coviddata d JOIN d.country c "
                 +"WHERE c.name= :name AND d.datakind = :datakind "
                 +"AND d.trndate >= :dateFrom AND d.trndate <= :dateTo "
                 +" order by d.trndate",Coviddata.class)
@@ -287,6 +332,9 @@ public class DbOperations {
                 .setParameter("dateFrom", dateFrom)
                 .setParameter("dateTo", dateTo)
                 .getResultList();
+        } catch (Exception ex) {
+            Logger.getLogger(DbOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return data;
     }
         
