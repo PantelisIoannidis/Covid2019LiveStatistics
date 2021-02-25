@@ -15,6 +15,7 @@ public class MainFrame extends javax.swing.JFrame {
     FrameDataManagement frameDataManagement = new FrameDataManagement();
     FrameDataDisplay frameDataDisplay = new FrameDataDisplay();
     FrameMapSelection frameMapSelection = new FrameMapSelection();
+    FrameAbout frameAbout = new FrameAbout();
     /**
      * Creates new form MainFrame
      */
@@ -45,6 +46,8 @@ public class MainFrame extends javax.swing.JFrame {
         mnuDataManagement = new javax.swing.JMenuItem();
         mnuDataDisplay = new javax.swing.JMenuItem();
         mnuMap = new javax.swing.JMenuItem();
+        mnuHelp = new javax.swing.JMenu();
+        mnuAbout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Σύστημα Covid19-Stats");
@@ -132,6 +135,18 @@ public class MainFrame extends javax.swing.JFrame {
 
         mnuBar.add(mnuFrames);
 
+        mnuHelp.setText("Πληροφορίες");
+
+        mnuAbout.setText("Σχετικά");
+        mnuAbout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuAboutActionPerformed(evt);
+            }
+        });
+        mnuHelp.add(mnuAbout);
+
+        mnuBar.add(mnuHelp);
+
         setJMenuBar(mnuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -152,7 +167,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(348, 348, 348)
                         .addComponent(btnExit)))
-                .addContainerGap(280, Short.MAX_VALUE))
+                .addContainerGap(235, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,7 +181,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(btnMap)
                 .addGap(30, 30, 30)
                 .addComponent(btnExit)
-                .addGap(0, 143, Short.MAX_VALUE))
+                .addGap(0, 46, Short.MAX_VALUE))
         );
 
         pack();
@@ -205,6 +220,10 @@ public class MainFrame extends javax.swing.JFrame {
     private void btnMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMapActionPerformed
         showMap();
     }//GEN-LAST:event_btnMapActionPerformed
+
+    private void mnuAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAboutActionPerformed
+        showAboutWindow();
+    }//GEN-LAST:event_mnuAboutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -248,12 +267,14 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnMap;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem mnuAbout;
     private javax.swing.JMenuBar mnuBar;
     private javax.swing.JMenuItem mnuDataDisplay;
     private javax.swing.JMenuItem mnuDataManagement;
     private javax.swing.JMenuItem mnuExit;
     private javax.swing.JMenu mnuFile;
     private javax.swing.JMenu mnuFrames;
+    private javax.swing.JMenu mnuHelp;
     private javax.swing.JMenuItem mnuMap;
     // End of variables declaration//GEN-END:variables
 
@@ -282,5 +303,12 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void exitApp() {
         System.exit(0);
+    }
+
+    private void showAboutWindow() {
+        if (frameAbout == null){
+            frameAbout = new FrameAbout();
+        }
+        frameAbout.setVisible(true);
     }
 }

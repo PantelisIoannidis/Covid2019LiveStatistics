@@ -49,13 +49,14 @@ public class FrameDataManagement extends javax.swing.JFrame {
         chkDeaths = new javax.swing.JCheckBox();
         chkConfirmed = new javax.swing.JCheckBox();
         chkRecovered = new javax.swing.JCheckBox();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtAreaMessage = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextMessages = new javax.swing.JTextPane();
 
         setTitle("Διαχείριση δεδομένων Covid19");
         java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
-        layout.columnWidths = new int[] {0, 20, 0, 20, 0, 20, 0, 20, 0};
-        layout.rowHeights = new int[] {0, 21, 0, 21, 0, 21, 0, 21, 0, 21, 0, 21, 0};
+        layout.columnWidths = new int[] {0, 20, 0, 20, 0, 20, 0, 20, 0, 20, 0};
+        layout.rowHeights = new int[] {0, 21, 0, 21, 0, 21, 0, 21, 0, 21, 0, 21, 0, 21, 0};
         getContentPane().setLayout(layout);
 
         btnInsertCountries.setText("Εισαγωγή χωρών");
@@ -106,7 +107,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
         chkDeaths.setText("Θάνατοι");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         getContentPane().add(chkDeaths, gridBagConstraints);
 
@@ -114,7 +115,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
         chkConfirmed.setText("Κρούσματα");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         getContentPane().add(chkConfirmed, gridBagConstraints);
 
@@ -122,21 +123,27 @@ public class FrameDataManagement extends javax.swing.JFrame {
         chkRecovered.setText("Αναρώσεις");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         getContentPane().add(chkRecovered, gridBagConstraints);
 
-        txtAreaMessage.setEditable(false);
-        txtAreaMessage.setColumns(40);
-        txtAreaMessage.setLineWrap(true);
-        txtAreaMessage.setRows(5);
-        txtAreaMessage.setWrapStyleWord(true);
-        jScrollPane1.setViewportView(txtAreaMessage);
+        jLabel1.setText("Κατηγορίες Δεδομένων");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 2;
+        getContentPane().add(jLabel1, gridBagConstraints);
+
+        jTextMessages.setEditable(false);
+        jTextMessages.setBackground(javax.swing.UIManager.getDefaults().getColor("scrollbar"));
+        jScrollPane3.setViewportView(jTextMessages);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 10;
-        getContentPane().add(jScrollPane1, gridBagConstraints);
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridheight = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        getContentPane().add(jScrollPane3, gridBagConstraints);
 
         pack();
         setLocationRelativeTo(null);
@@ -144,7 +151,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
 
     private void btnInsertCountriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertCountriesActionPerformed
         DisableAllButtons();
-        txtAreaMessage.setText("ΠΑΡΑΚΑΛΩ ΠΕΡΙΜΕΝΕΤΕ.\n Εισαγωγή χωρών σε εξέλιξη.");
+        jTextMessages.setText("ΠΑΡΑΚΑΛΩ ΠΕΡΙΜΕΝΕΤΕ.\n Εισαγωγή χωρών σε εξέλιξη.");
         SwingWorker sw1 = new SwingWorker() {
 
             @Override
@@ -162,7 +169,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
             @Override
             protected void done() {
                 EnableAllButtons();
-                txtAreaMessage.setText("");
+                jTextMessages.setText("");
             }
         };
 
@@ -171,7 +178,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
 
     private void btnInsertDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertDataActionPerformed
         DisableAllButtons();
-        txtAreaMessage.setText("ΠΑΡΑΚΑΛΩ ΠΕΡΙΜΕΝΕΤΕ 2-7 λεπτά.\n Εισαγωγή δεδομένων covid σε εξέλιξη.");
+        jTextMessages.setText("ΠΑΡΑΚΑΛΩ ΠΕΡΙΜΕΝΕΤΕ 2-7 λεπτά.\n Εισαγωγή δεδομένων covid σε εξέλιξη.");
         SwingWorker sw1 = new SwingWorker() {
 
             @Override
@@ -205,7 +212,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
             @Override
             protected void done() {
                 EnableAllButtons();
-                txtAreaMessage.setText("");
+                jTextMessages.setText("");
             }
         };
 
@@ -215,7 +222,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
 
     private void btnDeleteCountriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCountriesActionPerformed
         DisableAllButtons();
-        txtAreaMessage.setText("ΠΑΡΑΚΑΛΩ ΠΕΡΙΜΕΝΕΤΕ.\n Διαγραφή χωρών σε εξέλιξη.");
+        jTextMessages.setText("ΠΑΡΑΚΑΛΩ ΠΕΡΙΜΕΝΕΤΕ.\n Διαγραφή χωρών σε εξέλιξη.");
         SwingWorker sw1 = new SwingWorker() {
 
             @Override
@@ -232,7 +239,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
             @Override
             protected void done() {
                 EnableAllButtons();
-                txtAreaMessage.setText("");
+                jTextMessages.setText("");
             }
         };
 
@@ -243,7 +250,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
 
     private void btnDeleteDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteDataActionPerformed
         DisableAllButtons();
-        txtAreaMessage.setText("ΠΑΡΑΚΑΛΩ ΠΕΡΙΜΕΝΕΤΕ.\n Διαγραφή δεδομένων covid σε εξέλιξη.");
+        jTextMessages.setText("ΠΑΡΑΚΑΛΩ ΠΕΡΙΜΕΝΕΤΕ.\n Διαγραφή δεδομένων covid σε εξέλιξη.");
         SwingWorker sw1 = new SwingWorker() {
 
             @Override
@@ -260,7 +267,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
             @Override
             protected void done() {
                 EnableAllButtons();
-                txtAreaMessage.setText("");
+                jTextMessages.setText("");
             }
         };
 
@@ -332,7 +339,8 @@ public class FrameDataManagement extends javax.swing.JFrame {
     private javax.swing.JCheckBox chkConfirmed;
     private javax.swing.JCheckBox chkDeaths;
     private javax.swing.JCheckBox chkRecovered;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea txtAreaMessage;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextPane jTextMessages;
     // End of variables declaration//GEN-END:variables
 }
