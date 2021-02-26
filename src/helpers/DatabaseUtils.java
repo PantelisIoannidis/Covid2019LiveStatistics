@@ -18,26 +18,24 @@ import javax.swing.JOptionPane;
  *
  * @author Pantelis Ioannidis
  */
-
+//Δημιουργία Derby database αν δεν υπάρχει κατα την πρώτη εκτέλεση του προγράμματος
 public class DatabaseUtils {
-    private static final String PERSISTENCE_UNIT_NAME = "Covid19-StatsPU";
     private EntityManagerFactory emf;
     private EntityManager em;
-    private static final String DB_URL = "jdbc:derby://localhost:1527/covid19stats;create=true";
-    private static final String USER = "plh24";
-    private static final String PASS = "plh24";    
+    private static final String DATABASE_URL = "jdbc:derby://localhost:1527/covid19stats;create=true";
+    private static final String USERNAME = "plh24";
+    private static final String PASSWORD = "plh24";    
     
-    public boolean InitializeDatabase () {
+    public void InitializeDatabase () {
         
-        boolean errorStatus=false;
-        Connection conn=null;
-        Statement stmt=null;
+        Connection connection=null;
+        Statement statement=null;
         String SqlStatement;
         
         try{
 
-           conn = DriverManager.getConnection(DB_URL, USER, PASS);
-           stmt = conn.createStatement();
+           connection = DriverManager.getConnection(DATABASE_URL, USERNAME, PASSWORD);
+           statement = connection.createStatement();
 
             // Δημιουργία του πίνακα COUNTRY
             SqlStatement = "create table COUNTRY\n" +
@@ -47,7 +45,7 @@ public class DatabaseUtils {
                         "    LAT DOUBLE,\n" +
                         "    LONG DOUBLE\n" +
                         ")";
-            stmt.executeUpdate(SqlStatement);
+            statement.executeUpdate(SqlStatement);
            
            // Δημιουργία του πίνακα COVIDDATA
             SqlStatement = "create table COVIDDATA\n" +
@@ -61,44 +59,36 @@ public class DatabaseUtils {
                             "	QTY INTEGER NOT NULL,\n" +
                             "	PROODQTY INTEGER NOT NULL\n" +
                             ")";
-            stmt.executeUpdate(SqlStatement);
+            statement.executeUpdate(SqlStatement);
             
             SqlStatement = "alter table COVIDDATA\n" +
                             "add constraint COVIDDATA_UINDEX unique (COUNTRY,TRNDATE,DATAKIND)";
-            stmt.executeUpdate(SqlStatement);
-           
+            statement.executeUpdate(SqlStatement);
+        //Εδώ πιάνουμε γενικά τα exception που σχετίζονται με τον sql server    
         }catch(SQLException ex){
-            //H database υπάρχει. Δεν χρειάζεται na γίνεi τίποτα.
+            //H database υπάρχει. Δεν χρειάζεται να γίνεi τίποτα. Αγνόησε το exception
             if(ex.getSQLState().toUpperCase().equals("X0Y32".toUpperCase())) {
                                
-            }
+            } //Δεν έχει ξεκινήσει το JavaDB Server
             else if (ex.getSQLState().toUpperCase().equals("08001".toUpperCase())) {
                  JOptionPane.showMessageDialog(null, "Αποτυχία σύνδεσης με την βάση. Ελέγξτε αν έχει ξεκινήσει ο Java DB server.", "Error", JOptionPane.ERROR_MESSAGE);
-                errorStatus= true;
                 System.exit(0);
             }
+            //τα υπόλοιπα sql server exception που δεν πιάσαμε στις προηγούμενες περιπτώσεις
             else {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                errorStatus= true;
             }
-            
+        //Εδώ πιάνουμε γενικά τα exception που δεν σχετίζονται με τον sql server και ενημερώνουμε τον χρήστη   
         }catch(Exception ex){      
            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-           errorStatus= true;
         }finally{
+            //Κλείνουμε το connection με την βάση
             try{
-              if(stmt!=null)
-                 conn.close();
-            }catch(SQLException ex){
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
-            try{
-               if(conn!=null)
-                  conn.close();
+              if(statement!=null && connection!=null)
+                 connection.close();
             }catch(SQLException ex){
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        return errorStatus;
     }
 }
