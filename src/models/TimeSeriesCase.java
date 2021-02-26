@@ -7,7 +7,7 @@ package models;
 
 /**
  *
- * @author panti
+ * @author Pantelis Ioannidis
  */
 // Enum type με τον οποίο διακρινουμε της κατηγοριες των timeseries
 public enum TimeSeriesCase {

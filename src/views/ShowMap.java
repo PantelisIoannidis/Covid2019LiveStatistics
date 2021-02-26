@@ -21,7 +21,7 @@ import models.MappingDataDb;
 
 /**
  *
- * @author panti
+ * @author Pantelis Ioannidis
  */
 //Δείχνει τον χάρτη στον χρήστη
 public class ShowMap {

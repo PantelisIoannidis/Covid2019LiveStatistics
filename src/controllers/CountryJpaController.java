@@ -21,7 +21,8 @@ import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author panti
+ * @author Pantelis Ioannidis
+ * @author Nick Dimitrakarakos
  */
 public class CountryJpaController implements Serializable {
 

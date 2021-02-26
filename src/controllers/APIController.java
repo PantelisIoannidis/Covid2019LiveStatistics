@@ -27,7 +27,8 @@ import okhttp3.Response;
 
 /**
  *
- * @author panti
+ * @author Pantelis Ioannidis
+ * @author Nick Dimitrakarakos
  */
 public class APIController {
 

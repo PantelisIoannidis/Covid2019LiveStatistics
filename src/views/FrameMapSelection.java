@@ -20,7 +20,8 @@ import models.MappingDataDb;
 
 /**
  *
- * @author panti
+ * @author Pantelis Ioannidis
+ * @author Aris Dimakakos
  */
 public class FrameMapSelection extends javax.swing.JFrame {
 

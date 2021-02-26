@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author panti
+ * @author Pantelis Ioannidis
  */
 
 public class DatabaseUtils {

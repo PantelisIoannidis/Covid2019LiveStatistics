@@ -43,7 +43,10 @@ import org.jfree.ui.RefineryUtilities;
 
 /**
  *
- * @author panti
+ * @author Pantelis Ioannidis
+ * @author Nick Dimitrakarakos
+ * @author Efthimios Georgakis 
+ * @author Aris Dimakakos
  */
 public class FrameDataDisplay extends javax.swing.JFrame {
 

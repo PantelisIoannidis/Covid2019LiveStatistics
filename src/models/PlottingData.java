@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author panti
+ * @author Pantelis Ioannidis
  */
 //DTO κλάση για να περάσουμε δεδομένα στην γραφική παράσταση
 public class PlottingData {

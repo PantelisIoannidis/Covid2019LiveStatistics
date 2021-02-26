@@ -24,7 +24,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author panti
+ * @author Pantelis Ioannidis
+ * @author Nick Dimitrakarakos
  */
 @Entity
 @Table(name = "COVIDDATA")

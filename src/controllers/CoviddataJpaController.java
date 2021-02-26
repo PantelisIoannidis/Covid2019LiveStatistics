@@ -19,7 +19,8 @@ import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author panti
+ * @author Pantelis Ioannidis
+ * @author Nick Dimitrakarakos
  */
 public class CoviddataJpaController implements Serializable {
 

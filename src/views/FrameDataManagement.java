@@ -16,7 +16,8 @@ import models.CountryTimeSeries;
 
 /**
  *
- * @author panti
+ * @author Pantelis Ioannidis
+ * @author Nick Dimitrakarakos
  */
 public class FrameDataManagement extends javax.swing.JFrame {
 

@@ -14,7 +14,7 @@ import java.util.TreeMap;
 
 /**
  *
- * @author panti
+ * @author Pantelis Ioannidis
  */
 //Βασική κλάση όπου αποθηκεύουμε τα timeseries μιας κατηγορίας μιας χώρας
 public class CountryTimeSeries {

@@ -16,18 +16,21 @@ import models.PlottingData;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.CategoryAnchor;
 import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.CategoryLabelPositions;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.CategoryItemRenderer;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
- * @author panti
+ * @author Pantelis Ioannidis
  */
 public class FramePlotLineChart extends javax.swing.JFrame {
 
@@ -105,22 +108,30 @@ public class FramePlotLineChart extends javax.swing.JFrame {
             true,                      
             false                      
         );
-
+        
         //Τα χρώματα
         chart.setBackgroundPaint(Color.white);
         final CategoryPlot plot = (CategoryPlot) chart.getPlot();
         plot.setBackgroundPaint(Color.lightGray);
         plot.setRangeGridlinePaint(Color.white);
         
+        
+        CategoryItemRenderer renderer =   plot.getRenderer();
+        renderer.setSeriesVisible(0, true);
+
+        
         //Ρυθμίσης για τον άξονα Υ
-        final NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
+        NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
         rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
         rangeAxis.setVerticalTickLabels(false);
         rangeAxis.setAutoRangeIncludesZero(true);
         
         //Ρυθμίσεις για τον άξονα Χ
-        final CategoryAxis categoryAxis = (CategoryAxis) plot.getDomainAxis();
-        categoryAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_90);      
+        CategoryAxis categoryAxis = (CategoryAxis) plot.getDomainAxis();
+        categoryAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_90);  
+        categoryAxis.setMaximumCategoryLabelLines(1);
+        
+        
         
         return chart;
     }

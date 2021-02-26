@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 
 /**
  *
- * @author panti
+ * @author Pantelis Ioannidis
  */
 public class DateValidator{
     private String dateFormat;

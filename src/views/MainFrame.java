@@ -9,7 +9,10 @@ import helpers.DatabaseUtils;
 
 /**
  *
- * @author panti
+ * @author Pantelis Ioannidis
+ * @author Nick Dimitrakarakos
+ * @author Efthimios Georgakis 
+ * @author Aris Dimakakos
  */
 public class MainFrame extends javax.swing.JFrame {
     FrameDataManagement frameDataManagement = new FrameDataManagement();

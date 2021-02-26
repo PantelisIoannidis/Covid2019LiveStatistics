@@ -7,7 +7,7 @@ package models;
 
 /**
  *
- * @author panti
+ * @author Pantelis Ioannidis
  */
 // Κρατάμε τα στοιχεία που χρειάζονται για να τυπώσουμε μια χώρα
 public class MappingDataDb {
