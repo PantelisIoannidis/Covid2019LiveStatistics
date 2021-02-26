@@ -7,7 +7,7 @@
           type="text/javascript"></script>
 </head> 
 <body>
-  <div id="map" style="width: 600px; height: 500px;"></div>
+  <div id="map" style="width: 500px; height: 500px;"></div>
 
   <script type="text/javascript">
     var locations =[ 
@@ -36,6 +36,15 @@
           infowindow.open(map, marker);
         }
       })(marker, i));
+      
+//      Βρίσκουμε τις διαστάσεις του διαθέσιμου χώρου του browser και τις περνάμε στον χάρτη
+//      ώστε να πιάνει ολόκληρο τον χώρο του browser
+//      ------------------------------------------------------------------------------------
+        var body = document.body, html = document.documentElement;
+        var height = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+        var width = Math.max(body.scrollWidth, body.offsetWidth, html.clientWidth, html.scrollWidth, html.offsetWidth);
+        document.getElementById('map').style.height = height + 'px';
+        document.getElementById('map').style.width = width + 'px';
     }
   </script>
 </body>

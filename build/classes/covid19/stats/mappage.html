@@ -7,18 +7,17 @@
           type="text/javascript"></script>
 </head> 
 <body>
-  <div id="map" style="width: 600px; height: 500px;"></div>
+  <div id="map" style="width: 500px; height: 500px;"></div>
 
   <script type="text/javascript">
     var locations =[ 
-       ['Afghanistan: Κρούσματα:55664, Ανάρρωσαν:49086, Θάνατοι:2436',33.93911,67.709953 ],
-['Angola: Κρούσματα:20640, Ανάρρωσαν:19221, Θάνατοι:501',-11.2027,17.8739 ],
+       ['Greece: Κρούσματα:184686, Ανάρρωσαν:93764, Θάνατοι:6371',39.0742,21.8243 ],
 
     ];
 
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 4,
-      center: new google.maps.LatLng(33.93911, 67.709953),
+      center: new google.maps.LatLng(39.0742, 21.8243),
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
@@ -38,6 +37,15 @@
           infowindow.open(map, marker);
         }
       })(marker, i));
+      
+//      Βρίσκουμε τις διαστάσεις του διαθέσιμου χώρου του browser και τις περνάμε στον χάρτη
+//      ώστε να πιάνει ολόκληρο τον χώρο του browser
+//      ------------------------------------------------------------------------------------
+        var body = document.body, html = document.documentElement;
+        var height = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+        var width = Math.max(body.scrollWidth, body.offsetWidth, html.clientWidth, html.scrollWidth, html.offsetWidth);
+        document.getElementById('map').style.height = height + 'px';
+        document.getElementById('map').style.width = width + 'px';
     }
   </script>
 </body>
