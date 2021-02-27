@@ -10,6 +10,7 @@ import controllers.DbOperations;
 import models.TimeSeriesCase;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 import models.CountryTimeSeries;
@@ -49,6 +50,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
         chkDeaths = new javax.swing.JCheckBox();
         chkConfirmed = new javax.swing.JCheckBox();
         chkRecovered = new javax.swing.JCheckBox();
+        chkLimitCountiesSelection = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -100,32 +102,36 @@ public class FrameDataManagement extends javax.swing.JFrame {
         chkDeaths.setSelected(true);
         chkDeaths.setText("Θάνατοι");
         getContentPane().add(chkDeaths);
-        chkDeaths.setBounds(190, 140, 150, 18);
+        chkDeaths.setBounds(190, 170, 150, 18);
 
         chkConfirmed.setSelected(true);
         chkConfirmed.setText("Κρούσματα");
         getContentPane().add(chkConfirmed);
-        chkConfirmed.setBounds(190, 170, 150, 18);
+        chkConfirmed.setBounds(190, 200, 150, 18);
 
         chkRecovered.setSelected(true);
         chkRecovered.setText("Αναρώσεις");
         getContentPane().add(chkRecovered);
-        chkRecovered.setBounds(190, 200, 140, 18);
+        chkRecovered.setBounds(190, 230, 140, 18);
+
+        chkLimitCountiesSelection.setText("Επιλογή περιορισμένων χωρών");
+        getContentPane().add(chkLimitCountiesSelection);
+        chkLimitCountiesSelection.setBounds(60, 140, 280, 20);
 
         jLabel1.setText("Κατηγορίες");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(60, 160, 130, 16);
+        jLabel1.setBounds(60, 190, 130, 16);
 
         jLabel2.setText("προς εισαγωγή");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(60, 190, 130, 16);
+        jLabel2.setBounds(60, 210, 130, 16);
 
         jTextMessages.setEditable(false);
         jTextMessages.setBackground(javax.swing.UIManager.getDefaults().getColor("scrollbar"));
         jScrollPane3.setViewportView(jTextMessages);
 
         getContentPane().add(jScrollPane3);
-        jScrollPane3.setBounds(50, 240, 590, 50);
+        jScrollPane3.setBounds(50, 260, 590, 50);
 
         lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/covidwallpaper.jpg"))); // NOI18N
         getContentPane().add(lblBackground);
@@ -135,6 +141,11 @@ public class FrameDataManagement extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private List<CountryTimeSeries> limitCountries(List<CountryTimeSeries> ltm){
+        return ltm.stream()
+                .filter(x->x.country.equals("Greece") || x.country.equals("Germany") || x.country.equals("Italy"))
+                .collect(Collectors.toList());
+    }
     private void btnInsertCountriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertCountriesActionPerformed
         DisableAllButtons();
         jTextMessages.setText("ΠΑΡΑΚΑΛΩ ΠΕΡΙΜΕΝΕΤΕ.\n Εισαγωγή χωρών σε εξέλιξη.");
@@ -143,6 +154,8 @@ public class FrameDataManagement extends javax.swing.JFrame {
             @Override
             protected Object doInBackground() throws Exception {
                 List<CountryTimeSeries> ltm = api.GetTimeSeries(TimeSeriesCase.CONFIRMED);
+                if(chkLimitCountiesSelection.isSelected())
+                    ltm=limitCountries(ltm);
                 dbOperations.AddCountriesThatAreNotInDB(ltm);
                 return null;
             }
@@ -174,16 +187,22 @@ public class FrameDataManagement extends javax.swing.JFrame {
                 }
                 if (chkConfirmed.isSelected()) {
                     List<CountryTimeSeries> ltm = api.GetTimeSeries(TimeSeriesCase.CONFIRMED);
+                    if(chkLimitCountiesSelection.isSelected())
+                        ltm=limitCountries(ltm);
                     dbOperations.AddCountriesThatAreNotInDB(ltm);
                     dbOperations.AddTimeSeriesInDatabase(ltm, TimeSeriesCase.CONFIRMED);
                 }
                 if (chkDeaths.isSelected()) {
                     List<CountryTimeSeries> ltm = api.GetTimeSeries(TimeSeriesCase.DEATHS);
+                    if(chkLimitCountiesSelection.isSelected())
+                        ltm=limitCountries(ltm);
                     dbOperations.AddCountriesThatAreNotInDB(ltm);
                     dbOperations.AddTimeSeriesInDatabase(ltm, TimeSeriesCase.DEATHS);
                 }
                 if (chkRecovered.isSelected()) {
                     List<CountryTimeSeries> ltm = api.GetTimeSeries(TimeSeriesCase.RECOVERED);
+                    if(chkLimitCountiesSelection.isSelected())
+                        ltm=limitCountries(ltm);
                     dbOperations.AddCountriesThatAreNotInDB(ltm);
                     dbOperations.AddTimeSeriesInDatabase(ltm, TimeSeriesCase.RECOVERED);
                 }
@@ -262,6 +281,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnDeleteDataActionPerformed
 
+    
     public void EnableAllButtons() {
         btnDeleteCountries.setEnabled(true);
         btnDeleteData.setEnabled(true);
@@ -324,6 +344,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
     private javax.swing.JButton btnInsertData;
     private javax.swing.JCheckBox chkConfirmed;
     private javax.swing.JCheckBox chkDeaths;
+    private javax.swing.JCheckBox chkLimitCountiesSelection;
     private javax.swing.JCheckBox chkRecovered;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
