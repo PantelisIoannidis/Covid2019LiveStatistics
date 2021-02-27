@@ -56,17 +56,7 @@ public class APIController {
         }
         return null;
     }   
-    
-    //Ζήτα απο το API την λίστα των χωρών μαζί με γενικά στατιστικά
-    public MappingData GetCountrysMapData(String name) {
-        // φτιάχνουμε το endpoint και κάνουμε την κλήση του API
-        String restPoint = "v2/country/"+name;
-        String stringResults = BaseCall(restPoint);
-        //Μετατρέπουμε το jsonstring σε αντικείμενο με την βοήθεια τoυ gson 
-        MappingData mp = new Gson().fromJson(stringResults, MappingData.class);
-        return mp;
-    }
-    
+       
     //Ζητάει απο το API μια κατηγορίας timeseries
     public List<CountryTimeSeries> GetTimeSeries(TimeSeriesCase tmCase) {
         

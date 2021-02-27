@@ -15,7 +15,6 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-import models.MappingData;
 import models.MappingDataDb;
 
 /**
@@ -59,7 +58,7 @@ public class FrameMapSelection extends javax.swing.JFrame {
 
         setTitle("Χάρτης χωρών με δεδομένα covid19");
 
-        jLabel1.setText("Επιλογή χώρας");
+        jLabel1.setText("Επιλογή βασικής χώρας");
 
         jLabel2.setText("Υπόλοιπες χώρες στον χάρτη");
 
@@ -78,7 +77,7 @@ public class FrameMapSelection extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cmbCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmbCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnShowMap)
                 .addGap(53, 53, 53))

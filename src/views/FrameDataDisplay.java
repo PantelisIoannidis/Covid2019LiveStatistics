@@ -10,7 +10,6 @@ import controllers.APIController;
 import controllers.DbOperations;
 import entities.Country;
 import entities.Coviddata;
-import helpers.DateValidator;
 import java.awt.Container;
 import java.awt.MouseInfo;
 import java.awt.Point;
@@ -38,7 +37,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
-import models.MappingData;
 import models.MappingDataDb;
 import models.PlottingData;
 import models.TimeSeriesCase;
@@ -411,8 +409,8 @@ public class FrameDataDisplay extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnFilter)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnFilter)
                         .addComponent(cmbCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2))
                     .addComponent(frmTxtDateFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
