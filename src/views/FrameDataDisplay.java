@@ -107,22 +107,31 @@ public class FrameDataDisplay extends javax.swing.JFrame {
         btnFilter = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        btnShowMap = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        btnShowPlot = new javax.swing.JButton();
-        chkConfirmed = new javax.swing.JCheckBox();
-        chkRecovered = new javax.swing.JCheckBox();
-        chkDeaths = new javax.swing.JCheckBox();
-        chkDailyData = new javax.swing.JCheckBox();
-        chkAccumulativeData = new javax.swing.JCheckBox();
-        jLabel3 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
         btnDeleteData = new javax.swing.JButton();
         frmTxtDateFrom = new com.toedter.calendar.JDateChooser();
         frmTxtDateTo = new com.toedter.calendar.JDateChooser();
+        btnShowMap = new javax.swing.JButton();
+        chkConfirmed = new javax.swing.JCheckBox();
+        chkRecovered = new javax.swing.JCheckBox();
+        chkDeaths = new javax.swing.JCheckBox();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
+        chkDailyData = new javax.swing.JCheckBox();
+        chkAccumulativeData = new javax.swing.JCheckBox();
+        btnShowPlot = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        lblBackground = new javax.swing.JLabel();
 
         setTitle("Προβολή δεδομένων Covid19 ανά χώρα");
+        setMaximumSize(new java.awt.Dimension(900, 690));
+        setMinimumSize(new java.awt.Dimension(900, 690));
+        setPreferredSize(new java.awt.Dimension(880, 690));
+        setResizable(false);
+        getContentPane().setLayout(null);
+
+        getContentPane().add(cmbCountry);
+        cmbCountry.setBounds(39, 30, 195, 26);
 
         tabsCases.setTabPlacement(javax.swing.JTabbedPane.LEFT);
         tabsCases.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -219,12 +228,17 @@ public class FrameDataDisplay extends javax.swing.JFrame {
 
         tabsCases.addTab("Θανατοι", tabDeaths);
 
+        getContentPane().add(tabsCases);
+        tabsCases.setBounds(0, 70, 859, 400);
+
         chkDateFrom.setText("Απο");
         chkDateFrom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chkDateFromActionPerformed(evt);
             }
         });
+        getContentPane().add(chkDateFrom);
+        chkDateFrom.setBounds(436, 6, 60, 18);
 
         chkDateTo.setText("Εως");
         chkDateTo.addActionListener(new java.awt.event.ActionListener() {
@@ -232,6 +246,8 @@ public class FrameDataDisplay extends javax.swing.JFrame {
                 chkDateToActionPerformed(evt);
             }
         });
+        getContentPane().add(chkDateTo);
+        chkDateTo.setBounds(604, 6, 60, 18);
 
         btnFilter.setText("Φίλτρο");
         btnFilter.addActionListener(new java.awt.event.ActionListener() {
@@ -239,114 +255,16 @@ public class FrameDataDisplay extends javax.swing.JFrame {
                 btnFilterActionPerformed(evt);
             }
         });
+        getContentPane().add(btnFilter);
+        btnFilter.setBounds(766, 30, 90, 28);
 
         jLabel1.setText("Επιλογή χώρας");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(50, 10, 180, 16);
 
         jLabel2.setText("Ημερομηνία");
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Απεικόνιση σε χάρτη"));
-
-        btnShowMap.setText("Προβολή σε χάρτη");
-        btnShowMap.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnShowMapActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(btnShowMap)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
-                .addComponent(btnShowMap)
-                .addContainerGap())
-        );
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Απεικόνιση σε διάγραμμα"));
-
-        btnShowPlot.setText("Προβολή σε διάγραμμα");
-        btnShowPlot.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnShowPlotActionPerformed(evt);
-            }
-        });
-
-        chkConfirmed.setSelected(true);
-        chkConfirmed.setText("Επιβεβαιωμένα");
-
-        chkRecovered.setSelected(true);
-        chkRecovered.setText("Ανάρρωσαν");
-
-        chkDeaths.setSelected(true);
-        chkDeaths.setText("Θανατοι");
-
-        chkDailyData.setSelected(true);
-        chkDailyData.setText("Καθημερινά");
-
-        chkAccumulativeData.setText("Σωρευτικά");
-
-        jLabel3.setText("Δεδομένα");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(chkConfirmed)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(41, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(chkDeaths)
-                            .addComponent(chkRecovered))
-                        .addGap(157, 157, 157)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(chkAccumulativeData)
-                    .addComponent(chkDailyData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel3))
-                    .addComponent(jSeparator1))
-                .addGap(16, 16, 16))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnShowPlot)
-                .addGap(107, 107, 107))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(chkConfirmed))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(chkDailyData)
-                    .addComponent(chkRecovered, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(chkDeaths)
-                    .addComponent(chkAccumulativeData))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnShowPlot))
-        );
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(352, 35, 64, 16);
 
         btnDeleteData.setText("Διαγραφή δεδομένων");
         btnDeleteData.addActionListener(new java.awt.event.ActionListener() {
@@ -354,78 +272,74 @@ public class FrameDataDisplay extends javax.swing.JFrame {
                 btnDeleteDataActionPerformed(evt);
             }
         });
+        getContentPane().add(btnDeleteData);
+        btnDeleteData.setBounds(100, 580, 250, 28);
 
         frmTxtDateFrom.setDateFormatString("dd/MM/yyy");
+        getContentPane().add(frmTxtDateFrom);
+        frmTxtDateFrom.setBounds(436, 30, 150, 28);
 
         frmTxtDateTo.setDateFormatString("dd/MM/yyyy");
+        getContentPane().add(frmTxtDateTo);
+        frmTxtDateTo.setBounds(604, 30, 150, 28);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabsCases)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(cmbCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(jLabel1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(frmTxtDateFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(chkDateFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(frmTxtDateTo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnFilter))
-                    .addComponent(chkDateTo, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(104, 104, 104)
-                        .addComponent(btnDeleteData)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(chkDateFrom)
-                    .addComponent(chkDateTo)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnFilter)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cmbCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2))
-                    .addComponent(frmTxtDateFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(frmTxtDateTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tabsCases, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(btnDeleteData))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
+        btnShowMap.setText("Προβολή σε χάρτη");
+        btnShowMap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShowMapActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnShowMap);
+        btnShowMap.setBounds(100, 520, 250, 28);
+
+        chkConfirmed.setSelected(true);
+        chkConfirmed.setText("Επιβεβαιωμένα");
+        getContentPane().add(chkConfirmed);
+        chkConfirmed.setBounds(560, 530, 120, 18);
+
+        chkRecovered.setSelected(true);
+        chkRecovered.setText("Ανάρρωσαν");
+        getContentPane().add(chkRecovered);
+        chkRecovered.setBounds(560, 550, 120, 24);
+
+        chkDeaths.setSelected(true);
+        chkDeaths.setText("Θανατοι");
+        getContentPane().add(chkDeaths);
+        chkDeaths.setBounds(560, 580, 120, 18);
+        getContentPane().add(jSeparator1);
+        jSeparator1.setBounds(725, 530, 130, 10);
+
+        jLabel3.setText("Δεδομένα");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(740, 510, 90, 16);
+
+        chkDailyData.setSelected(true);
+        chkDailyData.setText("Καθημερινά");
+        getContentPane().add(chkDailyData);
+        chkDailyData.setBounds(730, 540, 120, 18);
+
+        chkAccumulativeData.setText("Σωρευτικά");
+        getContentPane().add(chkAccumulativeData);
+        chkAccumulativeData.setBounds(730, 570, 120, 20);
+
+        btnShowPlot.setText("Προβολή σε διάγραμμα");
+        btnShowPlot.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShowPlotActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnShowPlot);
+        btnShowPlot.setBounds(570, 610, 250, 28);
+
+        jLabel5.setText("Επιλογές γραφήματος");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(560, 480, 290, 16);
+        getContentPane().add(jSeparator2);
+        jSeparator2.setBounds(560, 500, 300, 10);
+
+        lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/covidwallpaper.jpg"))); // NOI18N
+        getContentPane().add(lblBackground);
+        lblBackground.setBounds(0, 0, 1000, 667);
 
         pack();
         setLocationRelativeTo(null);
@@ -508,12 +422,13 @@ public class FrameDataDisplay extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lblBackground;
     private javax.swing.JPanel tabConfirmed;
     private javax.swing.JPanel tabDeaths;
     private javax.swing.JPanel tabRecovered;
