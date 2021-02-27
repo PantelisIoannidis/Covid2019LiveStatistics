@@ -8,7 +8,7 @@
     <class>controllers.Coviddata</class>
     <class>helpers.DateValidator</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/covid19stats"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/covid19statsdb"/>
       <property name="javax.persistence.jdbc.user" value="plh24"/>
       <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
       <property name="javax.persistence.jdbc.password" value="plh24"/>

@@ -5,14 +5,19 @@
  */
 package helpers;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
+import org.apache.derby.drda.NetworkServerControl;
 
 /**
  *
@@ -22,15 +27,34 @@ import javax.swing.JOptionPane;
 public class DatabaseUtils {
     private EntityManagerFactory emf;
     private EntityManager em;
-    private static final String DATABASE_URL = "jdbc:derby://localhost:1527/covid19stats;create=true";
+    private static final String DATABASE_URL = "jdbc:derby://localhost:1527/covid19statsdb;create=true";
     private static final String USERNAME = "plh24";
     private static final String PASSWORD = "plh24";    
+    
+    //Εκκίνηση του javadb
+    public void StartServer(){
+        try {
+            NetworkServerControl serverControl = new NetworkServerControl(InetAddress.getLoopbackAddress(),1527,USERNAME,PASSWORD); 
+            serverControl.start(null);
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(DatabaseUtils.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception ex) {
+            Logger.getLogger(DatabaseUtils.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }
+    
     
     public void InitializeDatabase () {
         
         Connection connection=null;
         Statement statement=null;
         String SqlStatement;
+        
+        //Εκκίνηση του javadb
+        StartServer();
         
         try{
 
