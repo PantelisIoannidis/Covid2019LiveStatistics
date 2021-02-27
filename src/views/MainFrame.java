@@ -36,12 +36,12 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Desktop = new javax.swing.JDesktopPane();
-        jPanel1 = new javax.swing.JPanel();
         btnDataManagement = new javax.swing.JButton();
         btnDataDisplay = new javax.swing.JButton();
         btnMap = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
+        lblHeader = new javax.swing.JLabel();
+        lblBackground = new javax.swing.JLabel();
         mnuBar = new javax.swing.JMenuBar();
         mnuFile = new javax.swing.JMenu();
         mnuExit = new javax.swing.JMenuItem();
@@ -54,21 +54,12 @@ public class MainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Σύστημα Covid19-Stats");
-
-        jPanel1.setLayout(new java.awt.GridBagLayout());
-
-        Desktop.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout DesktopLayout = new javax.swing.GroupLayout(Desktop);
-        Desktop.setLayout(DesktopLayout);
-        DesktopLayout.setHorizontalGroup(
-            DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        DesktopLayout.setVerticalGroup(
-            DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        setMaximumSize(new java.awt.Dimension(800, 460));
+        setMinimumSize(new java.awt.Dimension(800, 460));
+        setPreferredSize(new java.awt.Dimension(800, 460));
+        setResizable(false);
+        setSize(new java.awt.Dimension(800, 460));
+        getContentPane().setLayout(null);
 
         btnDataManagement.setText("Διαχείριση δεδομένων Covid19");
         btnDataManagement.addActionListener(new java.awt.event.ActionListener() {
@@ -76,6 +67,8 @@ public class MainFrame extends javax.swing.JFrame {
                 btnDataManagementActionPerformed(evt);
             }
         });
+        getContentPane().add(btnDataManagement);
+        btnDataManagement.setBounds(250, 140, 240, 28);
 
         btnDataDisplay.setText("Προβολή δεδομένων Covid19 ανά χώρα");
         btnDataDisplay.addActionListener(new java.awt.event.ActionListener() {
@@ -83,6 +76,8 @@ public class MainFrame extends javax.swing.JFrame {
                 btnDataDisplayActionPerformed(evt);
             }
         });
+        getContentPane().add(btnDataDisplay);
+        btnDataDisplay.setBounds(220, 200, 300, 28);
 
         btnMap.setText("Προβολή δεδομένων Covid19 σε χάρτη");
         btnMap.addActionListener(new java.awt.event.ActionListener() {
@@ -90,6 +85,8 @@ public class MainFrame extends javax.swing.JFrame {
                 btnMapActionPerformed(evt);
             }
         });
+        getContentPane().add(btnMap);
+        btnMap.setBounds(220, 260, 300, 28);
 
         btnExit.setText("Έξοδος");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
@@ -97,6 +94,19 @@ public class MainFrame extends javax.swing.JFrame {
                 btnExitActionPerformed(evt);
             }
         });
+        getContentPane().add(btnExit);
+        btnExit.setBounds(300, 320, 150, 28);
+
+        lblHeader.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
+        lblHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHeader.setText("Covid19 Stats");
+        lblHeader.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(lblHeader);
+        lblHeader.setBounds(210, 40, 320, 60);
+
+        lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/covidwallpaper.jpg"))); // NOI18N
+        getContentPane().add(lblBackground);
+        lblBackground.setBounds(0, 0, 800, 430);
 
         mnuFile.setText("Αρχείο");
 
@@ -151,41 +161,6 @@ public class MainFrame extends javax.swing.JFrame {
         mnuBar.add(mnuHelp);
 
         setJMenuBar(mnuBar);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Desktop)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(280, 280, 280)
-                        .addComponent(btnDataManagement))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(263, 263, 263)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnMap)
-                            .addComponent(btnDataDisplay)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(348, 348, 348)
-                        .addComponent(btnExit)))
-                .addContainerGap(235, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(Desktop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(btnDataManagement)
-                .addGap(18, 18, 18)
-                .addComponent(btnDataDisplay)
-                .addGap(18, 18, 18)
-                .addComponent(btnMap)
-                .addGap(30, 30, 30)
-                .addComponent(btnExit)
-                .addGap(0, 46, Short.MAX_VALUE))
-        );
 
         pack();
         setLocationRelativeTo(null);
@@ -264,12 +239,12 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane Desktop;
     private javax.swing.JButton btnDataDisplay;
     private javax.swing.JButton btnDataManagement;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnMap;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblBackground;
+    private javax.swing.JLabel lblHeader;
     private javax.swing.JMenuItem mnuAbout;
     private javax.swing.JMenuBar mnuBar;
     private javax.swing.JMenuItem mnuDataDisplay;
