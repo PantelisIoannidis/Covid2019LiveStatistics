@@ -1,7 +1,7 @@
-Sat Feb 27 16:03:53 EET 2021 : Apache Derby Network Server - 10.10.2.0 - (1582446) started and ready to accept connections on port 1527
+Sat Feb 27 20:48:29 EET 2021 : Apache Derby Network Server - 10.10.2.0 - (1582446) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Sat Feb 27 16:03:53 EET 2021:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-0177-e3cd-873c-00000e6239b8 
+Sat Feb 27 20:48:29 EET 2021:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-0177-e4d2-172f-00000e6237a0 
 on database directory C:\Users\panti\OneDrive\EAP\2020\PLH24\3\covid19stats\covid19statsdb with class loader sun.misc.Launcher$AppClassLoader@5e2de80c 
 Loaded from file:/C:/Users/panti/OneDrive/EAP/2020/PLH24/3/covid19stats/lib/derby.jar
 java.vendor=Oracle Corporation

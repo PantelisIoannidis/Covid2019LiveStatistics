@@ -5,6 +5,7 @@
  */
 package views;
 
+import com.toedter.calendar.IDateEditor;
 import controllers.APIController;
 import controllers.DbOperations;
 import entities.Country;
@@ -26,11 +27,13 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComponent;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
@@ -56,7 +59,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
     DbOperations db;
     APIController api;
     static final String dateFormatPattern = "dd/MM/yyyy";
-    static final String minDate = "01/01/2019";
+    static final Date minDate = new GregorianCalendar(2019, 0, 1).getTime();
     SimpleDateFormat simpleDateFormat ;
     
     //Οι παρακάτω μεταβλητές πέρνουν τιμές όταν επιλέγεται μια χώρα και είναι 
@@ -101,8 +104,6 @@ public class FrameDataDisplay extends javax.swing.JFrame {
         tabDeaths = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDeaths = new javax.swing.JTable();
-        frmTxtDateFrom = new javax.swing.JFormattedTextField();
-        frmTxtDateTo = new javax.swing.JFormattedTextField();
         chkDateFrom = new javax.swing.JCheckBox();
         chkDateTo = new javax.swing.JCheckBox();
         btnFilter = new javax.swing.JButton();
@@ -120,6 +121,8 @@ public class FrameDataDisplay extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         btnDeleteData = new javax.swing.JButton();
+        frmTxtDateFrom = new com.toedter.calendar.JDateChooser();
+        frmTxtDateTo = new com.toedter.calendar.JDateChooser();
 
         setTitle("Προβολή δεδομένων Covid19 ανά χώρα");
 
@@ -218,17 +221,6 @@ public class FrameDataDisplay extends javax.swing.JFrame {
 
         tabsCases.addTab("Θανατοι", tabDeaths);
 
-        frmTxtDateFrom.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        frmTxtDateFrom.setText("01/01/2000");
-        frmTxtDateFrom.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                frmTxtDateFromActionPerformed(evt);
-            }
-        });
-
-        frmTxtDateTo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        frmTxtDateTo.setText("01/01/2000");
-
         chkDateFrom.setText("Απο");
         chkDateFrom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -268,16 +260,16 @@ public class FrameDataDisplay extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(63, 63, 63)
+                .addGap(78, 78, 78)
                 .addComponent(btnShowMap)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(15, Short.MAX_VALUE)
                 .addComponent(btnShowMap)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Απεικόνιση σε διάγραμμα"));
@@ -332,7 +324,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnShowPlot)
-                .addGap(104, 104, 104))
+                .addGap(107, 107, 107))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -354,9 +346,8 @@ public class FrameDataDisplay extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chkDeaths)
                     .addComponent(chkAccumulativeData))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addComponent(btnShowPlot)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnShowPlot))
         );
 
         btnDeleteData.setText("Διαγραφή δεδομένων");
@@ -366,10 +357,15 @@ public class FrameDataDisplay extends javax.swing.JFrame {
             }
         });
 
+        frmTxtDateFrom.setDateFormatString("dd/MM/yyy");
+
+        frmTxtDateTo.setDateFormatString("dd/MM/yyyy");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(tabsCases)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -378,29 +374,28 @@ public class FrameDataDisplay extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(88, 88, 88)
                         .addComponent(jLabel1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(chkDateFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(frmTxtDateFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(31, 31, 31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(frmTxtDateTo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(chkDateTo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addComponent(btnFilter)
-                .addGap(66, 66, 66))
-            .addComponent(tabsCases)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addComponent(frmTxtDateFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chkDateFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(frmTxtDateTo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnFilter))
+                    .addComponent(chkDateTo, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
+                        .addGap(104, 104, 104)
                         .addComponent(btnDeleteData)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -415,24 +410,23 @@ public class FrameDataDisplay extends javax.swing.JFrame {
                     .addComponent(chkDateTo)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnFilter)
+                        .addComponent(cmbCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2))
                     .addComponent(frmTxtDateFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(frmTxtDateTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnFilter)
-                    .addComponent(cmbCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addComponent(tabsCases, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(frmTxtDateTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tabsCases, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnDeleteData)
-                        .addGap(24, 24, 24))))
+                        .addGap(32, 32, 32)
+                        .addComponent(btnDeleteData))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
@@ -442,10 +436,6 @@ public class FrameDataDisplay extends javax.swing.JFrame {
     private void chkDateToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkDateToActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_chkDateToActionPerformed
-
-    private void frmTxtDateFromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmTxtDateFromActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_frmTxtDateFromActionPerformed
 
     private void chkDateFromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkDateFromActionPerformed
         // TODO add your handling code here:
@@ -515,8 +505,8 @@ public class FrameDataDisplay extends javax.swing.JFrame {
     private javax.swing.JCheckBox chkDeaths;
     private javax.swing.JCheckBox chkRecovered;
     private javax.swing.JComboBox<String> cmbCountry;
-    private javax.swing.JFormattedTextField frmTxtDateFrom;
-    private javax.swing.JFormattedTextField frmTxtDateTo;
+    private com.toedter.calendar.JDateChooser frmTxtDateFrom;
+    private com.toedter.calendar.JDateChooser frmTxtDateTo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -548,31 +538,27 @@ public class FrameDataDisplay extends javax.swing.JFrame {
     
     
     private void setDateBack(String time){
-        try {
-            //Πέρνουμε την τελική ημερομηνία και ανάλογα με την παράμετρο θα αφαιρούμε χρόνο
-            Date dateFrom = simpleDateFormat.parse(frmTxtDateTo.getText());
-            LocalDateTime localDateTime = dateFrom.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-            if(time.equals("aWeek"))
-               localDateTime = localDateTime.minusWeeks(1);
-            if(time.equals("aMonth"))
-               localDateTime = localDateTime.minusMonths(1);
-            if(time.equals("thisYear"))
-               localDateTime = localDateTime.withMonth(1).withDayOfMonth(1);
-            if(time.equals("all"))
-               localDateTime = localDateTime.withMonth(1).withDayOfMonth(1).withYear(2019);
-            dateFrom = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
-            frmTxtDateFrom.setText( simpleDateFormat.format(dateFrom));
-            chkDateFrom.setSelected(true);
-            chkDateTo.setSelected(true);
-            onCountryChange();
-        } catch (ParseException ex) {
-            Logger.getLogger(FrameDataDisplay.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        //Πέρνουμε την τελική ημερομηνία και ανάλογα με την παράμετρο θα αφαιρούμε χρόνο
+        Date dateFrom = frmTxtDateTo.getDate();
+        LocalDateTime localDateTime = dateFrom.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        if(time.equals("aWeek"))
+            localDateTime = localDateTime.minusWeeks(1);
+        if(time.equals("aMonth"))
+            localDateTime = localDateTime.minusMonths(1);
+        if(time.equals("thisYear"))
+            localDateTime = localDateTime.withMonth(1).withDayOfMonth(1);
+        if(time.equals("all"))
+            localDateTime = localDateTime.withMonth(1).withDayOfMonth(1).withYear(2019);
+        dateFrom = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+        frmTxtDateFrom.setDate(dateFrom);
+        chkDateFrom.setSelected(true);
+        chkDateTo.setSelected(true);
+        onCountryChange();
     }
     
     private void datePopupMenu(){
-        //Φτιάχνουμε Popup menu που βοηθάει στην επιλογή ημερομηνίων
-        popupmenu = new JPopupMenu("Αφαίρεσε χρόνο");   
+        //Φτιάχνουμε Popup menu που βοηθάει στην επιλογή ημερομηνίων για την πρώτη ημερομηνία
+        popupmenu = new JPopupMenu("");  
         JMenuItem aWeek = new JMenuItem("Tελευταία εβδομάδα");  
         JMenuItem aMonth = new JMenuItem("Tελευταίος μήνας");  
         JMenuItem thisYear = new JMenuItem("Φέτος");  
@@ -610,38 +596,18 @@ public class FrameDataDisplay extends javax.swing.JFrame {
     
     private void populateDatesRangeBoxes(){
         //Βάζουμε μια ημερομηνία πολύ πριν το covid και τα data μας για αρχική ημερομηνία
-        frmTxtDateFrom.setText(minDate);
-        //Προσθέτουμε έναν listener και ελέγχουμε όταν χάνει το focus αν η ημερομηνία έχει σωστή μορφή
-        frmTxtDateFrom.addFocusListener(new FocusAdapter() {
-            public void focusLost(FocusEvent e) {
-                if(!(new DateValidator(dateFormatPattern).isValid(frmTxtDateFrom.getText())))
-                {
-                    JOptionPane.showConfirmDialog(null, "Η ημερομηνία δεν έχει σωστή μορφή", "Λάθος ημερομηνία", JOptionPane.PLAIN_MESSAGE);
-                    frmTxtDateFrom.setText(minDate);
-                }
-            }
-        });
+        frmTxtDateFrom.setDate(minDate);  
         
         //Listener για το Popup menu που βοηθάει στην επιλογή ημερομηνίων
-        frmTxtDateFrom.addMouseListener(new MouseAdapter() {  
+        frmTxtDateFrom.getDateEditor().getUiComponent().addMouseListener(new MouseAdapter() {  
             public void mouseClicked(MouseEvent e) {              
                  popupmenu.show(frmTxtDateFrom ,0,20 );
             }   
         });
-        
-        
+
         //Βάζουμε την σημερινή ημερομηνία για το εώς
-        frmTxtDateTo.setText(simpleDateFormat.format(new Date()));
-        //Προσθέτουμε έναν listener και ελέγχουμε όταν χάνει το focus αν η ημερομηνία έχει σωστή μορφή
-        frmTxtDateTo.addFocusListener(new FocusAdapter() {
-            public void focusLost(FocusEvent e) {
-                if(!(new DateValidator(dateFormatPattern).isValid(frmTxtDateTo.getText())))
-                {
-                    JOptionPane.showConfirmDialog(null, "Η ημερομηνία δεν έχει σωστή μορφή", "Λάθος ημερομηνία", JOptionPane.PLAIN_MESSAGE);
-                    frmTxtDateTo.setText(simpleDateFormat.format(new Date()));
-                }
-            }
-        });
+        frmTxtDateTo.setDate(new Date());
+ 
     }
 
     //γεμίζουμε το combo με τα ονόματα των χωρών
@@ -696,17 +662,15 @@ public class FrameDataDisplay extends javax.swing.JFrame {
         Date dateFrom=null;
         Date dateTo=null;
         //Δίνουμε αρχικές τιμές στις ημερομηνίες απο-εώς του φίλτρου
-        try {
-            dateFrom = simpleDateFormat.parse(minDate);
-            dateTo = new Date();
-            //αν είναι επιλεγμένα τα checkboxes χρησιμοποιούμε τις ημερομηνίες των textfields
-            if(chkDateFrom.isSelected())
-                dateFrom = simpleDateFormat.parse(frmTxtDateFrom.getText());
-            if(chkDateTo.isSelected())
-                dateTo = simpleDateFormat.parse(frmTxtDateTo.getText());
-        } catch (ParseException ex) {
-            Logger.getLogger(FrameDataDisplay.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
+        dateFrom = minDate;
+        dateTo = new Date();
+        //αν είναι επιλεγμένα τα checkboxes χρησιμοποιούμε τις ημερομηνίες των textfields
+        if(chkDateFrom.isSelected())
+            dateFrom = frmTxtDateFrom.getDate();
+        if(chkDateTo.isSelected())
+            dateTo = frmTxtDateTo.getDate();
+        
         
         
         //Προετοιμάζουμε το model για το grid των κρουσμάτων
