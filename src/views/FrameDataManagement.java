@@ -41,7 +41,6 @@ public class FrameDataManagement extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         btnInsertCountries = new javax.swing.JButton();
         btnInsertData = new javax.swing.JButton();
@@ -51,14 +50,16 @@ public class FrameDataManagement extends javax.swing.JFrame {
         chkConfirmed = new javax.swing.JCheckBox();
         chkRecovered = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextMessages = new javax.swing.JTextPane();
+        lblBackground = new javax.swing.JLabel();
 
         setTitle("Διαχείριση δεδομένων Covid19");
-        java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
-        layout.columnWidths = new int[] {0, 20, 0, 20, 0, 20, 0, 20, 0, 20, 0};
-        layout.rowHeights = new int[] {0, 21, 0, 21, 0, 21, 0, 21, 0, 21, 0, 21, 0, 21, 0};
-        getContentPane().setLayout(layout);
+        setMaximumSize(new java.awt.Dimension(720, 370));
+        setMinimumSize(new java.awt.Dimension(720, 370));
+        setPreferredSize(new java.awt.Dimension(720, 370));
+        getContentPane().setLayout(null);
 
         btnInsertCountries.setText("Εισαγωγή χωρών");
         btnInsertCountries.addActionListener(new java.awt.event.ActionListener() {
@@ -66,10 +67,8 @@ public class FrameDataManagement extends javax.swing.JFrame {
                 btnInsertCountriesActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        getContentPane().add(btnInsertCountries, gridBagConstraints);
+        getContentPane().add(btnInsertCountries);
+        btnInsertCountries.setBounds(60, 60, 190, 28);
 
         btnInsertData.setText("Εισαγωγή δεδομένων");
         btnInsertData.addActionListener(new java.awt.event.ActionListener() {
@@ -77,10 +76,8 @@ public class FrameDataManagement extends javax.swing.JFrame {
                 btnInsertDataActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
-        getContentPane().add(btnInsertData, gridBagConstraints);
+        getContentPane().add(btnInsertData);
+        btnInsertData.setBounds(60, 100, 190, 28);
 
         btnDeleteCountries.setText("Διαγραφή χωρών");
         btnDeleteCountries.addActionListener(new java.awt.event.ActionListener() {
@@ -88,10 +85,8 @@ public class FrameDataManagement extends javax.swing.JFrame {
                 btnDeleteCountriesActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 6;
-        getContentPane().add(btnDeleteCountries, gridBagConstraints);
+        getContentPane().add(btnDeleteCountries);
+        btnDeleteCountries.setBounds(440, 60, 190, 28);
 
         btnDeleteData.setText("Διαγραφή δεδομένων");
         btnDeleteData.addActionListener(new java.awt.event.ActionListener() {
@@ -99,52 +94,42 @@ public class FrameDataManagement extends javax.swing.JFrame {
                 btnDeleteDataActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 8;
-        getContentPane().add(btnDeleteData, gridBagConstraints);
+        getContentPane().add(btnDeleteData);
+        btnDeleteData.setBounds(440, 100, 190, 28);
 
         chkDeaths.setSelected(true);
         chkDeaths.setText("Θάνατοι");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        getContentPane().add(chkDeaths, gridBagConstraints);
+        getContentPane().add(chkDeaths);
+        chkDeaths.setBounds(190, 140, 150, 18);
 
         chkConfirmed.setSelected(true);
         chkConfirmed.setText("Κρούσματα");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        getContentPane().add(chkConfirmed, gridBagConstraints);
+        getContentPane().add(chkConfirmed);
+        chkConfirmed.setBounds(190, 170, 150, 18);
 
         chkRecovered.setSelected(true);
         chkRecovered.setText("Αναρώσεις");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        getContentPane().add(chkRecovered, gridBagConstraints);
+        getContentPane().add(chkRecovered);
+        chkRecovered.setBounds(190, 200, 140, 18);
 
-        jLabel1.setText("Κατηγορίες Δεδομένων");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 2;
-        getContentPane().add(jLabel1, gridBagConstraints);
+        jLabel1.setText("Κατηγορίες");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(60, 160, 130, 16);
+
+        jLabel2.setText("προς εισαγωγή");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(60, 190, 130, 16);
 
         jTextMessages.setEditable(false);
         jTextMessages.setBackground(javax.swing.UIManager.getDefaults().getColor("scrollbar"));
         jScrollPane3.setViewportView(jTextMessages);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 10;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.gridheight = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        getContentPane().add(jScrollPane3, gridBagConstraints);
+        getContentPane().add(jScrollPane3);
+        jScrollPane3.setBounds(50, 240, 590, 50);
+
+        lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/covidwallpaper.jpg"))); // NOI18N
+        getContentPane().add(lblBackground);
+        lblBackground.setBounds(0, 0, 710, 330);
 
         pack();
         setLocationRelativeTo(null);
@@ -341,7 +326,9 @@ public class FrameDataManagement extends javax.swing.JFrame {
     private javax.swing.JCheckBox chkDeaths;
     private javax.swing.JCheckBox chkRecovered;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextPane jTextMessages;
+    private javax.swing.JLabel lblBackground;
     // End of variables declaration//GEN-END:variables
 }

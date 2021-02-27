@@ -33,63 +33,41 @@ public class FrameAbout extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         btnClose = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        lblBackground = new javax.swing.JLabel();
 
         setTitle("Σχετικά με το πρόγραμμα");
+        setMaximumSize(new java.awt.Dimension(507, 380));
+        setMinimumSize(new java.awt.Dimension(507, 380));
+        setResizable(false);
+        getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
         jLabel1.setText("Covid19 Stats");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(64, 25, 292, 47);
 
         jLabel2.setText("ΠΛΗ24 3η εργασία 2021");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(64, 90, 131, 16);
 
         jLabel3.setText("Καθηγητής - Σύμβουλος: Διονύσης Αδαμόπουλος");
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Ομάδα Ανάπτυξης"));
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(64, 112, 400, 16);
 
         jLabel4.setText("Γεωργάκης Ευθύμιος");
-
-        jLabel5.setText("Δημακάκος Αριστείδης");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(70, 230, 380, 16);
 
         jLabel6.setText("Δημητρακαράκος Νικόλαος");
-
-        jLabel7.setText("Ιωαννίδης Παντελής");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4))
-                .addGap(109, 109, 109))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(95, 95, 95)
-                        .addComponent(jLabel6))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addComponent(jLabel7)))
-                .addContainerGap(96, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel7))
-        );
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(70, 210, 380, 16);
 
         btnClose.setText("Κλείσιμο");
         btnClose.addActionListener(new java.awt.event.ActionListener() {
@@ -97,40 +75,27 @@ public class FrameAbout extends javax.swing.JFrame {
                 btnCloseActionPerformed(evt);
             }
         });
+        getContentPane().add(btnClose);
+        btnClose.setBounds(180, 290, 130, 28);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(210, 210, 210)
-                        .addComponent(btnClose)))
-                .addGap(89, 89, 89))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnClose)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jLabel5.setText("Δημακάκος Αριστείδης");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(70, 250, 370, 16);
+
+        jLabel7.setText("Ιωαννίδης Παντελής");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(70, 190, 380, 16);
+
+        jLabel8.setText("Ομάδα Ανάπτυξης");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(70, 160, 110, 16);
+        getContentPane().add(jSeparator1);
+        jSeparator1.setBounds(70, 180, 380, 2);
+
+        lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/covidwallpaper.jpg"))); // NOI18N
+        lblBackground.setToolTipText("");
+        getContentPane().add(lblBackground);
+        lblBackground.setBounds(0, 0, 570, 360);
 
         pack();
         setLocationRelativeTo(null);
@@ -184,6 +149,8 @@ public class FrameAbout extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblBackground;
     // End of variables declaration//GEN-END:variables
 }
