@@ -765,7 +765,8 @@ public class FrameDataDisplay extends javax.swing.JFrame {
         //Φορτώνουμε το dto που θα χρησιμοποιήσουμε για με μεταφορά δεδομένων
         //και των επιλογών του χρήστη στο γράγημα.
         PlottingData plottingData = new PlottingData
-            (title,confirmeddata,recovereddata,deathsdata,chkDailyData.isSelected(),chkAccumulativeData.isSelected());
+            (title,confirmeddata,recovereddata,deathsdata,
+                    chkDailyData.isSelected(),chkAccumulativeData.isSelected());
 
         //Φτιάχνουμε το frame με το γράφημα
         if (chartFrame == null){
