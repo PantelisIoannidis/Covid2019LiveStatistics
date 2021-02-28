@@ -11,6 +11,7 @@ import controllers.DbOperations;
 import entities.Country;
 import entities.Coviddata;
 import java.awt.Container;
+import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.PointerInfo;
@@ -32,6 +33,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -49,6 +51,8 @@ import org.jfree.ui.RefineryUtilities;
  * @author Efthimios Georgakis 
  * @author Aris Dimakakos
  */
+
+// R3 Προβολή δεδομένων Covid19 ανά χώρα
 public class FrameDataDisplay extends javax.swing.JFrame {
 
     /**
@@ -72,6 +76,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
     
     public FrameDataDisplay() {
         initComponents();
+        setIconImage();
         //χρησιμοποιούμε σε όλη την φόρμα μια μορφή ημερομηνίας
         simpleDateFormat = new SimpleDateFormat(dateFormatPattern);
         //Φτιάχνουμε το αντικείμενο που μεσολαβεί για την επικοινωνία με την βάση
@@ -238,7 +243,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
             }
         });
         getContentPane().add(chkDateFrom);
-        chkDateFrom.setBounds(436, 6, 60, 18);
+        chkDateFrom.setBounds(436, 6, 60, 24);
 
         chkDateTo.setText("Εως");
         chkDateTo.addActionListener(new java.awt.event.ActionListener() {
@@ -247,7 +252,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
             }
         });
         getContentPane().add(chkDateTo);
-        chkDateTo.setBounds(604, 6, 60, 18);
+        chkDateTo.setBounds(604, 6, 60, 24);
 
         btnFilter.setText("Φίλτρο");
         btnFilter.addActionListener(new java.awt.event.ActionListener() {
@@ -256,7 +261,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnFilter);
-        btnFilter.setBounds(766, 30, 90, 28);
+        btnFilter.setBounds(766, 30, 90, 32);
 
         jLabel1.setText("Επιλογή χώρας");
         getContentPane().add(jLabel1);
@@ -264,7 +269,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
 
         jLabel2.setText("Ημερομηνία");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(352, 35, 64, 16);
+        jLabel2.setBounds(350, 30, 90, 16);
 
         btnDeleteData.setText("Διαγραφή δεδομένων");
         btnDeleteData.addActionListener(new java.awt.event.ActionListener() {
@@ -273,15 +278,15 @@ public class FrameDataDisplay extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDeleteData);
-        btnDeleteData.setBounds(100, 580, 250, 28);
+        btnDeleteData.setBounds(100, 580, 250, 32);
 
         frmTxtDateFrom.setDateFormatString("dd/MM/yyy");
         getContentPane().add(frmTxtDateFrom);
-        frmTxtDateFrom.setBounds(436, 30, 150, 28);
+        frmTxtDateFrom.setBounds(436, 30, 150, 29);
 
         frmTxtDateTo.setDateFormatString("dd/MM/yyyy");
         getContentPane().add(frmTxtDateTo);
-        frmTxtDateTo.setBounds(604, 30, 150, 28);
+        frmTxtDateTo.setBounds(604, 30, 150, 29);
 
         btnShowMap.setText("Προβολή σε χάρτη");
         btnShowMap.addActionListener(new java.awt.event.ActionListener() {
@@ -290,12 +295,12 @@ public class FrameDataDisplay extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnShowMap);
-        btnShowMap.setBounds(100, 520, 250, 28);
+        btnShowMap.setBounds(100, 520, 250, 32);
 
         chkConfirmed.setSelected(true);
         chkConfirmed.setText("Επιβεβαιωμένα");
         getContentPane().add(chkConfirmed);
-        chkConfirmed.setBounds(560, 530, 120, 18);
+        chkConfirmed.setBounds(560, 530, 120, 24);
 
         chkRecovered.setSelected(true);
         chkRecovered.setText("Ανάρρωσαν");
@@ -305,18 +310,18 @@ public class FrameDataDisplay extends javax.swing.JFrame {
         chkDeaths.setSelected(true);
         chkDeaths.setText("Θανατοι");
         getContentPane().add(chkDeaths);
-        chkDeaths.setBounds(560, 580, 120, 18);
+        chkDeaths.setBounds(560, 580, 120, 24);
         getContentPane().add(jSeparator1);
         jSeparator1.setBounds(725, 530, 130, 10);
 
         jLabel3.setText("Δεδομένα");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(740, 510, 90, 16);
+        jLabel3.setBounds(740, 510, 110, 16);
 
         chkDailyData.setSelected(true);
         chkDailyData.setText("Καθημερινά");
         getContentPane().add(chkDailyData);
-        chkDailyData.setBounds(730, 540, 120, 18);
+        chkDailyData.setBounds(730, 540, 120, 24);
 
         chkAccumulativeData.setText("Σωρευτικά");
         getContentPane().add(chkAccumulativeData);
@@ -329,13 +334,13 @@ public class FrameDataDisplay extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnShowPlot);
-        btnShowPlot.setBounds(570, 610, 250, 28);
+        btnShowPlot.setBounds(570, 610, 250, 32);
 
         jLabel5.setText("Επιλογές γραφήματος");
         getContentPane().add(jLabel5);
         jLabel5.setBounds(560, 480, 290, 16);
         getContentPane().add(jSeparator2);
-        jSeparator2.setBounds(560, 500, 300, 10);
+        jSeparator2.setBounds(560, 500, 300, 2);
 
         lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/covidwallpaper.jpg"))); // NOI18N
         getContentPane().add(lblBackground);
@@ -674,8 +679,19 @@ public class FrameDataDisplay extends javax.swing.JFrame {
             JOptionPane.showConfirmDialog(null, "Επιλέξτε πρώτα μια χώρα", "Διαγραφή δεδομένων", JOptionPane.PLAIN_MESSAGE);
             return;
         }
+        //Βρές την χώρα και αν ο χρήστης το επιβεβαιώσει διέγραψε τα covid data απο την βάση
         Country country = db.GetCountryFromDb(selectedCountry);
-        db.AskAndDeleteCovidData(country);
+        boolean userReply = db.AskAndDeleteCovidData(country);
+        if (userReply){
+            //db.DeleteCountry(country); //todo:στην εκφώνηση δεν αναφέρεται η διαγραφή χώρας
+            populateComponents();
+        }
+    }
+    
+    //Το Εικονίδιο στην γωνία του παραθύρου
+    private void setIconImage() {
+        Image image = new ImageIcon(this.getClass().getResource("/resources/covid-19.png")).getImage();
+        this.setIconImage(image);
     }
     
 }

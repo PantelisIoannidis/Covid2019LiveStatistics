@@ -11,7 +11,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
+import java.awt.Image;
 import java.text.SimpleDateFormat;
+import javax.swing.ImageIcon;
 import models.PlottingData;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -39,6 +41,8 @@ import org.jfree.data.xy.XYDataset;
  *
  * @author Pantelis Ioannidis
  */
+
+//Η γραφική παράσταση της χρονοσειράς
 public class FramePlotLineChart extends javax.swing.JFrame {
 
     /**
@@ -50,6 +54,7 @@ public class FramePlotLineChart extends javax.swing.JFrame {
     
     public FramePlotLineChart() {
         initComponents();
+        setIconImage();
         simpleDateFormat = new SimpleDateFormat(dateFormatPattern);
     }
     public void CalculatePlot(PlottingData data){
@@ -95,6 +100,8 @@ public class FramePlotLineChart extends javax.swing.JFrame {
             if(data.getShowAccumulativeData())
                 series6.add(new Day(dtype.getTrndate()),dtype.getProodqty());
         }
+        
+        //ενημερώνουμε το dataset με όσες timeseries είχαν δεδομένα
         if(series.getItemCount()>0) dataset.addSeries(series);   
         if(series2.getItemCount()>0) dataset.addSeries(series2);
         if(series3.getItemCount()>0) dataset.addSeries(series3);
@@ -121,8 +128,7 @@ public class FramePlotLineChart extends javax.swing.JFrame {
         final XYPlot plot = (XYPlot) chart.getPlot();
         plot.setBackgroundPaint(Color.lightGray);
         plot.setRangeGridlinePaint(Color.white);
-        
-        
+               
        
         //Ρυθμίσης για τον άξονα Υ
         NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
@@ -135,6 +141,12 @@ public class FramePlotLineChart extends javax.swing.JFrame {
         domain.setAutoRange(true);
               
         return chart;
+    }
+    
+    //Το Εικονίδιο στην γωνία του παραθύρου
+    private void setIconImage() {
+        Image image = new ImageIcon(this.getClass().getResource("/resources/covid-19.png")).getImage();
+        this.setIconImage(image);
     }
     
 

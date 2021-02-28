@@ -6,6 +6,8 @@
 package views;
 
 import helpers.DatabaseUtils;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -14,6 +16,8 @@ import helpers.DatabaseUtils;
  * @author Efthimios Georgakis 
  * @author Aris Dimakakos
  */
+
+// R1 Κεντική οθόνη επιλογών
 public class MainFrame extends javax.swing.JFrame {
     FrameDataManagement frameDataManagement = new FrameDataManagement();
     FrameDataDisplay frameDataDisplay = new FrameDataDisplay();
@@ -25,6 +29,7 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame() {
         
         initComponents();
+        setIconImage();
     }
 
     /**
@@ -68,7 +73,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDataManagement);
-        btnDataManagement.setBounds(250, 140, 240, 28);
+        btnDataManagement.setBounds(250, 140, 240, 32);
 
         btnDataDisplay.setText("Προβολή δεδομένων Covid19 ανά χώρα");
         btnDataDisplay.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +82,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDataDisplay);
-        btnDataDisplay.setBounds(220, 200, 300, 28);
+        btnDataDisplay.setBounds(220, 200, 300, 32);
 
         btnMap.setText("Προβολή δεδομένων Covid19 σε χάρτη");
         btnMap.addActionListener(new java.awt.event.ActionListener() {
@@ -86,7 +91,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnMap);
-        btnMap.setBounds(220, 260, 300, 28);
+        btnMap.setBounds(220, 260, 300, 32);
 
         btnExit.setText("Έξοδος");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
@@ -95,7 +100,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnExit);
-        btnExit.setBounds(300, 320, 150, 28);
+        btnExit.setBounds(300, 320, 150, 32);
 
         lblHeader.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
         lblHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -288,5 +293,11 @@ public class MainFrame extends javax.swing.JFrame {
             frameAbout = new FrameAbout();
         }
         frameAbout.setVisible(true);
+    }
+
+    //Το Εικονίδιο στην γωνία του παραθύρου
+    private void setIconImage() {
+        Image image = new ImageIcon(this.getClass().getResource("/resources/covid-19.png")).getImage();
+        this.setIconImage(image);
     }
 }

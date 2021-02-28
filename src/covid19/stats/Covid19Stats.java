@@ -27,7 +27,7 @@ public class Covid19Stats {
      */
     public static void main(String[] args) {
 
-        //Αν δεν υπάρχει η βάση δημιούργησε την
+        //Σύνδεση και τον database server και δημιουργία βάσης αν δεν υπάρχει
         DatabaseUtils dbUtils = new DatabaseUtils();
         dbUtils.InitializeDatabase();
                 

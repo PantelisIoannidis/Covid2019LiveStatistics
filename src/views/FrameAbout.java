@@ -5,6 +5,9 @@
  */
 package views;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Pantelis Ioannidis
@@ -19,8 +22,14 @@ public class FrameAbout extends javax.swing.JFrame {
      */
     public FrameAbout() {
         initComponents();
+        setIconImage();
     }
 
+        //Το Εικονίδιο στην γωνία του παραθύρου
+    private void setIconImage() {
+        Image image = new ImageIcon(this.getClass().getResource("/resources/covid-19.png")).getImage();
+        this.setIconImage(image);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,11 +60,11 @@ public class FrameAbout extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
         jLabel1.setText("Covid19 Stats");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(64, 25, 292, 47);
+        jLabel1.setBounds(64, 25, 390, 47);
 
         jLabel2.setText("ΠΛΗ24 3η εργασία 2021");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(64, 90, 131, 16);
+        jLabel2.setBounds(64, 90, 390, 16);
 
         jLabel3.setText("Καθηγητής - Σύμβουλος: Διονύσης Αδαμόπουλος");
         getContentPane().add(jLabel3);
@@ -76,7 +85,7 @@ public class FrameAbout extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnClose);
-        btnClose.setBounds(180, 290, 130, 28);
+        btnClose.setBounds(180, 290, 130, 32);
 
         jLabel5.setText("Δημακάκος Αριστείδης");
         getContentPane().add(jLabel5);
@@ -154,3 +163,4 @@ public class FrameAbout extends javax.swing.JFrame {
     private javax.swing.JLabel lblBackground;
     // End of variables declaration//GEN-END:variables
 }
+

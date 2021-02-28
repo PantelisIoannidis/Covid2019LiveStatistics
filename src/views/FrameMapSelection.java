@@ -8,12 +8,14 @@ package views;
 import controllers.APIController;
 import controllers.DbOperations;
 import entities.Country;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import models.MappingDataDb;
 
@@ -22,6 +24,8 @@ import models.MappingDataDb;
  * @author Pantelis Ioannidis
  * @author Aris Dimakakos
  */
+
+// R4 Προβολή δεδομένων Covid19 σε χάρτη
 public class FrameMapSelection extends javax.swing.JFrame {
 
     /**
@@ -32,6 +36,7 @@ public class FrameMapSelection extends javax.swing.JFrame {
     
     public FrameMapSelection() {
         initComponents();
+        setIconImage();
         //Φτιάχνουμε το αντικείμενο που μεσολαβεί για την επικοινωνία με την βάση
         db = new DbOperations();
         //Φτιάχνουμε το αντικείμενο που μεσολαβεί για την επικοινωνία με τo API
@@ -86,7 +91,7 @@ public class FrameMapSelection extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnShowMap);
-        btnShowMap.setBounds(290, 70, 180, 28);
+        btnShowMap.setBounds(290, 70, 180, 32);
 
         lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/covidwallpaper.jpg"))); // NOI18N
         getContentPane().add(lblBackground);
@@ -192,5 +197,11 @@ public class FrameMapSelection extends javax.swing.JFrame {
         //Καλούμε το παράθυρο του χάρτη και περνάμε τα δεδομένα
         ShowMap showMap = new ShowMap();
         showMap.Display(mappingData);
+    }
+    
+    //Το Εικονίδιο στην γωνία του παραθύρου
+    private void setIconImage() {
+        Image image = new ImageIcon(this.getClass().getResource("/resources/covid-19.png")).getImage();
+        this.setIconImage(image);
     }
 }

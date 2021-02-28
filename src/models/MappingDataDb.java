@@ -9,7 +9,7 @@ package models;
  *
  * @author Pantelis Ioannidis
  */
-// Κρατάμε τα στοιχεία που χρειάζονται για να τυπώσουμε μια χώρα
+// Κρατάμε τα στοιχεία που χρειάζονται για να αποτυπώσουμε μια χώρα στον χάρτη
 public class MappingDataDb {
      String location;
      int confirmed;

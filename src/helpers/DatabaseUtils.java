@@ -23,7 +23,7 @@ import org.apache.derby.drda.NetworkServerControl;
  *
  * @author Pantelis Ioannidis
  */
-//Δημιουργία Derby database αν δεν υπάρχει κατα την πρώτη εκτέλεση του προγράμματος
+//Σύνδεση με τον server και δημιουργία Derby database αν δεν υπάρχει κατα την πρώτη εκτέλεση του προγράμματος
 public class DatabaseUtils {
     private EntityManagerFactory emf;
     private EntityManager em;
@@ -31,7 +31,7 @@ public class DatabaseUtils {
     private static final String USERNAME = "plh24";
     private static final String PASSWORD = "plh24";    
     
-    //Εκκίνηση του javadb
+    //Εκκίνηση του javadb (derby) server, local εκτός του περιβάλλοντος του netbeans 
     public void StartServer(){
         try {
             NetworkServerControl serverControl = new NetworkServerControl(InetAddress.getLoopbackAddress(),1527,USERNAME,PASSWORD); 
@@ -53,7 +53,7 @@ public class DatabaseUtils {
         Statement statement=null;
         String SqlStatement;
         
-        //Εκκίνηση του javadb
+        //Εκκίνηση του javadb (derby) server
         StartServer();
         
         try{
@@ -88,12 +88,14 @@ public class DatabaseUtils {
             SqlStatement = "alter table COVIDDATA\n" +
                             "add constraint COVIDDATA_UINDEX unique (COUNTRY,TRNDATE,DATAKIND)";
             statement.executeUpdate(SqlStatement);
+        
         //Εδώ πιάνουμε γενικά τα exception που σχετίζονται με τον sql server    
         }catch(SQLException ex){
-            //H database υπάρχει. Δεν χρειάζεται να γίνεi τίποτα. Αγνόησε το exception
+            //H database υπάρχει. Δεν χρειάζεται να γίνει τίποτα. Αγνόησε το exception
             if(ex.getSQLState().toUpperCase().equals("X0Y32".toUpperCase())) {
                                
-            } //Δεν έχει ξεκινήσει το JavaDB Server
+            } 
+            //Δεν έχει ξεκινήσει το JavaDB Server
             else if (ex.getSQLState().toUpperCase().equals("08001".toUpperCase())) {
                  JOptionPane.showMessageDialog(null, "Αποτυχία σύνδεσης με την βάση. Ελέγξτε αν έχει ξεκινήσει ο Java DB server.", "Error", JOptionPane.ERROR_MESSAGE);
                 System.exit(0);

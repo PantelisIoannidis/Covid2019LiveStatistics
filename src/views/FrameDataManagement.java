@@ -7,10 +7,12 @@ package views;
 
 import controllers.APIController;
 import controllers.DbOperations;
+import java.awt.Image;
 import models.TimeSeriesCase;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 import models.CountryTimeSeries;
@@ -20,6 +22,8 @@ import models.CountryTimeSeries;
  * @author Pantelis Ioannidis
  * @author Nick Dimitrakarakos
  */
+
+// R1 Διαχείριση δεδομένων Covid19
 public class FrameDataManagement extends javax.swing.JFrame {
 
     APIController api;
@@ -30,6 +34,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
      */
     public FrameDataManagement() {
         initComponents();
+        setIconImage();
         dbOperations = new DbOperations();
         api = new APIController();
     }
@@ -70,7 +75,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnInsertCountries);
-        btnInsertCountries.setBounds(60, 60, 190, 28);
+        btnInsertCountries.setBounds(60, 60, 190, 32);
 
         btnInsertData.setText("Εισαγωγή δεδομένων");
         btnInsertData.addActionListener(new java.awt.event.ActionListener() {
@@ -79,7 +84,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnInsertData);
-        btnInsertData.setBounds(60, 100, 190, 28);
+        btnInsertData.setBounds(60, 100, 190, 32);
 
         btnDeleteCountries.setText("Διαγραφή χωρών");
         btnDeleteCountries.addActionListener(new java.awt.event.ActionListener() {
@@ -88,7 +93,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDeleteCountries);
-        btnDeleteCountries.setBounds(440, 60, 190, 28);
+        btnDeleteCountries.setBounds(440, 60, 190, 32);
 
         btnDeleteData.setText("Διαγραφή δεδομένων");
         btnDeleteData.addActionListener(new java.awt.event.ActionListener() {
@@ -97,22 +102,22 @@ public class FrameDataManagement extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDeleteData);
-        btnDeleteData.setBounds(440, 100, 190, 28);
+        btnDeleteData.setBounds(440, 100, 190, 32);
 
         chkDeaths.setSelected(true);
         chkDeaths.setText("Θάνατοι");
         getContentPane().add(chkDeaths);
-        chkDeaths.setBounds(190, 170, 150, 18);
+        chkDeaths.setBounds(190, 170, 150, 24);
 
         chkConfirmed.setSelected(true);
         chkConfirmed.setText("Κρούσματα");
         getContentPane().add(chkConfirmed);
-        chkConfirmed.setBounds(190, 200, 150, 18);
+        chkConfirmed.setBounds(190, 200, 150, 24);
 
         chkRecovered.setSelected(true);
         chkRecovered.setText("Αναρώσεις");
         getContentPane().add(chkRecovered);
-        chkRecovered.setBounds(190, 230, 140, 18);
+        chkRecovered.setBounds(190, 230, 150, 24);
 
         chkLimitCountiesSelection.setText("Επιλογή περιορισμένων χωρών");
         getContentPane().add(chkLimitCountiesSelection);
@@ -141,21 +146,26 @@ public class FrameDataManagement extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    //Αν για λόγους ταχύτητας ο χρήστης επιλέξει περιορισμό χωρων, επιστρέφουμε μια λίστα μόνο με 3 χώρες 
     private List<CountryTimeSeries> limitCountries(List<CountryTimeSeries> ltm){
         return ltm.stream()
                 .filter(x->x.country.equals("Greece") || x.country.equals("Germany") || x.country.equals("Italy"))
                 .collect(Collectors.toList());
     }
+    
     private void btnInsertCountriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertCountriesActionPerformed
         DisableAllButtons();
         jTextMessages.setText("ΠΑΡΑΚΑΛΩ ΠΕΡΙΜΕΝΕΤΕ.\n Εισαγωγή χωρών σε εξέλιξη.");
+        //Εκτελούμε τις ενέργεις στην βάση και το API σε νήμα για να μην παγώσει το UI
         SwingWorker sw1 = new SwingWorker() {
 
             @Override
             protected Object doInBackground() throws Exception {
+                //Πάρε να confirmed δεδομένα απο το API
                 List<CountryTimeSeries> ltm = api.GetTimeSeries(TimeSeriesCase.CONFIRMED);
                 if(chkLimitCountiesSelection.isSelected())
                     ltm=limitCountries(ltm);
+                //Αποθήκευσε τις χώρες στην βάση
                 dbOperations.AddCountriesThatAreNotInDB(ltm);
                 return null;
             }
@@ -178,6 +188,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
     private void btnInsertDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertDataActionPerformed
         DisableAllButtons();
         jTextMessages.setText("ΠΑΡΑΚΑΛΩ ΠΕΡΙΜΕΝΕΤΕ 2-7 λεπτά.\n Εισαγωγή δεδομένων covid σε εξέλιξη.");
+        //Εκτελούμε τις ενέργεις στην βάση και το API σε νήμα για να μην παγώσει το UI
         SwingWorker sw1 = new SwingWorker() {
 
             @Override
@@ -185,24 +196,33 @@ public class FrameDataManagement extends javax.swing.JFrame {
                 if ((!chkConfirmed.isSelected() && !chkDeaths.isSelected() && !chkRecovered.isSelected())) {
                     JOptionPane.showMessageDialog(null, "Δεν έχετε επιλέξει καμία κατηγορία δεδομένων");
                 }
+                //Αν ο χρήστης ζήτησε δεδομένα για Confirmed
                 if (chkConfirmed.isSelected()) {
+                    //Πάρε να confirmed δεδομένα απο το API
                     List<CountryTimeSeries> ltm = api.GetTimeSeries(TimeSeriesCase.CONFIRMED);
                     if(chkLimitCountiesSelection.isSelected())
                         ltm=limitCountries(ltm);
+                    //Αποθήκευσε την χώρα αν δεν υπάρχει και τα δεδομένα της
                     dbOperations.AddCountriesThatAreNotInDB(ltm);
                     dbOperations.AddTimeSeriesInDatabase(ltm, TimeSeriesCase.CONFIRMED);
                 }
+                //Αν ο χρήστης ζήτησε δεδομένα για Deaths
                 if (chkDeaths.isSelected()) {
+                    //Πάρε να deaths δεδομένα απο το API
                     List<CountryTimeSeries> ltm = api.GetTimeSeries(TimeSeriesCase.DEATHS);
                     if(chkLimitCountiesSelection.isSelected())
                         ltm=limitCountries(ltm);
+                    //Αποθήκευσε την χώρα αν δεν υπάρχει και τα δεδομένα της
                     dbOperations.AddCountriesThatAreNotInDB(ltm);
                     dbOperations.AddTimeSeriesInDatabase(ltm, TimeSeriesCase.DEATHS);
                 }
+                //Αν ο χρήστης ζήτησε δεδομένα για Recovered
                 if (chkRecovered.isSelected()) {
+                    //Πάρε να recovered δεδομένα απο το API
                     List<CountryTimeSeries> ltm = api.GetTimeSeries(TimeSeriesCase.RECOVERED);
                     if(chkLimitCountiesSelection.isSelected())
                         ltm=limitCountries(ltm);
+                    //Αποθήκευσε την χώρα αν δεν υπάρχει και τα δεδομένα της
                     dbOperations.AddCountriesThatAreNotInDB(ltm);
                     dbOperations.AddTimeSeriesInDatabase(ltm, TimeSeriesCase.RECOVERED);
                 }
@@ -221,17 +241,18 @@ public class FrameDataManagement extends javax.swing.JFrame {
             }
         };
 
-        // executes the swingworker on worker thread 
         sw1.execute();
     }//GEN-LAST:event_btnInsertDataActionPerformed
 
     private void btnDeleteCountriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCountriesActionPerformed
         DisableAllButtons();
         jTextMessages.setText("ΠΑΡΑΚΑΛΩ ΠΕΡΙΜΕΝΕΤΕ.\n Διαγραφή χωρών σε εξέλιξη.");
+        //Εκτελούμε τις ενέργεις στην βάση και το API σε νήμα για να μην παγώσει το UI
         SwingWorker sw1 = new SwingWorker() {
 
             @Override
             protected Object doInBackground() throws Exception {
+                //Διαγράφουμε όλες τις χώρες απο την βάση
                 dbOperations.DeleteAllCountries();
                 return null;
             }
@@ -253,13 +274,15 @@ public class FrameDataManagement extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnDeleteCountriesActionPerformed
 
+    //Διαγραφή δεδομέων covid
     private void btnDeleteDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteDataActionPerformed
         DisableAllButtons();
         jTextMessages.setText("ΠΑΡΑΚΑΛΩ ΠΕΡΙΜΕΝΕΤΕ.\n Διαγραφή δεδομένων covid σε εξέλιξη.");
+        //Εκτελούμε τις ενέργεις στην βάση και το API σε νήμα για να μην παγώσει το UI
         SwingWorker sw1 = new SwingWorker() {
-
             @Override
             protected Object doInBackground() throws Exception {
+                //Διαγράφουμε όλα τα covid data απο την βάση
                 dbOperations.DeleteAllCovidData();
                 return null;
             }
@@ -281,7 +304,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnDeleteDataActionPerformed
 
-    
+    //Κάνουμε disabled τα checkbox ώστε ο χρήστης να μην μπορεί να τα αλλάξει
     public void EnableAllButtons() {
         btnDeleteCountries.setEnabled(true);
         btnDeleteData.setEnabled(true);
@@ -290,8 +313,10 @@ public class FrameDataManagement extends javax.swing.JFrame {
         chkConfirmed.setEnabled(true);
         chkDeaths.setEnabled(true);
         chkRecovered.setEnabled(true);
+        chkLimitCountiesSelection.setEnabled(true);
     }
 
+    //Κάνουμε enabled τα checkbox ώστε ο χρήστης να μπορεί να τα αλλάξει
     public void DisableAllButtons() {
         btnDeleteCountries.setEnabled(false);
         btnDeleteData.setEnabled(false);
@@ -300,6 +325,13 @@ public class FrameDataManagement extends javax.swing.JFrame {
         chkConfirmed.setEnabled(false);
         chkDeaths.setEnabled(false);
         chkRecovered.setEnabled(false);
+        chkLimitCountiesSelection.setEnabled(false);
+    }
+    
+    //Το Εικονίδιο στην γωνία του παραθύρου
+    private void setIconImage() {
+        Image image = new ImageIcon(this.getClass().getResource("/resources/covid-19.png")).getImage();
+        this.setIconImage(image);
     }
 
     /**

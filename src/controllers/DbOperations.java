@@ -65,11 +65,12 @@ public class DbOperations {
     }
     
     //Διέγραψε τα covid data της χώρας, εφόσον δώσει άδεια ο χρήστης
-    public void  AskAndDeleteCovidData(Country country){
+    public boolean  AskAndDeleteCovidData(Country country){
+        int reply = -1;
         try {
             String title = "Διαγραφή απο την βάση";
             String message ="Σίγουρα θέλετε να διαγράψετε τα δεδομένα για την χώρα : "+country.getName();
-            int reply = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
+            reply = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
             //Αν απαντήσει ναι, διέγραψε τα covid data της χώρας
             if (reply == JOptionPane.YES_OPTION) {
                 DeleteCovidData(country);
@@ -77,6 +78,7 @@ public class DbOperations {
         } catch (Exception ex) {
             Logger.getLogger(DbOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return reply == JOptionPane.YES_OPTION;
     }
     
     //Διαγραφή όλων των covid Data
@@ -149,7 +151,7 @@ public class DbOperations {
     }
     
     //Διέγραψε την χώρα, εφόσον δώσει άδεια ο χρήστης
-    public void  AskAndDeleteCountry(Country country){
+    public boolean  AskAndDeleteCountry(Country country){
         String title = "Διαγραφή απο την βάση";
         String message ="Σίγουρα θέλετε να διαγράψετε την χώρα : "+country.getName();
         int reply = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
@@ -157,6 +159,7 @@ public class DbOperations {
             //Διέγραψε την χώρα
             DeleteCountry(country);
         } 
+        return reply == JOptionPane.YES_OPTION;
     }
     
     // Εξάγουμε απο τις timeseries τις χώρες και αν δεν υπάρχουν τις προσθέτουμε στην βάση.
