@@ -627,7 +627,17 @@ public class FrameDataDisplay extends javax.swing.JFrame {
         if(selectedCountry==null || selectedCountry.equals("")){
             JOptionPane.showConfirmDialog(null, "Επιλέξτε πρώτα μια χώρα", "Γράφημα χώρας", JOptionPane.PLAIN_MESSAGE);
             return;
-        }      
+        }   
+        //Ο χρήστης δεν μπορεί να μην επιλέξει τουλάχιστον ένα απο τα ημερήσια και σωρευτικά δεδομένα
+        if(!chkDailyData.isSelected() && !chkAccumulativeData.isSelected()){
+            JOptionPane.showConfirmDialog(null, "Πρέπει να επιλέξετε τουλάχιστον ένα απο τα Καθημερινά/Σωρευτικά δεδομένα", "Γράφημα χώρας", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+        //Ο χρήστης δεν μπορεί να μην επιλέξει τουλάχιστον ένα τύπο δεδομένων απο τα Επιβεβαιωμένα/Ανάρρωσαν/Θανατοι
+        if(!chkConfirmed.isSelected() && !chkRecovered.isSelected() && !chkDeaths.isSelected()){
+            JOptionPane.showConfirmDialog(null, "Πρέπει να επιλέξετε τουλάχιστον μια κατηγορία δεδομένων", "Γράφημα χώρας", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
         
         //Αρχικοποιούμε τις λίστες με τα δεδομένα covid
         String title=selectedCountry;
