@@ -96,7 +96,8 @@ public class FrameDataDisplay extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cmbCountry = new javax.swing.JComboBox<>();
+        jLabelCountrySelection = new javax.swing.JLabel();
+        jComboBoxCountry = new javax.swing.JComboBox<>();
         tabsCases = new javax.swing.JTabbedPane();
         tabConfirmed = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -107,26 +108,25 @@ public class FrameDataDisplay extends javax.swing.JFrame {
         tabDeaths = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDeaths = new javax.swing.JTable();
-        chkDateFrom = new javax.swing.JCheckBox();
-        chkDateTo = new javax.swing.JCheckBox();
-        btnFilter = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        btnDeleteData = new javax.swing.JButton();
-        frmTxtDateFrom = new com.toedter.calendar.JDateChooser();
-        frmTxtDateTo = new com.toedter.calendar.JDateChooser();
-        btnShowMap = new javax.swing.JButton();
-        chkConfirmed = new javax.swing.JCheckBox();
-        chkRecovered = new javax.swing.JCheckBox();
-        chkDeaths = new javax.swing.JCheckBox();
+        jLabelDatesRange = new javax.swing.JLabel();
+        jCheckBoxDateFrom = new javax.swing.JCheckBox();
+        jCheckBoxDateTo = new javax.swing.JCheckBox();
+        jButtonFilter = new javax.swing.JButton();
+        jButtonDeleteData = new javax.swing.JButton();
+        jDateChooserDateFrom = new com.toedter.calendar.JDateChooser();
+        jDateChooserDateTo = new com.toedter.calendar.JDateChooser();
+        jButtonShowMap = new javax.swing.JButton();
+        jCheckBoxConfirmed = new javax.swing.JCheckBox();
+        jCheckBoxRecovered = new javax.swing.JCheckBox();
+        jCheckBoxDeaths = new javax.swing.JCheckBox();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel3 = new javax.swing.JLabel();
-        chkDailyData = new javax.swing.JCheckBox();
-        chkAccumulativeData = new javax.swing.JCheckBox();
-        btnShowPlot = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        jLabelGraphSelections = new javax.swing.JLabel();
+        jLabelDataTimeScale = new javax.swing.JLabel();
+        jCheckBoxDailyData = new javax.swing.JCheckBox();
+        jCheckBoxAccumulativeData = new javax.swing.JCheckBox();
+        jButtonShowGraph = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
-        lblBackground = new javax.swing.JLabel();
+        jLabelBackground = new javax.swing.JLabel();
 
         setTitle("Προβολή δεδομένων Covid19 ανά χώρα");
         setMaximumSize(new java.awt.Dimension(900, 690));
@@ -135,8 +135,12 @@ public class FrameDataDisplay extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
-        getContentPane().add(cmbCountry);
-        cmbCountry.setBounds(39, 30, 195, 26);
+        jLabelCountrySelection.setText("Επιλογή χώρας");
+        getContentPane().add(jLabelCountrySelection);
+        jLabelCountrySelection.setBounds(50, 10, 180, 16);
+
+        getContentPane().add(jComboBoxCountry);
+        jComboBoxCountry.setBounds(39, 30, 195, 26);
 
         tabsCases.setTabPlacement(javax.swing.JTabbedPane.LEFT);
         tabsCases.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -236,143 +240,139 @@ public class FrameDataDisplay extends javax.swing.JFrame {
         getContentPane().add(tabsCases);
         tabsCases.setBounds(0, 70, 859, 400);
 
-        chkDateFrom.setText("Απο");
-        chkDateFrom.addActionListener(new java.awt.event.ActionListener() {
+        jLabelDatesRange.setText("Ημερομηνία");
+        getContentPane().add(jLabelDatesRange);
+        jLabelDatesRange.setBounds(350, 30, 90, 16);
+
+        jCheckBoxDateFrom.setText("Απο");
+        jCheckBoxDateFrom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkDateFromActionPerformed(evt);
+                jCheckBoxDateFromActionPerformed(evt);
             }
         });
-        getContentPane().add(chkDateFrom);
-        chkDateFrom.setBounds(436, 6, 60, 24);
+        getContentPane().add(jCheckBoxDateFrom);
+        jCheckBoxDateFrom.setBounds(436, 6, 60, 24);
 
-        chkDateTo.setText("Εως");
-        chkDateTo.addActionListener(new java.awt.event.ActionListener() {
+        jCheckBoxDateTo.setText("Εως");
+        jCheckBoxDateTo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkDateToActionPerformed(evt);
+                jCheckBoxDateToActionPerformed(evt);
             }
         });
-        getContentPane().add(chkDateTo);
-        chkDateTo.setBounds(604, 6, 60, 24);
+        getContentPane().add(jCheckBoxDateTo);
+        jCheckBoxDateTo.setBounds(604, 6, 60, 24);
 
-        btnFilter.setText("Φίλτρο");
-        btnFilter.addActionListener(new java.awt.event.ActionListener() {
+        jButtonFilter.setText("Φίλτρο");
+        jButtonFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFilterActionPerformed(evt);
+                jButtonFilterActionPerformed(evt);
             }
         });
-        getContentPane().add(btnFilter);
-        btnFilter.setBounds(766, 30, 90, 32);
+        getContentPane().add(jButtonFilter);
+        jButtonFilter.setBounds(766, 30, 90, 32);
 
-        jLabel1.setText("Επιλογή χώρας");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(50, 10, 180, 16);
-
-        jLabel2.setText("Ημερομηνία");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(350, 30, 90, 16);
-
-        btnDeleteData.setText("Διαγραφή δεδομένων");
-        btnDeleteData.addActionListener(new java.awt.event.ActionListener() {
+        jButtonDeleteData.setText("Διαγραφή δεδομένων");
+        jButtonDeleteData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteDataActionPerformed(evt);
+                jButtonDeleteDataActionPerformed(evt);
             }
         });
-        getContentPane().add(btnDeleteData);
-        btnDeleteData.setBounds(100, 580, 250, 32);
+        getContentPane().add(jButtonDeleteData);
+        jButtonDeleteData.setBounds(100, 580, 250, 32);
 
-        frmTxtDateFrom.setDateFormatString("dd/MM/yyy");
-        getContentPane().add(frmTxtDateFrom);
-        frmTxtDateFrom.setBounds(436, 30, 150, 29);
+        jDateChooserDateFrom.setDateFormatString("dd/MM/yyy");
+        getContentPane().add(jDateChooserDateFrom);
+        jDateChooserDateFrom.setBounds(436, 30, 150, 29);
 
-        frmTxtDateTo.setDateFormatString("dd/MM/yyyy");
-        getContentPane().add(frmTxtDateTo);
-        frmTxtDateTo.setBounds(604, 30, 150, 29);
+        jDateChooserDateTo.setDateFormatString("dd/MM/yyyy");
+        getContentPane().add(jDateChooserDateTo);
+        jDateChooserDateTo.setBounds(604, 30, 150, 29);
 
-        btnShowMap.setText("Προβολή σε χάρτη");
-        btnShowMap.addActionListener(new java.awt.event.ActionListener() {
+        jButtonShowMap.setText("Προβολή σε χάρτη");
+        jButtonShowMap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnShowMapActionPerformed(evt);
+                jButtonShowMapActionPerformed(evt);
             }
         });
-        getContentPane().add(btnShowMap);
-        btnShowMap.setBounds(100, 520, 250, 32);
+        getContentPane().add(jButtonShowMap);
+        jButtonShowMap.setBounds(100, 520, 250, 32);
 
-        chkConfirmed.setSelected(true);
-        chkConfirmed.setText("Επιβεβαιωμένα");
-        getContentPane().add(chkConfirmed);
-        chkConfirmed.setBounds(560, 530, 120, 24);
+        jCheckBoxConfirmed.setSelected(true);
+        jCheckBoxConfirmed.setText("Επιβεβαιωμένα");
+        getContentPane().add(jCheckBoxConfirmed);
+        jCheckBoxConfirmed.setBounds(560, 530, 120, 24);
 
-        chkRecovered.setSelected(true);
-        chkRecovered.setText("Ανάρρωσαν");
-        getContentPane().add(chkRecovered);
-        chkRecovered.setBounds(560, 550, 120, 24);
+        jCheckBoxRecovered.setSelected(true);
+        jCheckBoxRecovered.setText("Ανάρρωσαν");
+        getContentPane().add(jCheckBoxRecovered);
+        jCheckBoxRecovered.setBounds(560, 550, 120, 24);
 
-        chkDeaths.setSelected(true);
-        chkDeaths.setText("Θανατοι");
-        getContentPane().add(chkDeaths);
-        chkDeaths.setBounds(560, 580, 120, 24);
+        jCheckBoxDeaths.setSelected(true);
+        jCheckBoxDeaths.setText("Θανατοι");
+        getContentPane().add(jCheckBoxDeaths);
+        jCheckBoxDeaths.setBounds(560, 580, 120, 24);
         getContentPane().add(jSeparator1);
         jSeparator1.setBounds(725, 530, 130, 10);
 
-        jLabel3.setText("Δεδομένα");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(740, 510, 110, 16);
+        jLabelGraphSelections.setText("Επιλογές γραφήματος");
+        getContentPane().add(jLabelGraphSelections);
+        jLabelGraphSelections.setBounds(560, 480, 290, 16);
 
-        chkDailyData.setSelected(true);
-        chkDailyData.setText("Καθημερινά");
-        getContentPane().add(chkDailyData);
-        chkDailyData.setBounds(730, 540, 120, 24);
+        jLabelDataTimeScale.setText("Δεδομένα");
+        getContentPane().add(jLabelDataTimeScale);
+        jLabelDataTimeScale.setBounds(740, 510, 110, 16);
 
-        chkAccumulativeData.setText("Σωρευτικά");
-        getContentPane().add(chkAccumulativeData);
-        chkAccumulativeData.setBounds(730, 570, 120, 20);
+        jCheckBoxDailyData.setSelected(true);
+        jCheckBoxDailyData.setText("Καθημερινά");
+        getContentPane().add(jCheckBoxDailyData);
+        jCheckBoxDailyData.setBounds(730, 540, 120, 24);
 
-        btnShowPlot.setText("Προβολή σε διάγραμμα");
-        btnShowPlot.addActionListener(new java.awt.event.ActionListener() {
+        jCheckBoxAccumulativeData.setText("Σωρευτικά");
+        getContentPane().add(jCheckBoxAccumulativeData);
+        jCheckBoxAccumulativeData.setBounds(730, 570, 120, 20);
+
+        jButtonShowGraph.setText("Προβολή σε διάγραμμα");
+        jButtonShowGraph.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnShowPlotActionPerformed(evt);
+                jButtonShowGraphActionPerformed(evt);
             }
         });
-        getContentPane().add(btnShowPlot);
-        btnShowPlot.setBounds(570, 610, 250, 32);
-
-        jLabel5.setText("Επιλογές γραφήματος");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(560, 480, 290, 16);
+        getContentPane().add(jButtonShowGraph);
+        jButtonShowGraph.setBounds(570, 610, 250, 32);
         getContentPane().add(jSeparator2);
         jSeparator2.setBounds(560, 500, 300, 2);
 
-        lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/covidwallpaper.jpg"))); // NOI18N
-        getContentPane().add(lblBackground);
-        lblBackground.setBounds(0, 0, 1000, 667);
+        jLabelBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/covidwallpaper.jpg"))); // NOI18N
+        getContentPane().add(jLabelBackground);
+        jLabelBackground.setBounds(0, 0, 1000, 667);
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void chkDateToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkDateToActionPerformed
+    private void jCheckBoxDateToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxDateToActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_chkDateToActionPerformed
+    }//GEN-LAST:event_jCheckBoxDateToActionPerformed
 
-    private void chkDateFromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkDateFromActionPerformed
+    private void jCheckBoxDateFromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxDateFromActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_chkDateFromActionPerformed
+    }//GEN-LAST:event_jCheckBoxDateFromActionPerformed
 
-    private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
+    private void jButtonFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFilterActionPerformed
         onCountryChange();
-    }//GEN-LAST:event_btnFilterActionPerformed
+    }//GEN-LAST:event_jButtonFilterActionPerformed
 
-    private void btnShowPlotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowPlotActionPerformed
+    private void jButtonShowGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonShowGraphActionPerformed
         plotLineChart();
-    }//GEN-LAST:event_btnShowPlotActionPerformed
+    }//GEN-LAST:event_jButtonShowGraphActionPerformed
 
-    private void btnShowMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowMapActionPerformed
+    private void jButtonShowMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonShowMapActionPerformed
         showMap();
-    }//GEN-LAST:event_btnShowMapActionPerformed
+    }//GEN-LAST:event_jButtonShowMapActionPerformed
 
-    private void btnDeleteDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteDataActionPerformed
+    private void jButtonDeleteDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteDataActionPerformed
         removeCountrysCoviddata();
-    }//GEN-LAST:event_btnDeleteDataActionPerformed
+    }//GEN-LAST:event_jButtonDeleteDataActionPerformed
 
     /**
      * @param args the command line arguments
@@ -410,30 +410,30 @@ public class FrameDataDisplay extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDeleteData;
-    private javax.swing.JButton btnFilter;
-    private javax.swing.JButton btnShowMap;
-    private javax.swing.JButton btnShowPlot;
-    private javax.swing.JCheckBox chkAccumulativeData;
-    private javax.swing.JCheckBox chkConfirmed;
-    private javax.swing.JCheckBox chkDailyData;
-    private javax.swing.JCheckBox chkDateFrom;
-    private javax.swing.JCheckBox chkDateTo;
-    private javax.swing.JCheckBox chkDeaths;
-    private javax.swing.JCheckBox chkRecovered;
-    private javax.swing.JComboBox<String> cmbCountry;
-    private com.toedter.calendar.JDateChooser frmTxtDateFrom;
-    private com.toedter.calendar.JDateChooser frmTxtDateTo;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JButton jButtonDeleteData;
+    private javax.swing.JButton jButtonFilter;
+    private javax.swing.JButton jButtonShowGraph;
+    private javax.swing.JButton jButtonShowMap;
+    private javax.swing.JCheckBox jCheckBoxAccumulativeData;
+    private javax.swing.JCheckBox jCheckBoxConfirmed;
+    private javax.swing.JCheckBox jCheckBoxDailyData;
+    private javax.swing.JCheckBox jCheckBoxDateFrom;
+    private javax.swing.JCheckBox jCheckBoxDateTo;
+    private javax.swing.JCheckBox jCheckBoxDeaths;
+    private javax.swing.JCheckBox jCheckBoxRecovered;
+    private javax.swing.JComboBox<String> jComboBoxCountry;
+    private com.toedter.calendar.JDateChooser jDateChooserDateFrom;
+    private com.toedter.calendar.JDateChooser jDateChooserDateTo;
+    private javax.swing.JLabel jLabelBackground;
+    private javax.swing.JLabel jLabelCountrySelection;
+    private javax.swing.JLabel jLabelDataTimeScale;
+    private javax.swing.JLabel jLabelDatesRange;
+    private javax.swing.JLabel jLabelGraphSelections;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JLabel lblBackground;
     private javax.swing.JPanel tabConfirmed;
     private javax.swing.JPanel tabDeaths;
     private javax.swing.JPanel tabRecovered;
@@ -457,7 +457,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
     
     private void setDateBack(String time){
         //Πέρνουμε την τελική ημερομηνία και ανάλογα με την παράμετρο θα αφαιρούμε χρόνο
-        Date dateFrom = frmTxtDateTo.getDate();
+        Date dateFrom = jDateChooserDateTo.getDate();
         LocalDateTime localDateTime = dateFrom.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
         if(time.equals("aWeek"))
             localDateTime = localDateTime.minusWeeks(1);
@@ -468,9 +468,9 @@ public class FrameDataDisplay extends javax.swing.JFrame {
         if(time.equals("all"))
             localDateTime = localDateTime.withMonth(1).withDayOfMonth(1).withYear(2019);
         dateFrom = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
-        frmTxtDateFrom.setDate(dateFrom);
-        chkDateFrom.setSelected(true);
-        chkDateTo.setSelected(true);
+        jDateChooserDateFrom.setDate(dateFrom);
+        jCheckBoxDateFrom.setSelected(true);
+        jCheckBoxDateTo.setSelected(true);
         onCountryChange();
     }
     
@@ -514,37 +514,37 @@ public class FrameDataDisplay extends javax.swing.JFrame {
     
     private void populateDatesRangeBoxes(){
         //Βάζουμε μια ημερομηνία πολύ πριν το covid και τα data μας για αρχική ημερομηνία
-        frmTxtDateFrom.setDate(minDate);  
+        jDateChooserDateFrom.setDate(minDate);  
         
         //Listener για το Popup menu που βοηθάει στην επιλογή ημερομηνίων
-        frmTxtDateFrom.getDateEditor().getUiComponent().addMouseListener(new MouseAdapter() {  
+        jDateChooserDateFrom.getDateEditor().getUiComponent().addMouseListener(new MouseAdapter() {  
             public void mouseClicked(MouseEvent e) {              
-                 popupmenu.show(frmTxtDateFrom ,0,20 );
+                 popupmenu.show(jDateChooserDateFrom ,0,20 );
             }   
         });
 
         //Βάζουμε την σημερινή ημερομηνία για το εώς
-        frmTxtDateTo.setDate(new Date());
+        jDateChooserDateTo.setDate(new Date());
  
     }
 
     //γεμίζουμε το combo με τα ονόματα των χωρών
     private void populateCountryComboBox() {
         //Καθαρίζουμε το combo
-        if(cmbCountry.getSelectedIndex()!=-1){
-            cmbCountry.setModel(new DefaultComboBoxModel());
+        if(jComboBoxCountry.getSelectedIndex()!=-1){
+            jComboBoxCountry.setModel(new DefaultComboBoxModel());
         }
         //φέρνουμε τις χώρες απο την βάση
         List<Country> countries = db.GetCountriesListFromDb();
         //προσθέτουμε μία επιλογή που ερμηνεύεται ως καμία χώρα
-        cmbCountry.addItem("");
+        jComboBoxCountry.addItem("");
         
         //προσθέτουμε μια προς μια τις χώρες
         for(Country country : countries)
-            cmbCountry.addItem(country.getName());
+            jComboBoxCountry.addItem(country.getName());
         
         //φτιάχνουμε έναν listener που ενεργοποιείται όταν κάποιος επιλέγει μια χώρα
-        cmbCountry.addActionListener (new ActionListener () {
+        jComboBoxCountry.addActionListener (new ActionListener () {
             public void actionPerformed(ActionEvent e) {
                 onCountryChange();
             }
@@ -575,7 +575,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
     //εκτελείται όταν επιλέγουμε χώρα ή πατάμε το πλήκτρο Φιλτρο
     private void onCountryChange(){
         //παίρνουμε απο το combo το όνομα τις επιλεγμένης χώρας 
-        selectedCountry = cmbCountry.getSelectedItem().toString();      
+        selectedCountry = jComboBoxCountry.getSelectedItem().toString();      
         
         Date dateFrom=null;
         Date dateTo=null;
@@ -584,10 +584,10 @@ public class FrameDataDisplay extends javax.swing.JFrame {
         dateFrom = minDate;
         dateTo = new Date();
         //αν είναι επιλεγμένα τα checkboxes χρησιμοποιούμε τις ημερομηνίες των textfields
-        if(chkDateFrom.isSelected())
-            dateFrom = frmTxtDateFrom.getDate();
-        if(chkDateTo.isSelected())
-            dateTo = frmTxtDateTo.getDate();
+        if(jCheckBoxDateFrom.isSelected())
+            dateFrom = jDateChooserDateFrom.getDate();
+        if(jCheckBoxDateTo.isSelected())
+            dateTo = jDateChooserDateTo.getDate();
         
         
         
@@ -629,12 +629,12 @@ public class FrameDataDisplay extends javax.swing.JFrame {
             return;
         }   
         //Ο χρήστης δεν μπορεί να μην επιλέξει τουλάχιστον ένα απο τα ημερήσια και σωρευτικά δεδομένα
-        if(!chkDailyData.isSelected() && !chkAccumulativeData.isSelected()){
+        if(!jCheckBoxDailyData.isSelected() && !jCheckBoxAccumulativeData.isSelected()){
             JOptionPane.showConfirmDialog(null, "Πρέπει να επιλέξετε τουλάχιστον ένα απο τα Καθημερινά/Σωρευτικά δεδομένα", "Γράφημα χώρας", JOptionPane.PLAIN_MESSAGE);
             return;
         }
         //Ο χρήστης δεν μπορεί να μην επιλέξει τουλάχιστον ένα τύπο δεδομένων απο τα Επιβεβαιωμένα/Ανάρρωσαν/Θανατοι
-        if(!chkConfirmed.isSelected() && !chkRecovered.isSelected() && !chkDeaths.isSelected()){
+        if(!jCheckBoxConfirmed.isSelected() && !jCheckBoxRecovered.isSelected() && !jCheckBoxDeaths.isSelected()){
             JOptionPane.showConfirmDialog(null, "Πρέπει να επιλέξετε τουλάχιστον μια κατηγορία δεδομένων", "Γράφημα χώρας", JOptionPane.PLAIN_MESSAGE);
             return;
         }
@@ -647,18 +647,18 @@ public class FrameDataDisplay extends javax.swing.JFrame {
         
         //Αν ο χρήστης έχει επιλέξει να εμφανιστεί η κατηγορία, φορτώνουμε τα 
         //data απο τις λίστες της κλάσης που είναι ήδη στο grid
-        if(chkConfirmed.isSelected())
+        if(jCheckBoxConfirmed.isSelected())
             confirmeddata= confirmedList;
-        if(chkRecovered.isSelected())
+        if(jCheckBoxRecovered.isSelected())
             recovereddata= recoveredList;
-        if(chkDeaths.isSelected())
+        if(jCheckBoxDeaths.isSelected())
             deathsdata= deathsList;
         
         //Φορτώνουμε το dto που θα χρησιμοποιήσουμε για με μεταφορά δεδομένων
         //και των επιλογών του χρήστη στο γράγημα.
         PlottingData plottingData = new PlottingData
             (title,confirmeddata,recovereddata,deathsdata,
-                    chkDailyData.isSelected(),chkAccumulativeData.isSelected());
+                    jCheckBoxDailyData.isSelected(),jCheckBoxAccumulativeData.isSelected());
 
         //Φτιάχνουμε το frame με το γράφημα
         if (chartFrame == null){

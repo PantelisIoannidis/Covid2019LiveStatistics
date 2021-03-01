@@ -48,19 +48,19 @@ public class FrameDataManagement extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnInsertCountries = new javax.swing.JButton();
-        btnInsertData = new javax.swing.JButton();
-        btnDeleteCountries = new javax.swing.JButton();
-        btnDeleteData = new javax.swing.JButton();
-        chkDeaths = new javax.swing.JCheckBox();
-        chkConfirmed = new javax.swing.JCheckBox();
-        chkRecovered = new javax.swing.JCheckBox();
-        chkLimitCountiesSelection = new javax.swing.JCheckBox();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jButtonInsertCountries = new javax.swing.JButton();
+        jButtonInsertData = new javax.swing.JButton();
+        jButtonDeleteCountries = new javax.swing.JButton();
+        jButtonDeleteData = new javax.swing.JButton();
+        jCheckBoxDeaths = new javax.swing.JCheckBox();
+        jCheckBoxConfirmed = new javax.swing.JCheckBox();
+        jCheckBoxRecovered = new javax.swing.JCheckBox();
+        jCheckBoxLimitCountiesSelection = new javax.swing.JCheckBox();
+        jLabelCategoriesLine1 = new javax.swing.JLabel();
+        jLabelCategoriesLine2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextMessages = new javax.swing.JTextPane();
-        lblBackground = new javax.swing.JLabel();
+        jLabelBackground = new javax.swing.JLabel();
 
         setTitle("Διαχείριση δεδομένων Covid19");
         setMaximumSize(new java.awt.Dimension(720, 370));
@@ -68,68 +68,68 @@ public class FrameDataManagement extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(720, 370));
         getContentPane().setLayout(null);
 
-        btnInsertCountries.setText("Εισαγωγή χωρών");
-        btnInsertCountries.addActionListener(new java.awt.event.ActionListener() {
+        jButtonInsertCountries.setText("Εισαγωγή χωρών");
+        jButtonInsertCountries.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInsertCountriesActionPerformed(evt);
+                jButtonInsertCountriesActionPerformed(evt);
             }
         });
-        getContentPane().add(btnInsertCountries);
-        btnInsertCountries.setBounds(60, 60, 190, 32);
+        getContentPane().add(jButtonInsertCountries);
+        jButtonInsertCountries.setBounds(60, 60, 190, 32);
 
-        btnInsertData.setText("Εισαγωγή δεδομένων");
-        btnInsertData.addActionListener(new java.awt.event.ActionListener() {
+        jButtonInsertData.setText("Εισαγωγή δεδομένων");
+        jButtonInsertData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInsertDataActionPerformed(evt);
+                jButtonInsertDataActionPerformed(evt);
             }
         });
-        getContentPane().add(btnInsertData);
-        btnInsertData.setBounds(60, 100, 190, 32);
+        getContentPane().add(jButtonInsertData);
+        jButtonInsertData.setBounds(60, 100, 190, 32);
 
-        btnDeleteCountries.setText("Διαγραφή χωρών");
-        btnDeleteCountries.addActionListener(new java.awt.event.ActionListener() {
+        jButtonDeleteCountries.setText("Διαγραφή χωρών");
+        jButtonDeleteCountries.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteCountriesActionPerformed(evt);
+                jButtonDeleteCountriesActionPerformed(evt);
             }
         });
-        getContentPane().add(btnDeleteCountries);
-        btnDeleteCountries.setBounds(440, 60, 190, 32);
+        getContentPane().add(jButtonDeleteCountries);
+        jButtonDeleteCountries.setBounds(440, 60, 190, 32);
 
-        btnDeleteData.setText("Διαγραφή δεδομένων");
-        btnDeleteData.addActionListener(new java.awt.event.ActionListener() {
+        jButtonDeleteData.setText("Διαγραφή δεδομένων");
+        jButtonDeleteData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteDataActionPerformed(evt);
+                jButtonDeleteDataActionPerformed(evt);
             }
         });
-        getContentPane().add(btnDeleteData);
-        btnDeleteData.setBounds(440, 100, 190, 32);
+        getContentPane().add(jButtonDeleteData);
+        jButtonDeleteData.setBounds(440, 100, 190, 32);
 
-        chkDeaths.setSelected(true);
-        chkDeaths.setText("Θάνατοι");
-        getContentPane().add(chkDeaths);
-        chkDeaths.setBounds(190, 170, 150, 24);
+        jCheckBoxDeaths.setSelected(true);
+        jCheckBoxDeaths.setText("Θάνατοι");
+        getContentPane().add(jCheckBoxDeaths);
+        jCheckBoxDeaths.setBounds(190, 170, 150, 24);
 
-        chkConfirmed.setSelected(true);
-        chkConfirmed.setText("Κρούσματα");
-        getContentPane().add(chkConfirmed);
-        chkConfirmed.setBounds(190, 200, 150, 24);
+        jCheckBoxConfirmed.setSelected(true);
+        jCheckBoxConfirmed.setText("Κρούσματα");
+        getContentPane().add(jCheckBoxConfirmed);
+        jCheckBoxConfirmed.setBounds(190, 200, 150, 24);
 
-        chkRecovered.setSelected(true);
-        chkRecovered.setText("Αναρώσεις");
-        getContentPane().add(chkRecovered);
-        chkRecovered.setBounds(190, 230, 150, 24);
+        jCheckBoxRecovered.setSelected(true);
+        jCheckBoxRecovered.setText("Αναρώσεις");
+        getContentPane().add(jCheckBoxRecovered);
+        jCheckBoxRecovered.setBounds(190, 230, 150, 24);
 
-        chkLimitCountiesSelection.setText("Επιλογή περιορισμένων χωρών");
-        getContentPane().add(chkLimitCountiesSelection);
-        chkLimitCountiesSelection.setBounds(60, 140, 280, 20);
+        jCheckBoxLimitCountiesSelection.setText("Επιλογή περιορισμένων χωρών");
+        getContentPane().add(jCheckBoxLimitCountiesSelection);
+        jCheckBoxLimitCountiesSelection.setBounds(60, 140, 280, 20);
 
-        jLabel1.setText("Κατηγορίες");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(60, 190, 130, 16);
+        jLabelCategoriesLine1.setText("Κατηγορίες");
+        getContentPane().add(jLabelCategoriesLine1);
+        jLabelCategoriesLine1.setBounds(60, 190, 130, 16);
 
-        jLabel2.setText("προς εισαγωγή");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(60, 210, 130, 16);
+        jLabelCategoriesLine2.setText("προς εισαγωγή");
+        getContentPane().add(jLabelCategoriesLine2);
+        jLabelCategoriesLine2.setBounds(60, 210, 130, 16);
 
         jTextMessages.setEditable(false);
         jTextMessages.setBackground(javax.swing.UIManager.getDefaults().getColor("scrollbar"));
@@ -138,9 +138,9 @@ public class FrameDataManagement extends javax.swing.JFrame {
         getContentPane().add(jScrollPane3);
         jScrollPane3.setBounds(50, 260, 590, 50);
 
-        lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/covidwallpaper.jpg"))); // NOI18N
-        getContentPane().add(lblBackground);
-        lblBackground.setBounds(0, 0, 710, 330);
+        jLabelBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/covidwallpaper.jpg"))); // NOI18N
+        getContentPane().add(jLabelBackground);
+        jLabelBackground.setBounds(0, 0, 710, 330);
 
         pack();
         setLocationRelativeTo(null);
@@ -153,7 +153,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
                 .collect(Collectors.toList());
     }
     
-    private void btnInsertCountriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertCountriesActionPerformed
+    private void jButtonInsertCountriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertCountriesActionPerformed
         DisableAllButtons();
         jTextMessages.setText("ΠΑΡΑΚΑΛΩ ΠΕΡΙΜΕΝΕΤΕ.\n Εισαγωγή χωρών σε εξέλιξη.");
         //Εκτελούμε τις ενέργεις στην βάση και το API σε νήμα για να μην παγώσει το UI
@@ -163,7 +163,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
             protected Object doInBackground() throws Exception {
                 //Πάρε να confirmed δεδομένα απο το API
                 List<CountryTimeSeries> ltm = api.GetTimeSeries(TimeSeriesCase.CONFIRMED);
-                if(chkLimitCountiesSelection.isSelected())
+                if(jCheckBoxLimitCountiesSelection.isSelected())
                     ltm=limitCountries(ltm);
                 //Αποθήκευσε τις χώρες στην βάση
                 dbOperations.AddCountriesThatAreNotInDB(ltm);
@@ -183,9 +183,9 @@ public class FrameDataManagement extends javax.swing.JFrame {
         };
 
         sw1.execute();
-    }//GEN-LAST:event_btnInsertCountriesActionPerformed
+    }//GEN-LAST:event_jButtonInsertCountriesActionPerformed
 
-    private void btnInsertDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertDataActionPerformed
+    private void jButtonInsertDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertDataActionPerformed
         DisableAllButtons();
         jTextMessages.setText("ΠΑΡΑΚΑΛΩ ΠΕΡΙΜΕΝΕΤΕ 2-7 λεπτά.\n Εισαγωγή δεδομένων covid σε εξέλιξη.");
         //Εκτελούμε τις ενέργεις στην βάση και το API σε νήμα για να μην παγώσει το UI
@@ -193,34 +193,34 @@ public class FrameDataManagement extends javax.swing.JFrame {
 
             @Override
             protected Object doInBackground() throws Exception {
-                if ((!chkConfirmed.isSelected() && !chkDeaths.isSelected() && !chkRecovered.isSelected())) {
+                if ((!jCheckBoxConfirmed.isSelected() && !jCheckBoxDeaths.isSelected() && !jCheckBoxRecovered.isSelected())) {
                     JOptionPane.showMessageDialog(null, "Δεν έχετε επιλέξει καμία κατηγορία δεδομένων");
                 }
                 //Αν ο χρήστης ζήτησε δεδομένα για Confirmed
-                if (chkConfirmed.isSelected()) {
+                if (jCheckBoxConfirmed.isSelected()) {
                     //Πάρε να confirmed δεδομένα απο το API
                     List<CountryTimeSeries> ltm = api.GetTimeSeries(TimeSeriesCase.CONFIRMED);
-                    if(chkLimitCountiesSelection.isSelected())
+                    if(jCheckBoxLimitCountiesSelection.isSelected())
                         ltm=limitCountries(ltm);
                     //Αποθήκευσε την χώρα αν δεν υπάρχει και τα δεδομένα της
                     dbOperations.AddCountriesThatAreNotInDB(ltm);
                     dbOperations.AddTimeSeriesInDatabase(ltm, TimeSeriesCase.CONFIRMED);
                 }
                 //Αν ο χρήστης ζήτησε δεδομένα για Deaths
-                if (chkDeaths.isSelected()) {
+                if (jCheckBoxDeaths.isSelected()) {
                     //Πάρε να deaths δεδομένα απο το API
                     List<CountryTimeSeries> ltm = api.GetTimeSeries(TimeSeriesCase.DEATHS);
-                    if(chkLimitCountiesSelection.isSelected())
+                    if(jCheckBoxLimitCountiesSelection.isSelected())
                         ltm=limitCountries(ltm);
                     //Αποθήκευσε την χώρα αν δεν υπάρχει και τα δεδομένα της
                     dbOperations.AddCountriesThatAreNotInDB(ltm);
                     dbOperations.AddTimeSeriesInDatabase(ltm, TimeSeriesCase.DEATHS);
                 }
                 //Αν ο χρήστης ζήτησε δεδομένα για Recovered
-                if (chkRecovered.isSelected()) {
+                if (jCheckBoxRecovered.isSelected()) {
                     //Πάρε να recovered δεδομένα απο το API
                     List<CountryTimeSeries> ltm = api.GetTimeSeries(TimeSeriesCase.RECOVERED);
-                    if(chkLimitCountiesSelection.isSelected())
+                    if(jCheckBoxLimitCountiesSelection.isSelected())
                         ltm=limitCountries(ltm);
                     //Αποθήκευσε την χώρα αν δεν υπάρχει και τα δεδομένα της
                     dbOperations.AddCountriesThatAreNotInDB(ltm);
@@ -242,9 +242,9 @@ public class FrameDataManagement extends javax.swing.JFrame {
         };
 
         sw1.execute();
-    }//GEN-LAST:event_btnInsertDataActionPerformed
+    }//GEN-LAST:event_jButtonInsertDataActionPerformed
 
-    private void btnDeleteCountriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCountriesActionPerformed
+    private void jButtonDeleteCountriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteCountriesActionPerformed
         DisableAllButtons();
         jTextMessages.setText("ΠΑΡΑΚΑΛΩ ΠΕΡΙΜΕΝΕΤΕ.\n Διαγραφή χωρών σε εξέλιξη.");
         //Εκτελούμε τις ενέργεις στην βάση και το API σε νήμα για να μην παγώσει το UI
@@ -272,10 +272,10 @@ public class FrameDataManagement extends javax.swing.JFrame {
         sw1.execute();
         
         
-    }//GEN-LAST:event_btnDeleteCountriesActionPerformed
+    }//GEN-LAST:event_jButtonDeleteCountriesActionPerformed
 
     //Διαγραφή δεδομέων covid
-    private void btnDeleteDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteDataActionPerformed
+    private void jButtonDeleteDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteDataActionPerformed
         DisableAllButtons();
         jTextMessages.setText("ΠΑΡΑΚΑΛΩ ΠΕΡΙΜΕΝΕΤΕ.\n Διαγραφή δεδομένων covid σε εξέλιξη.");
         //Εκτελούμε τις ενέργεις στην βάση και το API σε νήμα για να μην παγώσει το UI
@@ -302,30 +302,30 @@ public class FrameDataManagement extends javax.swing.JFrame {
         sw1.execute();
         
         
-    }//GEN-LAST:event_btnDeleteDataActionPerformed
+    }//GEN-LAST:event_jButtonDeleteDataActionPerformed
 
     //Κάνουμε disabled τα checkbox ώστε ο χρήστης να μην μπορεί να τα αλλάξει
     public void EnableAllButtons() {
-        btnDeleteCountries.setEnabled(true);
-        btnDeleteData.setEnabled(true);
-        btnInsertCountries.setEnabled(true);
-        btnInsertData.setEnabled(true);
-        chkConfirmed.setEnabled(true);
-        chkDeaths.setEnabled(true);
-        chkRecovered.setEnabled(true);
-        chkLimitCountiesSelection.setEnabled(true);
+        jButtonDeleteCountries.setEnabled(true);
+        jButtonDeleteData.setEnabled(true);
+        jButtonInsertCountries.setEnabled(true);
+        jButtonInsertData.setEnabled(true);
+        jCheckBoxConfirmed.setEnabled(true);
+        jCheckBoxDeaths.setEnabled(true);
+        jCheckBoxRecovered.setEnabled(true);
+        jCheckBoxLimitCountiesSelection.setEnabled(true);
     }
 
     //Κάνουμε enabled τα checkbox ώστε ο χρήστης να μπορεί να τα αλλάξει
     public void DisableAllButtons() {
-        btnDeleteCountries.setEnabled(false);
-        btnDeleteData.setEnabled(false);
-        btnInsertCountries.setEnabled(false);
-        btnInsertData.setEnabled(false);
-        chkConfirmed.setEnabled(false);
-        chkDeaths.setEnabled(false);
-        chkRecovered.setEnabled(false);
-        chkLimitCountiesSelection.setEnabled(false);
+        jButtonDeleteCountries.setEnabled(false);
+        jButtonDeleteData.setEnabled(false);
+        jButtonInsertCountries.setEnabled(false);
+        jButtonInsertData.setEnabled(false);
+        jCheckBoxConfirmed.setEnabled(false);
+        jCheckBoxDeaths.setEnabled(false);
+        jCheckBoxRecovered.setEnabled(false);
+        jCheckBoxLimitCountiesSelection.setEnabled(false);
     }
     
     //Το Εικονίδιο στην γωνία του παραθύρου
@@ -370,18 +370,18 @@ public class FrameDataManagement extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDeleteCountries;
-    private javax.swing.JButton btnDeleteData;
-    private javax.swing.JButton btnInsertCountries;
-    private javax.swing.JButton btnInsertData;
-    private javax.swing.JCheckBox chkConfirmed;
-    private javax.swing.JCheckBox chkDeaths;
-    private javax.swing.JCheckBox chkLimitCountiesSelection;
-    private javax.swing.JCheckBox chkRecovered;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton jButtonDeleteCountries;
+    private javax.swing.JButton jButtonDeleteData;
+    private javax.swing.JButton jButtonInsertCountries;
+    private javax.swing.JButton jButtonInsertData;
+    private javax.swing.JCheckBox jCheckBoxConfirmed;
+    private javax.swing.JCheckBox jCheckBoxDeaths;
+    private javax.swing.JCheckBox jCheckBoxLimitCountiesSelection;
+    private javax.swing.JCheckBox jCheckBoxRecovered;
+    private javax.swing.JLabel jLabelBackground;
+    private javax.swing.JLabel jLabelCategoriesLine1;
+    private javax.swing.JLabel jLabelCategoriesLine2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextPane jTextMessages;
-    private javax.swing.JLabel lblBackground;
     // End of variables declaration//GEN-END:variables
 }

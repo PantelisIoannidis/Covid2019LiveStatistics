@@ -34,7 +34,7 @@
     <Property name="useNullLayout" type="boolean" value="true"/>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="jLabelCountrySelection">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x395;&#x3c0;&#x3b9;&#x3bb;&#x3bf;&#x3b3;&#x3ae; &#x3b2;&#x3b1;&#x3c3;&#x3b9;&#x3ba;&#x3ae;&#x3c2; &#x3c7;&#x3ce;&#x3c1;&#x3b1;&#x3c2;"/>
       </Properties>
@@ -44,7 +44,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JComboBox" name="cmbCountry">
+    <Component class="javax.swing.JComboBox" name="jComboBoxCountry">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
@@ -59,7 +59,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="jLabelRestOfCountries">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x3a5;&#x3c0;&#x3cc;&#x3bb;&#x3bf;&#x3b9;&#x3c0;&#x3b5;&#x3c2; &#x3c7;&#x3ce;&#x3c1;&#x3b5;&#x3c2; &#x3c3;&#x3c4;&#x3bf;&#x3bd; &#x3c7;&#x3ac;&#x3c1;&#x3c4;&#x3b7;"/>
       </Properties>
@@ -69,7 +69,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+    <Container class="javax.swing.JScrollPane" name="jScrollPaneRestOfCountries">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
       </AuxValues>
@@ -81,7 +81,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JList" name="lstCountries">
+        <Component class="javax.swing.JList" name="jListCountries">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
               <StringArray count="0"/>
@@ -93,12 +93,12 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="btnShowMap">
+    <Component class="javax.swing.JButton" name="jButtonShowMap">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x3a0;&#x3c1;&#x3bf;&#x3b2;&#x3bf;&#x3bb;&#x3ae; &#x3c3;&#x3b5; &#x3c7;&#x3ac;&#x3c1;&#x3c4;&#x3b7;"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnShowMapActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonShowMapActionPerformed"/>
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -106,7 +106,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblBackground">
+    <Component class="javax.swing.JLabel" name="jLabelBackground">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/resources/covidwallpaper.jpg"/>

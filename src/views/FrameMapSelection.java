@@ -54,13 +54,13 @@ public class FrameMapSelection extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        cmbCountry = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        lstCountries = new javax.swing.JList<>();
-        btnShowMap = new javax.swing.JButton();
-        lblBackground = new javax.swing.JLabel();
+        jLabelCountrySelection = new javax.swing.JLabel();
+        jComboBoxCountry = new javax.swing.JComboBox<>();
+        jLabelRestOfCountries = new javax.swing.JLabel();
+        jScrollPaneRestOfCountries = new javax.swing.JScrollPane();
+        jListCountries = new javax.swing.JList<>();
+        jButtonShowMap = new javax.swing.JButton();
+        jLabelBackground = new javax.swing.JLabel();
 
         setTitle("Χάρτης χωρών με δεδομένα covid19");
         setMaximumSize(new java.awt.Dimension(510, 344));
@@ -68,42 +68,42 @@ public class FrameMapSelection extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(510, 344));
         getContentPane().setLayout(null);
 
-        jLabel1.setText("Επιλογή βασικής χώρας");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(18, 12, 230, 16);
+        jLabelCountrySelection.setText("Επιλογή βασικής χώρας");
+        getContentPane().add(jLabelCountrySelection);
+        jLabelCountrySelection.setBounds(18, 12, 230, 16);
 
-        getContentPane().add(cmbCountry);
-        cmbCountry.setBounds(6, 35, 250, 26);
+        getContentPane().add(jComboBoxCountry);
+        jComboBoxCountry.setBounds(6, 35, 250, 26);
 
-        jLabel2.setText("Υπόλοιπες χώρες στον χάρτη");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(15, 92, 240, 16);
+        jLabelRestOfCountries.setText("Υπόλοιπες χώρες στον χάρτη");
+        getContentPane().add(jLabelRestOfCountries);
+        jLabelRestOfCountries.setBounds(15, 92, 240, 16);
 
-        jScrollPane1.setViewportView(lstCountries);
+        jScrollPaneRestOfCountries.setViewportView(jListCountries);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(6, 114, 481, 170);
+        getContentPane().add(jScrollPaneRestOfCountries);
+        jScrollPaneRestOfCountries.setBounds(6, 114, 481, 170);
 
-        btnShowMap.setText("Προβολή σε χάρτη");
-        btnShowMap.addActionListener(new java.awt.event.ActionListener() {
+        jButtonShowMap.setText("Προβολή σε χάρτη");
+        jButtonShowMap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnShowMapActionPerformed(evt);
+                jButtonShowMapActionPerformed(evt);
             }
         });
-        getContentPane().add(btnShowMap);
-        btnShowMap.setBounds(290, 70, 180, 32);
+        getContentPane().add(jButtonShowMap);
+        jButtonShowMap.setBounds(290, 70, 180, 32);
 
-        lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/covidwallpaper.jpg"))); // NOI18N
-        getContentPane().add(lblBackground);
-        lblBackground.setBounds(0, 0, 500, 300);
+        jLabelBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/covidwallpaper.jpg"))); // NOI18N
+        getContentPane().add(jLabelBackground);
+        jLabelBackground.setBounds(0, 0, 500, 300);
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnShowMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowMapActionPerformed
+    private void jButtonShowMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonShowMapActionPerformed
         showMap();
-    }//GEN-LAST:event_btnShowMapActionPerformed
+    }//GEN-LAST:event_jButtonShowMapActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,13 +141,13 @@ public class FrameMapSelection extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnShowMap;
-    private javax.swing.JComboBox<String> cmbCountry;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblBackground;
-    private javax.swing.JList<String> lstCountries;
+    private javax.swing.JButton jButtonShowMap;
+    private javax.swing.JComboBox<String> jComboBoxCountry;
+    private javax.swing.JLabel jLabelBackground;
+    private javax.swing.JLabel jLabelCountrySelection;
+    private javax.swing.JLabel jLabelRestOfCountries;
+    private javax.swing.JList<String> jListCountries;
+    private javax.swing.JScrollPane jScrollPaneRestOfCountries;
     // End of variables declaration//GEN-END:variables
 
 
@@ -155,18 +155,18 @@ public class FrameMapSelection extends javax.swing.JFrame {
     //Φορτώνουμε το combo και την λιστα με τις χώρες
     public void populateCountryComboBoxAndList() {
         //Καθαρίζουμε το combo
-        if(cmbCountry.getSelectedIndex()!=-1){
-            cmbCountry.setModel(new DefaultComboBoxModel());
+        if(jComboBoxCountry.getSelectedIndex()!=-1){
+            jComboBoxCountry.setModel(new DefaultComboBoxModel());
         }
        //φέρνουμε τις χώρες απο την βάση
         List<Country> countries = db.GetCountriesListFromDb();
         DefaultListModel listCountriesModel = new DefaultListModel();
         //προσθέτουμε μια προς μια τις χώρες
         for(Country country : countries) {
-            cmbCountry.addItem(country.getName());
+            jComboBoxCountry.addItem(country.getName());
             listCountriesModel.addElement(country.getName());
         }
-        lstCountries.setModel(listCountriesModel);
+        jListCountries.setModel(listCountriesModel);
     }
 
     //Εμφανίζουμε τον χάρτη
@@ -176,11 +176,9 @@ public class FrameMapSelection extends javax.swing.JFrame {
         //Η λίστα με τα ονόματα των χωρών που επιλέγει ο χρήστης
         List<String> selectedCountries = new ArrayList<String>();
         //Φορτώνουμε στην λίστα την επιλογή το combo
-        selectedCountries.add(
-                cmbCountry.getSelectedItem().toString());
+        selectedCountries.add(jComboBoxCountry.getSelectedItem().toString());
         //Φορτώνουμε στην λίστα τις επιλογές της jlist
-        selectedCountries.addAll(
-            lstCountries.getSelectedValuesList());
+        selectedCountries.addAll(jListCountries.getSelectedValuesList());
         
         if(selectedCountries.size()<=0){
             JOptionPane.showConfirmDialog(null, "Επιλέξτε πρώτα μια χώρα", "Χάρτης χώρας", JOptionPane.PLAIN_MESSAGE);

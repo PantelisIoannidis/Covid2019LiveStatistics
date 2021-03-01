@@ -32,7 +32,7 @@
     <Property name="useNullLayout" type="boolean" value="true"/>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="jLabelHeader">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="sansserif" size="36" style="1"/>
@@ -45,9 +45,9 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="jLabelProjectDate">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x3a0;&#x39b;&#x397;24 3&#x3b7; &#x3b5;&#x3c1;&#x3b3;&#x3b1;&#x3c3;&#x3af;&#x3b1; 2021"/>
+        <Property name="text" type="java.lang.String" value="&#x395;&#x391;&#x3a0; &#x3a0;&#x39b;&#x397;24 3&#x3b7; &#x3b5;&#x3c1;&#x3b3;&#x3b1;&#x3c3;&#x3af;&#x3b1; 2021"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -55,7 +55,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
+    <Component class="javax.swing.JLabel" name="jLabelProductOwner">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x39a;&#x3b1;&#x3b8;&#x3b7;&#x3b3;&#x3b7;&#x3c4;&#x3ae;&#x3c2; - &#x3a3;&#x3cd;&#x3bc;&#x3b2;&#x3bf;&#x3c5;&#x3bb;&#x3bf;&#x3c2;: &#x394;&#x3b9;&#x3bf;&#x3bd;&#x3cd;&#x3c3;&#x3b7;&#x3c2; &#x391;&#x3b4;&#x3b1;&#x3bc;&#x3cc;&#x3c0;&#x3bf;&#x3c5;&#x3bb;&#x3bf;&#x3c2;"/>
       </Properties>
@@ -65,50 +65,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&#x393;&#x3b5;&#x3c9;&#x3c1;&#x3b3;&#x3ac;&#x3ba;&#x3b7;&#x3c2; &#x395;&#x3c5;&#x3b8;&#x3cd;&#x3bc;&#x3b9;&#x3bf;&#x3c2;"/>
-      </Properties>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="70" y="230" width="380" height="-1"/>
-        </Constraint>
-      </Constraints>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel6">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&#x394;&#x3b7;&#x3bc;&#x3b7;&#x3c4;&#x3c1;&#x3b1;&#x3ba;&#x3b1;&#x3c1;&#x3ac;&#x3ba;&#x3bf;&#x3c2; &#x39d;&#x3b9;&#x3ba;&#x3cc;&#x3bb;&#x3b1;&#x3bf;&#x3c2;"/>
-      </Properties>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="70" y="210" width="380" height="-1"/>
-        </Constraint>
-      </Constraints>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnClose">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&#x39a;&#x3bb;&#x3b5;&#x3af;&#x3c3;&#x3b9;&#x3bc;&#x3bf;"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCloseActionPerformed"/>
-      </Events>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="180" y="290" width="130" height="-1"/>
-        </Constraint>
-      </Constraints>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel5">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&#x394;&#x3b7;&#x3bc;&#x3b1;&#x3ba;&#x3ac;&#x3ba;&#x3bf;&#x3c2; &#x391;&#x3c1;&#x3b9;&#x3c3;&#x3c4;&#x3b5;&#x3af;&#x3b4;&#x3b7;&#x3c2;"/>
-      </Properties>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="70" y="250" width="370" height="-1"/>
-        </Constraint>
-      </Constraints>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel7">
+    <Component class="javax.swing.JLabel" name="jLabelProgrammer1">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x399;&#x3c9;&#x3b1;&#x3bd;&#x3bd;&#x3af;&#x3b4;&#x3b7;&#x3c2; &#x3a0;&#x3b1;&#x3bd;&#x3c4;&#x3b5;&#x3bb;&#x3ae;&#x3c2;"/>
       </Properties>
@@ -118,13 +75,56 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel8">
+    <Component class="javax.swing.JLabel" name="jLabelProgrammer2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x394;&#x3b7;&#x3bc;&#x3b7;&#x3c4;&#x3c1;&#x3b1;&#x3ba;&#x3b1;&#x3c1;&#x3ac;&#x3ba;&#x3bf;&#x3c2; &#x39d;&#x3b9;&#x3ba;&#x3cc;&#x3bb;&#x3b1;&#x3bf;&#x3c2;"/>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="70" y="210" width="380" height="-1"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelProgrammer3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x393;&#x3b5;&#x3c9;&#x3c1;&#x3b3;&#x3ac;&#x3ba;&#x3b7;&#x3c2; &#x395;&#x3c5;&#x3b8;&#x3cd;&#x3bc;&#x3b9;&#x3bf;&#x3c2;"/>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="70" y="230" width="380" height="-1"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelProgrammer4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x394;&#x3b7;&#x3bc;&#x3b1;&#x3ba;&#x3ac;&#x3ba;&#x3bf;&#x3c2; &#x391;&#x3c1;&#x3b9;&#x3c3;&#x3c4;&#x3b5;&#x3af;&#x3b4;&#x3b7;&#x3c2;"/>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="70" y="250" width="370" height="-1"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelScrumTeam">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x39f;&#x3bc;&#x3ac;&#x3b4;&#x3b1; &#x391;&#x3bd;&#x3ac;&#x3c0;&#x3c4;&#x3c5;&#x3be;&#x3b7;&#x3c2;"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="70" y="160" width="110" height="-1"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonClose">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x39a;&#x3bb;&#x3b5;&#x3af;&#x3c3;&#x3b9;&#x3bc;&#x3bf;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCloseActionPerformed"/>
+      </Events>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="180" y="290" width="130" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -135,7 +135,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblBackground">
+    <Component class="javax.swing.JLabel" name="jLabelBackground">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/resources/covidwallpaper.jpg"/>

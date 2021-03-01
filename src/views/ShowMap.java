@@ -53,7 +53,7 @@ public class ShowMap {
         String json = MappingDataToJSArray(data);
         //Αντικαθιστούμε τις μεταβλητές πάνω στο template με τα δεδομένα 
         html = html.replaceFirst("/@%locationsjson%@/", json);
-        html = html.replaceFirst("/@%zoomLevel%@/", "4");
+        html = html.replaceFirst("/@%zoomLevel%@/", "5");
         html = html.replaceFirst("/@%lat%@/", String.valueOf(data.get(0).getLat()));
         html = html.replaceFirst("/@%long%@/", String.valueOf(data.get(0).getLong1()));
         //Γράφουμε το html απο την μνήμη στον σκληρό

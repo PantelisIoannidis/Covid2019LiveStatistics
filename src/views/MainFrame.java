@@ -41,13 +41,13 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnDataManagement = new javax.swing.JButton();
-        btnDataDisplay = new javax.swing.JButton();
-        btnMap = new javax.swing.JButton();
-        btnExit = new javax.swing.JButton();
-        lblHeader = new javax.swing.JLabel();
-        lblBackground = new javax.swing.JLabel();
-        mnuBar = new javax.swing.JMenuBar();
+        jLabelHeader = new javax.swing.JLabel();
+        jButtonDataManagement = new javax.swing.JButton();
+        jButtonDataDisplay = new javax.swing.JButton();
+        jButtonMap = new javax.swing.JButton();
+        jButtonExit = new javax.swing.JButton();
+        jLabelBackground = new javax.swing.JLabel();
+        jMenuBarMain = new javax.swing.JMenuBar();
         mnuFile = new javax.swing.JMenu();
         mnuExit = new javax.swing.JMenuItem();
         mnuFrames = new javax.swing.JMenu();
@@ -66,52 +66,52 @@ public class MainFrame extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(800, 460));
         getContentPane().setLayout(null);
 
-        btnDataManagement.setText("Διαχείριση δεδομένων Covid19");
-        btnDataManagement.addActionListener(new java.awt.event.ActionListener() {
+        jLabelHeader.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
+        jLabelHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelHeader.setText("Covid19 Stats");
+        jLabelHeader.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(jLabelHeader);
+        jLabelHeader.setBounds(210, 40, 320, 60);
+
+        jButtonDataManagement.setText("Διαχείριση δεδομένων Covid19");
+        jButtonDataManagement.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDataManagementActionPerformed(evt);
+                jButtonDataManagementActionPerformed(evt);
             }
         });
-        getContentPane().add(btnDataManagement);
-        btnDataManagement.setBounds(250, 140, 240, 32);
+        getContentPane().add(jButtonDataManagement);
+        jButtonDataManagement.setBounds(250, 140, 240, 32);
 
-        btnDataDisplay.setText("Προβολή δεδομένων Covid19 ανά χώρα");
-        btnDataDisplay.addActionListener(new java.awt.event.ActionListener() {
+        jButtonDataDisplay.setText("Προβολή δεδομένων Covid19 ανά χώρα");
+        jButtonDataDisplay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDataDisplayActionPerformed(evt);
+                jButtonDataDisplayActionPerformed(evt);
             }
         });
-        getContentPane().add(btnDataDisplay);
-        btnDataDisplay.setBounds(220, 200, 300, 32);
+        getContentPane().add(jButtonDataDisplay);
+        jButtonDataDisplay.setBounds(220, 200, 300, 32);
 
-        btnMap.setText("Προβολή δεδομένων Covid19 σε χάρτη");
-        btnMap.addActionListener(new java.awt.event.ActionListener() {
+        jButtonMap.setText("Προβολή δεδομένων Covid19 σε χάρτη");
+        jButtonMap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMapActionPerformed(evt);
+                jButtonMapActionPerformed(evt);
             }
         });
-        getContentPane().add(btnMap);
-        btnMap.setBounds(220, 260, 300, 32);
+        getContentPane().add(jButtonMap);
+        jButtonMap.setBounds(220, 260, 300, 32);
 
-        btnExit.setText("Έξοδος");
-        btnExit.addActionListener(new java.awt.event.ActionListener() {
+        jButtonExit.setText("Έξοδος");
+        jButtonExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExitActionPerformed(evt);
+                jButtonExitActionPerformed(evt);
             }
         });
-        getContentPane().add(btnExit);
-        btnExit.setBounds(300, 320, 150, 32);
+        getContentPane().add(jButtonExit);
+        jButtonExit.setBounds(300, 320, 150, 32);
 
-        lblHeader.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
-        lblHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblHeader.setText("Covid19 Stats");
-        lblHeader.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(lblHeader);
-        lblHeader.setBounds(210, 40, 320, 60);
-
-        lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/covidwallpaper.jpg"))); // NOI18N
-        getContentPane().add(lblBackground);
-        lblBackground.setBounds(0, 0, 800, 430);
+        jLabelBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/covidwallpaper.jpg"))); // NOI18N
+        getContentPane().add(jLabelBackground);
+        jLabelBackground.setBounds(0, 0, 800, 430);
 
         mnuFile.setText("Αρχείο");
 
@@ -123,7 +123,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
         mnuFile.add(mnuExit);
 
-        mnuBar.add(mnuFile);
+        jMenuBarMain.add(mnuFile);
 
         mnuFrames.setText("Εργασίες");
 
@@ -151,7 +151,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
         mnuFrames.add(mnuMap);
 
-        mnuBar.add(mnuFrames);
+        jMenuBarMain.add(mnuFrames);
 
         mnuHelp.setText("Πληροφορίες");
 
@@ -163,9 +163,9 @@ public class MainFrame extends javax.swing.JFrame {
         });
         mnuHelp.add(mnuAbout);
 
-        mnuBar.add(mnuHelp);
+        jMenuBarMain.add(mnuHelp);
 
-        setJMenuBar(mnuBar);
+        setJMenuBar(jMenuBarMain);
 
         pack();
         setLocationRelativeTo(null);
@@ -188,21 +188,21 @@ public class MainFrame extends javax.swing.JFrame {
         showMap();
     }//GEN-LAST:event_mnuMapActionPerformed
 
-    private void btnDataManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataManagementActionPerformed
+    private void jButtonDataManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDataManagementActionPerformed
         showDataManagement();
-    }//GEN-LAST:event_btnDataManagementActionPerformed
+    }//GEN-LAST:event_jButtonDataManagementActionPerformed
 
-    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+    private void jButtonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExitActionPerformed
         exitApp();
-    }//GEN-LAST:event_btnExitActionPerformed
+    }//GEN-LAST:event_jButtonExitActionPerformed
 
-    private void btnDataDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataDisplayActionPerformed
+    private void jButtonDataDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDataDisplayActionPerformed
         showDataDisplay();
-    }//GEN-LAST:event_btnDataDisplayActionPerformed
+    }//GEN-LAST:event_jButtonDataDisplayActionPerformed
 
-    private void btnMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMapActionPerformed
+    private void jButtonMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMapActionPerformed
         showMap();
-    }//GEN-LAST:event_btnMapActionPerformed
+    }//GEN-LAST:event_jButtonMapActionPerformed
 
     private void mnuAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAboutActionPerformed
         showAboutWindow();
@@ -244,14 +244,14 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDataDisplay;
-    private javax.swing.JButton btnDataManagement;
-    private javax.swing.JButton btnExit;
-    private javax.swing.JButton btnMap;
-    private javax.swing.JLabel lblBackground;
-    private javax.swing.JLabel lblHeader;
+    private javax.swing.JButton jButtonDataDisplay;
+    private javax.swing.JButton jButtonDataManagement;
+    private javax.swing.JButton jButtonExit;
+    private javax.swing.JButton jButtonMap;
+    private javax.swing.JLabel jLabelBackground;
+    private javax.swing.JLabel jLabelHeader;
+    private javax.swing.JMenuBar jMenuBarMain;
     private javax.swing.JMenuItem mnuAbout;
-    private javax.swing.JMenuBar mnuBar;
     private javax.swing.JMenuItem mnuDataDisplay;
     private javax.swing.JMenuItem mnuDataManagement;
     private javax.swing.JMenuItem mnuExit;
