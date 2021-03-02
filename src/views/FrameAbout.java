@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package views;
 
 import java.awt.Image;
@@ -25,7 +20,7 @@ public class FrameAbout extends javax.swing.JFrame {
         setIconImage();
     }
 
-        //Το Εικονίδιο στην γωνία του παραθύρου
+    //Το Εικονίδιο στην γωνία του παραθύρου
     private void setIconImage() {
         Image image = new ImageIcon(this.getClass().getResource("/resources/covid-19.png")).getImage();
         this.setIconImage(image);
@@ -64,31 +59,31 @@ public class FrameAbout extends javax.swing.JFrame {
 
         jLabelProjectDate.setText("ΕΑΠ ΠΛΗ24 3η εργασία 2021");
         getContentPane().add(jLabelProjectDate);
-        jLabelProjectDate.setBounds(64, 90, 390, 16);
+        jLabelProjectDate.setBounds(64, 90, 390, 14);
 
         jLabelProductOwner.setText("Καθηγητής - Σύμβουλος: Διονύσης Αδαμόπουλος");
         getContentPane().add(jLabelProductOwner);
-        jLabelProductOwner.setBounds(64, 112, 400, 16);
+        jLabelProductOwner.setBounds(64, 112, 400, 14);
 
         jLabelProgrammer1.setText("Ιωαννίδης Παντελής");
         getContentPane().add(jLabelProgrammer1);
-        jLabelProgrammer1.setBounds(70, 190, 380, 16);
+        jLabelProgrammer1.setBounds(70, 190, 380, 14);
 
         jLabelProgrammer2.setText("Δημητρακαράκος Νικόλαος");
         getContentPane().add(jLabelProgrammer2);
-        jLabelProgrammer2.setBounds(70, 210, 380, 16);
+        jLabelProgrammer2.setBounds(70, 210, 380, 14);
 
         jLabelProgrammer3.setText("Γεωργάκης Ευθύμιος");
         getContentPane().add(jLabelProgrammer3);
-        jLabelProgrammer3.setBounds(70, 230, 380, 16);
+        jLabelProgrammer3.setBounds(70, 230, 380, 14);
 
         jLabelProgrammer4.setText("Δημακάκος Αριστείδης");
         getContentPane().add(jLabelProgrammer4);
-        jLabelProgrammer4.setBounds(70, 250, 370, 16);
+        jLabelProgrammer4.setBounds(70, 250, 370, 14);
 
         jLabelScrumTeam.setText("Ομάδα Ανάπτυξης");
         getContentPane().add(jLabelScrumTeam);
-        jLabelScrumTeam.setBounds(70, 160, 110, 16);
+        jLabelScrumTeam.setBounds(70, 160, 110, 14);
 
         jButtonClose.setText("Κλείσιμο");
         jButtonClose.addActionListener(new java.awt.event.ActionListener() {
@@ -97,7 +92,7 @@ public class FrameAbout extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonClose);
-        jButtonClose.setBounds(180, 290, 130, 32);
+        jButtonClose.setBounds(180, 290, 130, 23);
         getContentPane().add(jSeparator1);
         jSeparator1.setBounds(70, 180, 380, 2);
 
@@ -110,44 +105,11 @@ public class FrameAbout extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    //Κλείνει το παράθυρο
     private void jButtonCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCloseActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_jButtonCloseActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrameAbout.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrameAbout.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrameAbout.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrameAbout.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrameAbout().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonClose;

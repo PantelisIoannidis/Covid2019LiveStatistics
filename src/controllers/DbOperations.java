@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controllers;
 
 import entities.*;
@@ -51,7 +46,7 @@ public class DbOperations {
             List<Coviddata> covidDataList = (List<Coviddata>)em.createQuery("SELECT c FROM Coviddata c WHERE c.country = :country",Coviddata.class)
                         .setParameter("country",country)
                         .getResultList();
-            //Σβήσε ένα προς ένα όλα τα ζεύγοι τιμών
+            //Σβήσε ένα προς ένα όλα τα ζεύγη τιμών
             for(Coviddata cd : covidDataList)
                 em.remove(cd);
             em.getTransaction().commit();
@@ -116,10 +111,13 @@ public class DbOperations {
                     //Διέγραψε τα covid data της χώρας
                     for(Coviddata cd : covidDataList)
                         em.remove(cd);
+                    //Διέγραψε απο την βάση την χώρα αν αυτό έχει ζητήσει ο χρήστης
+                    em.remove(country);
                 } 
+            } else {
+                //Διέγραψε απο την βάση την χώρα
+                em.remove(country);
             }
-            //Διέγραψε απο την βάση την χώρα
-            em.remove(country);
             em.getTransaction().commit();
         } catch (Exception ex) {
             Logger.getLogger(DbOperations.class.getName()).log(Level.SEVERE, null, ex);
@@ -138,10 +136,8 @@ public class DbOperations {
                 List<Country> countries = (List<Country>)em.createNamedQuery("Country.findAll")
                     .getResultList();
                 //Διέγραψε τις χώρες μια προς μια
-                em.getTransaction().begin();
                 for(Country country : countries)
-                    em.remove(country);
-                em.getTransaction().commit();
+                    DeleteCountry(country);
             } 
         } catch (Exception ex) {
             Logger.getLogger(DbOperations.class.getName()).log(Level.SEVERE, null, ex);

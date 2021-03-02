@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package views;
 
 import helpers.DatabaseUtils;
@@ -80,7 +75,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonDataManagement);
-        jButtonDataManagement.setBounds(250, 140, 240, 32);
+        jButtonDataManagement.setBounds(250, 140, 240, 25);
 
         jButtonDataDisplay.setText("Προβολή δεδομένων Covid19 ανά χώρα");
         jButtonDataDisplay.addActionListener(new java.awt.event.ActionListener() {
@@ -89,7 +84,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonDataDisplay);
-        jButtonDataDisplay.setBounds(220, 200, 300, 32);
+        jButtonDataDisplay.setBounds(220, 200, 300, 25);
 
         jButtonMap.setText("Προβολή δεδομένων Covid19 σε χάρτη");
         jButtonMap.addActionListener(new java.awt.event.ActionListener() {
@@ -98,7 +93,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonMap);
-        jButtonMap.setBounds(220, 260, 300, 32);
+        jButtonMap.setBounds(220, 260, 300, 25);
 
         jButtonExit.setText("Έξοδος");
         jButtonExit.addActionListener(new java.awt.event.ActionListener() {
@@ -107,7 +102,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonExit);
-        jButtonExit.setBounds(300, 320, 150, 32);
+        jButtonExit.setBounds(300, 320, 150, 25);
 
         jLabelBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/covidwallpaper.jpg"))); // NOI18N
         getContentPane().add(jLabelBackground);
@@ -211,15 +206,11 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    public static void setLookAndFeel() {
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows Classic".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -233,14 +224,6 @@ public class MainFrame extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainFrame().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

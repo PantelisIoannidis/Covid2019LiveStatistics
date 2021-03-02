@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package views;
 
 import controllers.APIController;
@@ -75,7 +70,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonInsertCountries);
-        jButtonInsertCountries.setBounds(60, 60, 190, 32);
+        jButtonInsertCountries.setBounds(60, 60, 190, 23);
 
         jButtonInsertData.setText("Εισαγωγή δεδομένων");
         jButtonInsertData.addActionListener(new java.awt.event.ActionListener() {
@@ -84,7 +79,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonInsertData);
-        jButtonInsertData.setBounds(60, 100, 190, 32);
+        jButtonInsertData.setBounds(60, 100, 190, 23);
 
         jButtonDeleteCountries.setText("Διαγραφή χωρών");
         jButtonDeleteCountries.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +88,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonDeleteCountries);
-        jButtonDeleteCountries.setBounds(440, 60, 190, 32);
+        jButtonDeleteCountries.setBounds(440, 60, 190, 23);
 
         jButtonDeleteData.setText("Διαγραφή δεδομένων");
         jButtonDeleteData.addActionListener(new java.awt.event.ActionListener() {
@@ -102,22 +97,22 @@ public class FrameDataManagement extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonDeleteData);
-        jButtonDeleteData.setBounds(440, 100, 190, 32);
+        jButtonDeleteData.setBounds(440, 100, 190, 23);
 
         jCheckBoxDeaths.setSelected(true);
         jCheckBoxDeaths.setText("Θάνατοι");
         getContentPane().add(jCheckBoxDeaths);
-        jCheckBoxDeaths.setBounds(190, 170, 150, 24);
+        jCheckBoxDeaths.setBounds(190, 170, 150, 23);
 
         jCheckBoxConfirmed.setSelected(true);
         jCheckBoxConfirmed.setText("Κρούσματα");
         getContentPane().add(jCheckBoxConfirmed);
-        jCheckBoxConfirmed.setBounds(190, 200, 150, 24);
+        jCheckBoxConfirmed.setBounds(190, 200, 150, 23);
 
         jCheckBoxRecovered.setSelected(true);
         jCheckBoxRecovered.setText("Αναρώσεις");
         getContentPane().add(jCheckBoxRecovered);
-        jCheckBoxRecovered.setBounds(190, 230, 150, 24);
+        jCheckBoxRecovered.setBounds(190, 230, 150, 23);
 
         jCheckBoxLimitCountiesSelection.setText("Επιλογή περιορισμένων χωρών");
         getContentPane().add(jCheckBoxLimitCountiesSelection);
@@ -125,11 +120,11 @@ public class FrameDataManagement extends javax.swing.JFrame {
 
         jLabelCategoriesLine1.setText("Κατηγορίες");
         getContentPane().add(jLabelCategoriesLine1);
-        jLabelCategoriesLine1.setBounds(60, 190, 130, 16);
+        jLabelCategoriesLine1.setBounds(60, 190, 130, 14);
 
         jLabelCategoriesLine2.setText("προς εισαγωγή");
         getContentPane().add(jLabelCategoriesLine2);
-        jLabelCategoriesLine2.setBounds(60, 210, 130, 16);
+        jLabelCategoriesLine2.setBounds(60, 210, 130, 14);
 
         jTextMessages.setEditable(false);
         jTextMessages.setBackground(javax.swing.UIManager.getDefaults().getColor("scrollbar"));
@@ -334,40 +329,6 @@ public class FrameDataManagement extends javax.swing.JFrame {
         this.setIconImage(image);
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrameDataManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrameDataManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrameDataManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrameDataManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrameDataManagement().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDeleteCountries;

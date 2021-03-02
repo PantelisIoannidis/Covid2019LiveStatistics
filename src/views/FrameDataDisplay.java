@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package views;
 
 import com.toedter.calendar.IDateEditor;
@@ -137,10 +132,10 @@ public class FrameDataDisplay extends javax.swing.JFrame {
 
         jLabelCountrySelection.setText("Επιλογή χώρας");
         getContentPane().add(jLabelCountrySelection);
-        jLabelCountrySelection.setBounds(50, 10, 180, 16);
+        jLabelCountrySelection.setBounds(50, 10, 180, 14);
 
         getContentPane().add(jComboBoxCountry);
-        jComboBoxCountry.setBounds(39, 30, 195, 26);
+        jComboBoxCountry.setBounds(39, 30, 195, 20);
 
         tabsCases.setTabPlacement(javax.swing.JTabbedPane.LEFT);
         tabsCases.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -242,7 +237,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
 
         jLabelDatesRange.setText("Ημερομηνία");
         getContentPane().add(jLabelDatesRange);
-        jLabelDatesRange.setBounds(350, 30, 90, 16);
+        jLabelDatesRange.setBounds(350, 30, 90, 14);
 
         jCheckBoxDateFrom.setText("Απο");
         jCheckBoxDateFrom.addActionListener(new java.awt.event.ActionListener() {
@@ -251,7 +246,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jCheckBoxDateFrom);
-        jCheckBoxDateFrom.setBounds(436, 6, 60, 24);
+        jCheckBoxDateFrom.setBounds(436, 6, 60, 23);
 
         jCheckBoxDateTo.setText("Εως");
         jCheckBoxDateTo.addActionListener(new java.awt.event.ActionListener() {
@@ -260,7 +255,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jCheckBoxDateTo);
-        jCheckBoxDateTo.setBounds(604, 6, 60, 24);
+        jCheckBoxDateTo.setBounds(604, 6, 60, 23);
 
         jButtonFilter.setText("Φίλτρο");
         jButtonFilter.addActionListener(new java.awt.event.ActionListener() {
@@ -269,7 +264,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonFilter);
-        jButtonFilter.setBounds(766, 30, 90, 32);
+        jButtonFilter.setBounds(766, 30, 90, 23);
 
         jButtonDeleteData.setText("Διαγραφή δεδομένων");
         jButtonDeleteData.addActionListener(new java.awt.event.ActionListener() {
@@ -278,15 +273,15 @@ public class FrameDataDisplay extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonDeleteData);
-        jButtonDeleteData.setBounds(100, 580, 250, 32);
+        jButtonDeleteData.setBounds(100, 580, 250, 23);
 
         jDateChooserDateFrom.setDateFormatString("dd/MM/yyy");
         getContentPane().add(jDateChooserDateFrom);
-        jDateChooserDateFrom.setBounds(436, 30, 150, 29);
+        jDateChooserDateFrom.setBounds(436, 30, 150, 20);
 
         jDateChooserDateTo.setDateFormatString("dd/MM/yyyy");
         getContentPane().add(jDateChooserDateTo);
-        jDateChooserDateTo.setBounds(604, 30, 150, 29);
+        jDateChooserDateTo.setBounds(604, 30, 150, 20);
 
         jButtonShowMap.setText("Προβολή σε χάρτη");
         jButtonShowMap.addActionListener(new java.awt.event.ActionListener() {
@@ -295,12 +290,12 @@ public class FrameDataDisplay extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonShowMap);
-        jButtonShowMap.setBounds(100, 520, 250, 32);
+        jButtonShowMap.setBounds(100, 520, 250, 23);
 
         jCheckBoxConfirmed.setSelected(true);
         jCheckBoxConfirmed.setText("Επιβεβαιωμένα");
         getContentPane().add(jCheckBoxConfirmed);
-        jCheckBoxConfirmed.setBounds(560, 530, 120, 24);
+        jCheckBoxConfirmed.setBounds(560, 530, 120, 23);
 
         jCheckBoxRecovered.setSelected(true);
         jCheckBoxRecovered.setText("Ανάρρωσαν");
@@ -310,22 +305,22 @@ public class FrameDataDisplay extends javax.swing.JFrame {
         jCheckBoxDeaths.setSelected(true);
         jCheckBoxDeaths.setText("Θανατοι");
         getContentPane().add(jCheckBoxDeaths);
-        jCheckBoxDeaths.setBounds(560, 580, 120, 24);
+        jCheckBoxDeaths.setBounds(560, 580, 120, 23);
         getContentPane().add(jSeparator1);
         jSeparator1.setBounds(725, 530, 130, 10);
 
         jLabelGraphSelections.setText("Επιλογές γραφήματος");
         getContentPane().add(jLabelGraphSelections);
-        jLabelGraphSelections.setBounds(560, 480, 290, 16);
+        jLabelGraphSelections.setBounds(560, 480, 290, 14);
 
         jLabelDataTimeScale.setText("Δεδομένα");
         getContentPane().add(jLabelDataTimeScale);
-        jLabelDataTimeScale.setBounds(740, 510, 110, 16);
+        jLabelDataTimeScale.setBounds(740, 510, 110, 14);
 
         jCheckBoxDailyData.setSelected(true);
         jCheckBoxDailyData.setText("Καθημερινά");
         getContentPane().add(jCheckBoxDailyData);
-        jCheckBoxDailyData.setBounds(730, 540, 120, 24);
+        jCheckBoxDailyData.setBounds(730, 540, 120, 23);
 
         jCheckBoxAccumulativeData.setText("Σωρευτικά");
         getContentPane().add(jCheckBoxAccumulativeData);
@@ -338,7 +333,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonShowGraph);
-        jButtonShowGraph.setBounds(570, 610, 250, 32);
+        jButtonShowGraph.setBounds(570, 610, 250, 23);
         getContentPane().add(jSeparator2);
         jSeparator2.setBounds(560, 500, 300, 2);
 
@@ -374,40 +369,6 @@ public class FrameDataDisplay extends javax.swing.JFrame {
         removeCountrysCoviddata();
     }//GEN-LAST:event_jButtonDeleteDataActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrameDataDisplay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrameDataDisplay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrameDataDisplay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrameDataDisplay.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrameDataDisplay().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDeleteData;
