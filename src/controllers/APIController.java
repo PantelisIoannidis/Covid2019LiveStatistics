@@ -42,7 +42,7 @@ public class APIController {
         }
         //Φτιάχνουμε τον client για την υπηρεσία
         OkHttpClient client = new OkHttpClient();
-        //Δτιάχνουμε το request για την λειτουργία που μας ενδιαφέρει
+        //Φτιάχνουμε το request για την λειτουργία που μας ενδιαφέρει
         Request request = new Request.Builder().url(urlToCall).build();
         //Κάνουμε την κλήση του REST API
         try (Response response = client.newCall(request).execute()) {

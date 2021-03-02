@@ -32,16 +32,12 @@ public class DbOperations {
     
     EntityManagerFactory emf;
     EntityManager em;
-    CountryJpaController countryJpaController;
-    CoviddataJpaController coviddataJpaController;
     
-    //Αρχικοποιούμε τους entity manager, entity manager factory και τους jpa controllers
+    //Αρχικοποιούμε τους entity manager και entity manager factory
     public DbOperations(){
         try {
             emf = Persistence.createEntityManagerFactory("Covid19-StatsPU");
             em = emf.createEntityManager();
-            countryJpaController = new CountryJpaController(emf);
-            coviddataJpaController = new CoviddataJpaController(emf);
         } catch (Exception ex) {
             Logger.getLogger(DbOperations.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -139,11 +135,13 @@ public class DbOperations {
             int reply = JOptionPane.showConfirmDialog(null, message, title, JOptionPane.YES_NO_OPTION);
             if (reply == JOptionPane.YES_OPTION) {
                 //Πάρε την λίστα των χωρών
-                List<Country> countries = (List<Country>)em.createQuery("SELECT c FROM Country c",Country.class)
+                List<Country> countries = (List<Country>)em.createNamedQuery("Country.findAll")
                     .getResultList();
-                //Διέγραψε τις χώρες μια μια
+                //Διέγραψε τις χώρες μια προς μια
+                em.getTransaction().begin();
                 for(Country country : countries)
-                    DeleteCountry(country);
+                    em.remove(country);
+                em.getTransaction().commit();
             } 
         } catch (Exception ex) {
             Logger.getLogger(DbOperations.class.getName()).log(Level.SEVERE, null, ex);
@@ -273,7 +271,7 @@ public class DbOperations {
     public List<Country> GetCountriesListFromDb(){
         List<Country> countries = new ArrayList<>();
         try {
-            countries = (List<Country>)em.createQuery("SELECT c FROM Country c",Country.class)
+            countries = (List<Country>)em.createNamedQuery("Country.findAll")
                     .getResultList();
         } catch (Exception ex) {
             Logger.getLogger(DbOperations.class.getName()).log(Level.SEVERE, null, ex);
@@ -285,7 +283,8 @@ public class DbOperations {
     public Country GetCountryFromDb(String countryName){
         List<Country> countries = new ArrayList<>();
         try {
-            countries = (List<Country>)em.createQuery("SELECT c FROM Country c WHERE c.name = :name",Country.class)
+            //countries = (List<Country>)em.createQuery("SELECT c FROM Country c WHERE c.name = :name",Country.class)
+            countries = (List<Country>)em.createNamedQuery("Country.findByName")
                     .setParameter("name",countryName)
                     .getResultList();
         } catch (Exception ex) {

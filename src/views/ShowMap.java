@@ -25,9 +25,9 @@ import models.MappingDataDb;
 //Δείχνει τον χάρτη στον χρήστη
 public class ShowMap {
     //Η σελίδα που δείχνουμε στον χρήστη
-    final static String webpage = "src\\covid19\\stats\\mappage.html";
+    final static String webpage = "src\\resources\\mappage.html";
     //Το template της σελίδας με τις μεταβλητές προς αντικατάσταση
-    final static String webPageTemplate = "src\\covid19\\stats\\maptemplate.html";
+    final static String webPageTemplate = "src\\resources\\maptemplate.html";
     
     //Καλεί τον default browser του συστήματος να δείξει την σελίδα του χάρτη.
     public void ShowStoredPage() {

@@ -73,7 +73,7 @@ public class FrameMapSelection extends javax.swing.JFrame {
         jLabelCountrySelection.setBounds(18, 12, 230, 16);
 
         getContentPane().add(jComboBoxCountry);
-        jComboBoxCountry.setBounds(6, 35, 250, 26);
+        jComboBoxCountry.setBounds(6, 35, 250, 22);
 
         jLabelRestOfCountries.setText("Υπόλοιπες χώρες στον χάρτη");
         getContentPane().add(jLabelRestOfCountries);
@@ -91,7 +91,7 @@ public class FrameMapSelection extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonShowMap);
-        jButtonShowMap.setBounds(290, 70, 180, 32);
+        jButtonShowMap.setBounds(290, 70, 180, 25);
 
         jLabelBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/covidwallpaper.jpg"))); // NOI18N
         getContentPane().add(jLabelBackground);
