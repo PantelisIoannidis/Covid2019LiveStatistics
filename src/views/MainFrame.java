@@ -75,7 +75,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonDataManagement);
-        jButtonDataManagement.setBounds(250, 140, 240, 23);
+        jButtonDataManagement.setBounds(250, 140, 240, 32);
 
         jButtonDataDisplay.setText("Προβολή δεδομένων Covid19 ανά χώρα");
         jButtonDataDisplay.addActionListener(new java.awt.event.ActionListener() {
@@ -84,7 +84,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonDataDisplay);
-        jButtonDataDisplay.setBounds(220, 200, 300, 23);
+        jButtonDataDisplay.setBounds(220, 200, 300, 32);
 
         jButtonMap.setText("Προβολή δεδομένων Covid19 σε χάρτη");
         jButtonMap.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +93,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonMap);
-        jButtonMap.setBounds(220, 260, 300, 23);
+        jButtonMap.setBounds(220, 260, 300, 32);
 
         jButtonExit.setText("Έξοδος");
         jButtonExit.addActionListener(new java.awt.event.ActionListener() {
@@ -102,7 +102,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonExit);
-        jButtonExit.setBounds(300, 320, 150, 23);
+        jButtonExit.setBounds(300, 320, 150, 32);
 
         jLabelBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/covidwallpaper.jpg"))); // NOI18N
         getContentPane().add(jLabelBackground);

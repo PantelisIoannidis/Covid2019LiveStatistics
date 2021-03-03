@@ -132,10 +132,10 @@ public class FrameDataDisplay extends javax.swing.JFrame {
 
         jLabelCountrySelection.setText("Επιλογή χώρας");
         getContentPane().add(jLabelCountrySelection);
-        jLabelCountrySelection.setBounds(50, 10, 180, 14);
+        jLabelCountrySelection.setBounds(50, 10, 180, 16);
 
         getContentPane().add(jComboBoxCountry);
-        jComboBoxCountry.setBounds(39, 30, 195, 20);
+        jComboBoxCountry.setBounds(39, 30, 195, 26);
 
         tabsCases.setTabPlacement(javax.swing.JTabbedPane.LEFT);
         tabsCases.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -237,7 +237,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
 
         jLabelDatesRange.setText("Ημερομηνία");
         getContentPane().add(jLabelDatesRange);
-        jLabelDatesRange.setBounds(350, 30, 90, 14);
+        jLabelDatesRange.setBounds(350, 30, 90, 16);
 
         jCheckBoxDateFrom.setText("Απο");
         jCheckBoxDateFrom.addActionListener(new java.awt.event.ActionListener() {
@@ -246,7 +246,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jCheckBoxDateFrom);
-        jCheckBoxDateFrom.setBounds(436, 6, 60, 23);
+        jCheckBoxDateFrom.setBounds(436, 6, 60, 24);
 
         jCheckBoxDateTo.setText("Εως");
         jCheckBoxDateTo.addActionListener(new java.awt.event.ActionListener() {
@@ -255,7 +255,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jCheckBoxDateTo);
-        jCheckBoxDateTo.setBounds(604, 6, 60, 23);
+        jCheckBoxDateTo.setBounds(604, 6, 60, 24);
 
         jButtonFilter.setText("Φίλτρο");
         jButtonFilter.addActionListener(new java.awt.event.ActionListener() {
@@ -264,7 +264,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonFilter);
-        jButtonFilter.setBounds(766, 30, 90, 23);
+        jButtonFilter.setBounds(766, 30, 90, 32);
 
         jButtonDeleteData.setText("Διαγραφή δεδομένων");
         jButtonDeleteData.addActionListener(new java.awt.event.ActionListener() {
@@ -273,15 +273,15 @@ public class FrameDataDisplay extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonDeleteData);
-        jButtonDeleteData.setBounds(100, 580, 250, 23);
+        jButtonDeleteData.setBounds(100, 580, 250, 32);
 
         jDateChooserDateFrom.setDateFormatString("dd/MM/yyy");
         getContentPane().add(jDateChooserDateFrom);
-        jDateChooserDateFrom.setBounds(436, 30, 150, 20);
+        jDateChooserDateFrom.setBounds(436, 30, 150, 29);
 
         jDateChooserDateTo.setDateFormatString("dd/MM/yyyy");
         getContentPane().add(jDateChooserDateTo);
-        jDateChooserDateTo.setBounds(604, 30, 150, 20);
+        jDateChooserDateTo.setBounds(604, 30, 150, 29);
 
         jButtonShowMap.setText("Προβολή σε χάρτη");
         jButtonShowMap.addActionListener(new java.awt.event.ActionListener() {
@@ -290,12 +290,12 @@ public class FrameDataDisplay extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonShowMap);
-        jButtonShowMap.setBounds(100, 520, 250, 23);
+        jButtonShowMap.setBounds(100, 520, 250, 32);
 
         jCheckBoxConfirmed.setSelected(true);
         jCheckBoxConfirmed.setText("Επιβεβαιωμένα");
         getContentPane().add(jCheckBoxConfirmed);
-        jCheckBoxConfirmed.setBounds(560, 530, 120, 23);
+        jCheckBoxConfirmed.setBounds(560, 530, 120, 24);
 
         jCheckBoxRecovered.setSelected(true);
         jCheckBoxRecovered.setText("Ανάρρωσαν");
@@ -305,22 +305,22 @@ public class FrameDataDisplay extends javax.swing.JFrame {
         jCheckBoxDeaths.setSelected(true);
         jCheckBoxDeaths.setText("Θανατοι");
         getContentPane().add(jCheckBoxDeaths);
-        jCheckBoxDeaths.setBounds(560, 580, 120, 23);
+        jCheckBoxDeaths.setBounds(560, 580, 120, 24);
         getContentPane().add(jSeparator1);
         jSeparator1.setBounds(725, 530, 130, 10);
 
         jLabelGraphSelections.setText("Επιλογές γραφήματος");
         getContentPane().add(jLabelGraphSelections);
-        jLabelGraphSelections.setBounds(560, 480, 290, 14);
+        jLabelGraphSelections.setBounds(560, 480, 290, 16);
 
         jLabelDataTimeScale.setText("Δεδομένα");
         getContentPane().add(jLabelDataTimeScale);
-        jLabelDataTimeScale.setBounds(740, 510, 110, 14);
+        jLabelDataTimeScale.setBounds(740, 510, 110, 16);
 
         jCheckBoxDailyData.setSelected(true);
         jCheckBoxDailyData.setText("Καθημερινά");
         getContentPane().add(jCheckBoxDailyData);
-        jCheckBoxDailyData.setBounds(730, 540, 120, 23);
+        jCheckBoxDailyData.setBounds(730, 540, 120, 24);
 
         jCheckBoxAccumulativeData.setText("Σωρευτικά");
         getContentPane().add(jCheckBoxAccumulativeData);
@@ -333,7 +333,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonShowGraph);
-        jButtonShowGraph.setBounds(570, 610, 250, 23);
+        jButtonShowGraph.setBounds(570, 610, 250, 32);
         getContentPane().add(jSeparator2);
         jSeparator2.setBounds(560, 500, 300, 2);
 

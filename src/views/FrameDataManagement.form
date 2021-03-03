@@ -122,6 +122,7 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="jCheckBoxLimitCountiesSelection">
       <Properties>
+        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="&#x395;&#x3c0;&#x3b9;&#x3bb;&#x3bf;&#x3b3;&#x3ae; &#x3c0;&#x3b5;&#x3c1;&#x3b9;&#x3bf;&#x3c1;&#x3b9;&#x3c3;&#x3bc;&#x3ad;&#x3bd;&#x3c9;&#x3bd; &#x3c7;&#x3c9;&#x3c1;&#x3ce;&#x3bd;"/>
       </Properties>
       <Constraints>

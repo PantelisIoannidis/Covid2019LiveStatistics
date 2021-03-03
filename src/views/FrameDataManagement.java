@@ -71,7 +71,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonInsertCountries);
-        jButtonInsertCountries.setBounds(60, 60, 190, 23);
+        jButtonInsertCountries.setBounds(60, 60, 190, 32);
 
         jButtonInsertData.setText("Εισαγωγή δεδομένων");
         jButtonInsertData.addActionListener(new java.awt.event.ActionListener() {
@@ -80,7 +80,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonInsertData);
-        jButtonInsertData.setBounds(60, 100, 190, 23);
+        jButtonInsertData.setBounds(60, 100, 190, 32);
 
         jButtonDeleteCountries.setText("Διαγραφή χωρών");
         jButtonDeleteCountries.addActionListener(new java.awt.event.ActionListener() {
@@ -89,7 +89,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonDeleteCountries);
-        jButtonDeleteCountries.setBounds(440, 60, 190, 23);
+        jButtonDeleteCountries.setBounds(440, 60, 190, 32);
 
         jButtonDeleteData.setText("Διαγραφή δεδομένων");
         jButtonDeleteData.addActionListener(new java.awt.event.ActionListener() {
@@ -98,34 +98,35 @@ public class FrameDataManagement extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonDeleteData);
-        jButtonDeleteData.setBounds(440, 100, 190, 23);
+        jButtonDeleteData.setBounds(440, 100, 190, 32);
 
         jCheckBoxDeaths.setSelected(true);
         jCheckBoxDeaths.setText("Θάνατοι");
         getContentPane().add(jCheckBoxDeaths);
-        jCheckBoxDeaths.setBounds(190, 170, 150, 23);
+        jCheckBoxDeaths.setBounds(190, 170, 150, 24);
 
         jCheckBoxConfirmed.setSelected(true);
         jCheckBoxConfirmed.setText("Κρούσματα");
         getContentPane().add(jCheckBoxConfirmed);
-        jCheckBoxConfirmed.setBounds(190, 200, 150, 23);
+        jCheckBoxConfirmed.setBounds(190, 200, 150, 24);
 
         jCheckBoxRecovered.setSelected(true);
         jCheckBoxRecovered.setText("Αναρώσεις");
         getContentPane().add(jCheckBoxRecovered);
-        jCheckBoxRecovered.setBounds(190, 230, 150, 23);
+        jCheckBoxRecovered.setBounds(190, 230, 150, 24);
 
+        jCheckBoxLimitCountiesSelection.setSelected(true);
         jCheckBoxLimitCountiesSelection.setText("Επιλογή περιορισμένων χωρών");
         getContentPane().add(jCheckBoxLimitCountiesSelection);
         jCheckBoxLimitCountiesSelection.setBounds(60, 140, 280, 20);
 
         jLabelCategoriesLine1.setText("Κατηγορίες");
         getContentPane().add(jLabelCategoriesLine1);
-        jLabelCategoriesLine1.setBounds(60, 190, 130, 14);
+        jLabelCategoriesLine1.setBounds(60, 190, 130, 16);
 
         jLabelCategoriesLine2.setText("προς εισαγωγή");
         getContentPane().add(jLabelCategoriesLine2);
-        jLabelCategoriesLine2.setBounds(60, 210, 130, 14);
+        jLabelCategoriesLine2.setBounds(60, 210, 130, 16);
 
         jTextMessages.setEditable(false);
         jTextMessages.setBackground(javax.swing.UIManager.getDefaults().getColor("scrollbar"));
@@ -183,7 +184,10 @@ public class FrameDataManagement extends javax.swing.JFrame {
 
     private void jButtonInsertDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertDataActionPerformed
         DisableAllButtons();
-        jTextMessages.setText("ΠΑΡΑΚΑΛΩ ΠΕΡΙΜΕΝΕΤΕ 2-7 λεπτά.\n Εισαγωγή δεδομένων covid σε εξέλιξη.");
+        String estimatedTimed = "3-8";
+        if(jCheckBoxLimitCountiesSelection.isSelected())
+            estimatedTimed = "1-2";
+        jTextMessages.setText("ΠΑΡΑΚΑΛΩ ΠΕΡΙΜΕΝΕΤΕ "+estimatedTimed+" λεπτά.\n Εισαγωγή δεδομένων covid σε εξέλιξη.");
         //Εκτελούμε τις ενέργεις στην βάση και το API σε νήμα για να μην παγώσει το UI
         SwingWorker sw1 = new SwingWorker() {
 
