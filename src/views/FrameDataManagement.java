@@ -61,6 +61,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(720, 370));
         setMinimumSize(new java.awt.Dimension(720, 370));
         setPreferredSize(new java.awt.Dimension(720, 370));
+        setResizable(false);
         getContentPane().setLayout(null);
 
         jButtonInsertCountries.setText("Εισαγωγή χωρών");

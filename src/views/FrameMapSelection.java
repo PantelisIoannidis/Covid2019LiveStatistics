@@ -61,6 +61,7 @@ public class FrameMapSelection extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(510, 344));
         setMinimumSize(new java.awt.Dimension(510, 344));
         setPreferredSize(new java.awt.Dimension(510, 344));
+        setResizable(false);
         getContentPane().setLayout(null);
 
         jLabelCountrySelection.setText("Επιλογή βασικής χώρας");
