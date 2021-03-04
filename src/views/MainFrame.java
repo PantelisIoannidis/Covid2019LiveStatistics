@@ -1,6 +1,5 @@
 package views;
 
-import helpers.DatabaseUtils;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 

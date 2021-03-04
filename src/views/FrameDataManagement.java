@@ -5,7 +5,6 @@ import controllers.DbOperations;
 import java.awt.Image;
 import models.TimeSeriesCase;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -158,8 +157,9 @@ public class FrameDataManagement extends javax.swing.JFrame {
 
             @Override
             protected Object doInBackground() throws Exception {
+                boolean limitedNumberOfCountris = jCheckBoxLimitCountiesSelection.isSelected();
                 //Πάρε να confirmed δεδομένα απο το API
-                List<CountryTimeSeries> ltm = api.GetTimeSeries(TimeSeriesCase.CONFIRMED);
+                List<CountryTimeSeries> ltm = api.GetTimeSeries(TimeSeriesCase.CONFIRMED,limitedNumberOfCountris);
                 if(jCheckBoxLimitCountiesSelection.isSelected())
                     ltm=limitCountries(ltm);
                 //Αποθήκευσε τις χώρες στην βάση
@@ -193,14 +193,15 @@ public class FrameDataManagement extends javax.swing.JFrame {
 
             @Override
             protected Object doInBackground() throws Exception {
+                boolean limitedNumberOfCountris = jCheckBoxLimitCountiesSelection.isSelected();
                 if ((!jCheckBoxConfirmed.isSelected() && !jCheckBoxDeaths.isSelected() && !jCheckBoxRecovered.isSelected())) {
                     JOptionPane.showMessageDialog(null, "Δεν έχετε επιλέξει καμία κατηγορία δεδομένων");
                 }
                 //Αν ο χρήστης ζήτησε δεδομένα για Confirmed
                 if (jCheckBoxConfirmed.isSelected()) {
                     //Πάρε να confirmed δεδομένα απο το API
-                    List<CountryTimeSeries> ltm = api.GetTimeSeries(TimeSeriesCase.CONFIRMED);
-                    if(jCheckBoxLimitCountiesSelection.isSelected())
+                    List<CountryTimeSeries> ltm = api.GetTimeSeries(TimeSeriesCase.CONFIRMED,limitedNumberOfCountris);
+                    if(limitedNumberOfCountris)
                         ltm=limitCountries(ltm);
                     //Αποθήκευσε την χώρα αν δεν υπάρχει και τα δεδομένα της
                     dbOperations.AddCountriesThatAreNotInDB(ltm);
@@ -209,8 +210,8 @@ public class FrameDataManagement extends javax.swing.JFrame {
                 //Αν ο χρήστης ζήτησε δεδομένα για Deaths
                 if (jCheckBoxDeaths.isSelected()) {
                     //Πάρε να deaths δεδομένα απο το API
-                    List<CountryTimeSeries> ltm = api.GetTimeSeries(TimeSeriesCase.DEATHS);
-                    if(jCheckBoxLimitCountiesSelection.isSelected())
+                    List<CountryTimeSeries> ltm = api.GetTimeSeries(TimeSeriesCase.DEATHS,limitedNumberOfCountris);
+                    if(limitedNumberOfCountris)
                         ltm=limitCountries(ltm);
                     //Αποθήκευσε την χώρα αν δεν υπάρχει και τα δεδομένα της
                     dbOperations.AddCountriesThatAreNotInDB(ltm);
@@ -219,8 +220,8 @@ public class FrameDataManagement extends javax.swing.JFrame {
                 //Αν ο χρήστης ζήτησε δεδομένα για Recovered
                 if (jCheckBoxRecovered.isSelected()) {
                     //Πάρε να recovered δεδομένα απο το API
-                    List<CountryTimeSeries> ltm = api.GetTimeSeries(TimeSeriesCase.RECOVERED);
-                    if(jCheckBoxLimitCountiesSelection.isSelected())
+                    List<CountryTimeSeries> ltm = api.GetTimeSeries(TimeSeriesCase.RECOVERED,limitedNumberOfCountris);
+                    if(limitedNumberOfCountris)
                         ltm=limitCountries(ltm);
                     //Αποθήκευσε την χώρα αν δεν υπάρχει και τα δεδομένα της
                     dbOperations.AddCountriesThatAreNotInDB(ltm);

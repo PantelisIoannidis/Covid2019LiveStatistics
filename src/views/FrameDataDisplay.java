@@ -1,22 +1,14 @@
 package views;
 
-import com.toedter.calendar.IDateEditor;
 import controllers.APIController;
 import controllers.DbOperations;
 import entities.Country;
 import entities.Coviddata;
-import java.awt.Container;
 import java.awt.Image;
-import java.awt.MouseInfo;
-import java.awt.Point;
-import java.awt.PointerInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -24,12 +16,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
-import javax.swing.JComponent;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
@@ -37,7 +25,6 @@ import javax.swing.table.DefaultTableModel;
 import models.MappingDataDb;
 import models.PlottingData;
 import models.TimeSeriesCase;
-import org.jfree.ui.RefineryUtilities;
 
 /**
  *

@@ -4,8 +4,6 @@ import controllers.APIController;
 import controllers.DbOperations;
 import entities.Country;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -66,14 +64,14 @@ public class FrameMapSelection extends javax.swing.JFrame {
 
         jLabelCountrySelection.setText("Επιλογή βασικής χώρας");
         getContentPane().add(jLabelCountrySelection);
-        jLabelCountrySelection.setBounds(18, 12, 230, 14);
+        jLabelCountrySelection.setBounds(18, 12, 230, 16);
 
         getContentPane().add(jComboBoxCountry);
-        jComboBoxCountry.setBounds(6, 35, 250, 20);
+        jComboBoxCountry.setBounds(6, 35, 250, 26);
 
         jLabelRestOfCountries.setText("Υπόλοιπες χώρες στον χάρτη");
         getContentPane().add(jLabelRestOfCountries);
-        jLabelRestOfCountries.setBounds(15, 92, 240, 14);
+        jLabelRestOfCountries.setBounds(15, 92, 240, 16);
 
         jScrollPaneRestOfCountries.setViewportView(jListCountries);
 
@@ -87,7 +85,7 @@ public class FrameMapSelection extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonShowMap);
-        jButtonShowMap.setBounds(290, 70, 180, 23);
+        jButtonShowMap.setBounds(290, 70, 180, 32);
 
         jLabelBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/covidwallpaper.jpg"))); // NOI18N
         getContentPane().add(jLabelBackground);
