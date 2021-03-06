@@ -1,7 +1,7 @@
 package views;
 
 import controllers.APIController;
-import controllers.DbOperations;
+import controllers.DbRepository;
 import entities.Country;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import models.MappingDataDb;
+import models.MappingData;
 
 /**
  *
@@ -24,14 +24,14 @@ public class FrameMapSelection extends javax.swing.JFrame {
     /**
      * Creates new form FrameMapSelection
      */
-    DbOperations db;
+    DbRepository db;
     APIController api;
     
     public FrameMapSelection() {
         initComponents();
         setIconImage();
         //Φτιάχνουμε το αντικείμενο που μεσολαβεί για την επικοινωνία με την βάση
-        db = new DbOperations();
+        db = new DbRepository();
         //Φτιάχνουμε το αντικείμενο που μεσολαβεί για την επικοινωνία με τo API
         api = new APIController();
         //γεμίζουμε το combo και την λίστα με τα ονόματα των χωρών
@@ -67,7 +67,7 @@ public class FrameMapSelection extends javax.swing.JFrame {
         jLabelCountrySelection.setBounds(18, 12, 230, 16);
 
         getContentPane().add(jComboBoxCountry);
-        jComboBoxCountry.setBounds(6, 35, 250, 26);
+        jComboBoxCountry.setBounds(6, 35, 250, 22);
 
         jLabelRestOfCountries.setText("Υπόλοιπες χώρες στον χάρτη");
         getContentPane().add(jLabelRestOfCountries);
@@ -85,7 +85,7 @@ public class FrameMapSelection extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonShowMap);
-        jButtonShowMap.setBounds(290, 70, 180, 32);
+        jButtonShowMap.setBounds(290, 70, 180, 25);
 
         jLabelBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/covidwallpaper.jpg"))); // NOI18N
         getContentPane().add(jLabelBackground);
@@ -135,7 +135,7 @@ public class FrameMapSelection extends javax.swing.JFrame {
         this.setVisible(false);
         //Η λίστα με τα ονόματα των χωρών που επιλέγει ο χρήστης
         List<String> selectedCountries = new ArrayList<String>();
-        //Φορτώνουμε στην λίστα την επιλογή το combo
+        //Φορτώνουμε στην λίστα την επιλογή του combo
         selectedCountries.add(jComboBoxCountry.getSelectedItem().toString());
         //Φορτώνουμε στην λίστα τις επιλογές της jlist
         selectedCountries.addAll(jListCountries.getSelectedValuesList());
@@ -145,11 +145,11 @@ public class FrameMapSelection extends javax.swing.JFrame {
             return;
         }
         
-        List<MappingDataDb> mappingData = new ArrayList<MappingDataDb>();
+        List<MappingData> mappingData = new ArrayList<MappingData>();
         //Φτιάχνουμε απο την λίστα των ονομάτων των χωρών μια λίστα mappingdata
         for(String name : selectedCountries){
             //Πέρνουμε τα τελευταία covid data της χώρας απο την βάση
-            MappingDataDb map = db.GetCountrysMapData(name);
+            MappingData map = db.GetCountrysMappingData(name);
             mappingData.add(map);
         }
         //Καλούμε το παράθυρο του χάρτη και περνάμε τα δεδομένα

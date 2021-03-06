@@ -9,7 +9,7 @@ import java.util.TreeMap;
  *
  * @author Pantelis Ioannidis
  */
-//Βασική κλάση όπου αποθηκεύουμε τα timeseries μιας κατηγορίας μιας χώρας
+//Βασική κλάση όπου αποθηκεύουμε τα timeseries μιας κατηγορίας μιας χώρας π.χ. Greece-recovered list
 public class CountryTimeSeries {
     public String state;
     public String country;
@@ -21,12 +21,11 @@ public class CountryTimeSeries {
         data = new TreeMap<>(comp);
     }
     
-    // Θέλουμε να ταξινομούμε τα δεδομένα των TreeMap με βάση την ημερομηνία και το State
+    // Θέλουμε να ταξινομούμε τα δεδομένα των TreeMap με βάση την ημερομηνία
     Comparator comp = new Comparator<Date>(){
         @Override
         public int compare(Date t, Date t1) {
             return t.compareTo(t1);
         }
     };
-    
 }

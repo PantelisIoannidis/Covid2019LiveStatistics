@@ -1,7 +1,7 @@
 package views;
 
 import controllers.APIController;
-import controllers.DbOperations;
+import controllers.DbRepository;
 import entities.Country;
 import entities.Coviddata;
 import java.awt.Image;
@@ -22,7 +22,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
-import models.MappingDataDb;
+import models.MappingData;
 import models.PlottingData;
 import models.TimeSeriesCase;
 
@@ -40,7 +40,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
     /**
      * Creates new form FrameDataDisplay
      */
-    DbOperations db;
+    DbRepository db;
     APIController api;
     static final String dateFormatPattern = "dd/MM/yyyy";
     static final Date minDate = new GregorianCalendar(2019, 0, 1).getTime();
@@ -62,7 +62,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
         //χρησιμοποιούμε σε όλη την φόρμα μια μορφή ημερομηνίας
         simpleDateFormat = new SimpleDateFormat(dateFormatPattern);
         //Φτιάχνουμε το αντικείμενο που μεσολαβεί για την επικοινωνία με την βάση
-        db = new DbOperations();
+        db = new DbRepository();
         //Φτιάχνουμε το αντικείμενο που μεσολαβεί για την επικοινωνία με τo API
         api = new APIController();
         //αρχικοποιούμε τα components
@@ -122,7 +122,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
         jLabelCountrySelection.setBounds(50, 10, 180, 16);
 
         getContentPane().add(jComboBoxCountry);
-        jComboBoxCountry.setBounds(39, 30, 195, 26);
+        jComboBoxCountry.setBounds(39, 30, 195, 22);
 
         tabsCases.setTabPlacement(javax.swing.JTabbedPane.LEFT);
         tabsCases.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -233,7 +233,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jCheckBoxDateFrom);
-        jCheckBoxDateFrom.setBounds(436, 6, 60, 24);
+        jCheckBoxDateFrom.setBounds(436, 6, 60, 25);
 
         jCheckBoxDateTo.setText("Εως");
         jCheckBoxDateTo.addActionListener(new java.awt.event.ActionListener() {
@@ -242,7 +242,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jCheckBoxDateTo);
-        jCheckBoxDateTo.setBounds(604, 6, 60, 24);
+        jCheckBoxDateTo.setBounds(604, 6, 60, 25);
 
         jButtonFilter.setText("Φίλτρο");
         jButtonFilter.addActionListener(new java.awt.event.ActionListener() {
@@ -251,7 +251,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonFilter);
-        jButtonFilter.setBounds(766, 30, 90, 32);
+        jButtonFilter.setBounds(766, 30, 90, 25);
 
         jButtonDeleteData.setText("Διαγραφή δεδομένων");
         jButtonDeleteData.addActionListener(new java.awt.event.ActionListener() {
@@ -260,15 +260,15 @@ public class FrameDataDisplay extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonDeleteData);
-        jButtonDeleteData.setBounds(100, 580, 250, 32);
+        jButtonDeleteData.setBounds(100, 580, 250, 25);
 
         jDateChooserDateFrom.setDateFormatString("dd/MM/yyy");
         getContentPane().add(jDateChooserDateFrom);
-        jDateChooserDateFrom.setBounds(436, 30, 150, 29);
+        jDateChooserDateFrom.setBounds(436, 30, 150, 22);
 
         jDateChooserDateTo.setDateFormatString("dd/MM/yyyy");
         getContentPane().add(jDateChooserDateTo);
-        jDateChooserDateTo.setBounds(604, 30, 150, 29);
+        jDateChooserDateTo.setBounds(604, 30, 150, 22);
 
         jButtonShowMap.setText("Προβολή σε χάρτη");
         jButtonShowMap.addActionListener(new java.awt.event.ActionListener() {
@@ -277,12 +277,12 @@ public class FrameDataDisplay extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonShowMap);
-        jButtonShowMap.setBounds(100, 520, 250, 32);
+        jButtonShowMap.setBounds(100, 520, 250, 25);
 
         jCheckBoxConfirmed.setSelected(true);
         jCheckBoxConfirmed.setText("Επιβεβαιωμένα");
         getContentPane().add(jCheckBoxConfirmed);
-        jCheckBoxConfirmed.setBounds(560, 530, 120, 24);
+        jCheckBoxConfirmed.setBounds(560, 530, 120, 25);
 
         jCheckBoxRecovered.setSelected(true);
         jCheckBoxRecovered.setText("Ανάρρωσαν");
@@ -292,7 +292,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
         jCheckBoxDeaths.setSelected(true);
         jCheckBoxDeaths.setText("Θανατοι");
         getContentPane().add(jCheckBoxDeaths);
-        jCheckBoxDeaths.setBounds(560, 580, 120, 24);
+        jCheckBoxDeaths.setBounds(560, 580, 120, 25);
         getContentPane().add(jSeparator1);
         jSeparator1.setBounds(725, 530, 130, 10);
 
@@ -307,7 +307,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
         jCheckBoxDailyData.setSelected(true);
         jCheckBoxDailyData.setText("Καθημερινά");
         getContentPane().add(jCheckBoxDailyData);
-        jCheckBoxDailyData.setBounds(730, 540, 120, 24);
+        jCheckBoxDailyData.setBounds(730, 540, 120, 25);
 
         jCheckBoxAccumulativeData.setText("Σωρευτικά");
         getContentPane().add(jCheckBoxAccumulativeData);
@@ -320,7 +320,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonShowGraph);
-        jButtonShowGraph.setBounds(570, 610, 250, 32);
+        jButtonShowGraph.setBounds(570, 610, 250, 25);
         getContentPane().add(jSeparator2);
         jSeparator2.setBounds(560, 500, 300, 2);
 
@@ -402,7 +402,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
         datePopupMenu();
     }
     
-    
+    //Χρησιμοποιείται απο το popup πάνω στην ημερομηνία για να επιλέγουμε εύκολα χρονικά διαστήματα
     private void setDateBack(String time){
         //Πέρνουμε την τελική ημερομηνία και ανάλογα με την παράμετρο θα αφαιρούμε χρόνο
         Date dateFrom = jDateChooserDateTo.getDate();
@@ -423,7 +423,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
     }
     
     private void datePopupMenu(){
-        //Φτιάχνουμε Popup menu που βοηθάει στην επιλογή ημερομηνίων για την πρώτη ημερομηνία
+        //Φτιάχνουμε Popup menu που βοηθάει στην επιλογή ημερομηνιών για την πρώτη ημερομηνία
         popupmenu = new JPopupMenu("");  
         JMenuItem aWeek = new JMenuItem("Tελευταία εβδομάδα");  
         JMenuItem aMonth = new JMenuItem("Tελευταίος μήνας");  
@@ -603,7 +603,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
             deathsdata= deathsList;
         
         //Φορτώνουμε το dto που θα χρησιμοποιήσουμε για με μεταφορά δεδομένων
-        //και των επιλογών του χρήστη στο γράγημα.
+        //και των επιλογών του χρήστη στο γράφημα.
         PlottingData plottingData = new PlottingData
             (title,confirmeddata,recovereddata,deathsdata,
                     jCheckBoxDailyData.isSelected(),jCheckBoxAccumulativeData.isSelected());
@@ -625,7 +625,7 @@ public class FrameDataDisplay extends javax.swing.JFrame {
             return;
         }
         //Πέρνουμε τα τελευταία covid data της χώρας απο την βάση
-        MappingDataDb map = db.GetCountrysMapData(selectedCountry);
+        MappingData map = db.GetCountrysMappingData(selectedCountry);
         ShowMap showMap = new ShowMap();
         showMap.Display(map);
     }

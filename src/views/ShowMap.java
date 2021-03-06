@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import models.MappingDataDb;
+import models.MappingData;
 
 /**
  *
@@ -33,15 +33,15 @@ public class ShowMap {
         }
     }
     
-    //Πέρνει μια μόνο χώρα, την κάνει λίστα και την περνάει στην Display
-    public void Display(MappingDataDb data){
-        ArrayList<MappingDataDb> mappingData = new ArrayList<MappingDataDb>();
+    //Παίρνει μια μόνο χώρα, την κάνει λίστα και την περνάει στην Display
+    public void Display(MappingData data){
+        ArrayList<MappingData> mappingData = new ArrayList<MappingData>();
         mappingData.add(data);
         Display(mappingData);
     }
     
-    //Πέρνει μία mappingData λιστα και απεικονίζει τις χώρες
-    public void Display(List<MappingDataDb> data){
+   //Παίρνει μία mappingData λίστα και απεικονίζει τις χώρες
+    public void Display(List<MappingData> data){
         //Διαβάζει το html template απο τον κατάλογο του προγράμματος
         String html = ReadTemplate();
         //Μετατρέπει την λίστα των χωρών δομή location
@@ -79,9 +79,9 @@ public class ShowMap {
     
     //Μετατρέπει την λίστα των χωρών σε πίνακα javascript συμβατό 
     //με την δομή location της google
-    private String MappingDataToJSArray(List<MappingDataDb> mappingData){
+    private String MappingDataToJSArray(List<MappingData> mappingData){
         String countriesArray="";
-        for(MappingDataDb data : mappingData){
+        for(MappingData data : mappingData){
             countriesArray += String.format("['%s: %s, %s, %s',%s,%s ],\n",
                     data.getLocation(),
                     "Κρούσματα:"+data.getConfirmed(),

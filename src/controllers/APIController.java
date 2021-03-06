@@ -52,22 +52,22 @@ public class APIController {
         return null;
     }
 
-    //Ζητάει απο το API την χρονοσειρά μιας απο τις 3 κατηγορίες δεδομένων (confirmed, recovered, deaths)
-    //και επιστρέφει λίστα των χωρών με τις χρονοσειρές τους
+    //Ζητάει απο το API την χρονοσειρά μιας απο τις 3 κατηγορίες δεδομένων (confirmed, recovered, 
+    // deaths) και επιστρέφει λίστα των χωρών με τις χρονοσειρές τους
     public List<CountryTimeSeries> GetTimeSeries(TimeSeriesCase tmCase, boolean limitedNumOfCountries) {
 
-        //inner class με χρήσημες μεθόδος κατά την μετατροπή του jsonstring σε λίστα αντικειμένων
+        //inner class με χρήσιμες μεθόδους κατά την μετατροπή του jsonstring σε λίστα αντικειμένων
         class ConvertMethods {
 
-            //Κάνει κληση στο API και ζητάει τα δεδομένα 
+            //Κάνει κλήση  στο API και ζητάει τα δεδομένα 
             private String GetTimeSeriesJson(TimeSeriesCase tmCase) {
                 String restPoint = "timeseries/";
                 String stringResults = BaseCall(restPoint + tmCase.toString());
                 return stringResults;
             }
 
-            //Προσθεσε/συγχωνεύουμε τα data της πολιτείας στην χώρα. Κάνουμε αυτή την διαδικασία για να έχουμε μόνο
-            //μια καταχώρηση ανα χώρα 
+            //Προσθεσε/συγχωνεύουμε τα data της πολιτείας στην χώρα. Κάνουμε αυτή την διαδικασία 
+            // για να έχουμε μόνο μια καταχώρηση ανα χώρα 
             private CountryTimeSeries CombineStates(CountryTimeSeries ltm1, CountryTimeSeries ltm2) {
                 //Κράτησε τα lat και Long της χώρας και όχι της πολιτείας
                 if (ltm2.state.equals("")) {
@@ -99,19 +99,19 @@ public class APIController {
         //Πέρνουμε απο το API τα timeseries της κατηγορίας που μας ζητήθηκε κατα την κλήση της συνάρτησης
         String data = cm.GetTimeSeriesJson(tmCase);
         //Το αντικείμενο στο οποίο θα αποθηκεύσουμε τα δεδομένα απο το API
-        CountryTimeSeries country= new CountryTimeSeries();
+        CountryTimeSeries country = new CountryTimeSeries();
 
         //Φτιάχνουμε τον parser
         JsonParser parser = new JsonParser();
         //Περνάμε τα data απο τον parser
         JsonElement jsonTree = parser.parse(data);
         if (jsonTree.isJsonObject()) {
-            //έξαγουμε απο το jsontree έναν πίνακα με τις χώρες 
+            //εξάγουμε από το jsontree έναν πίνακα με τις χώρες 
             JsonArray countriesList = jsonTree.getAsJsonObject()
                     .get(tmCase.name().toLowerCase())
                     .getAsJsonArray();
-            //Εισάγουμε την μεταβλητή skipCountry. Αν ο χρήστης έχει επιλέξει να εισάγει περιορισμένο 
-            //αριθμό χωρών η μεταβλητή θα λειτουργεί ως flag για την επιλογή
+            //Εισάγουμε την μεταβλητή skipCountry. Αν ο χρήστης έχει επιλέξει να εισάγει  
+            // περιορισμένο αριθμό χωρών η μεταβλητή θα λειτουργεί ως flag για την επιλογή
             boolean skipCountry = false;
             //Διατρέχουμε όλες τις χώρες για την συγκεκριμένη κατηγορία
             for (int i = 0; i < countriesList.size(); i++) {
@@ -156,7 +156,6 @@ public class APIController {
                     if (skipCountry) {
                         continue;
                     }
-
                 }
                 //Παρακάτω προσθέτουμε τα data της πολιτείας στην χώρα
                 CountryTimeSeries alreadyInList = null;

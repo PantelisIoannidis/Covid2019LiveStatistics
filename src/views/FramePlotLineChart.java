@@ -110,7 +110,7 @@ public class FramePlotLineChart extends javax.swing.JFrame {
         plot.setRangeGridlinePaint(Color.white);
                
        
-        //Ρυθμίσης για τον άξονα Υ
+        //Ρυθμίσεις για τον άξονα Υ
         NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
         rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
         rangeAxis.setVerticalTickLabels(false);

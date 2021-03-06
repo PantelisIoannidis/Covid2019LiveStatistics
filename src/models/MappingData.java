@@ -4,8 +4,8 @@ package models;
  *
  * @author Pantelis Ioannidis
  */
-// Κρατάμε τα στοιχεία που χρειάζονται για να αποτυπώσουμε μια χώρα στον χάρτη
-public class MappingDataDb {
+// Κρατάει τα στοιχεία που χρειάζονται για να αποτυπώσουμε μια χώρα στον χάρτη
+public class MappingData {
      String location;
      int confirmed;
      int deaths;

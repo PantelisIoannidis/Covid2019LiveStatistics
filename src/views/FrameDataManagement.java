@@ -2,6 +2,7 @@ package views;
 
 import controllers.APIController;
 import controllers.DbOperations;
+import controllers.DbRepository;
 import java.awt.Image;
 import models.TimeSeriesCase;
 import java.util.List;
@@ -17,10 +18,10 @@ import models.CountryTimeSeries;
  * @author Nick Dimitrakarakos
  */
 
-// R1 Διαχείριση δεδομένων Covid19
+// R2 Διαχείριση δεδομένων Covid19
 public class FrameDataManagement extends javax.swing.JFrame {
 
-    APIController api;
+    DbRepository dbRepository;
     DbOperations dbOperations;
 
     /**
@@ -29,8 +30,8 @@ public class FrameDataManagement extends javax.swing.JFrame {
     public FrameDataManagement() {
         initComponents();
         setIconImage();
+        dbRepository = new DbRepository();
         dbOperations = new DbOperations();
-        api = new APIController();
     }
 
     /**
@@ -70,7 +71,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonInsertCountries);
-        jButtonInsertCountries.setBounds(60, 60, 190, 32);
+        jButtonInsertCountries.setBounds(60, 60, 190, 25);
 
         jButtonInsertData.setText("Εισαγωγή δεδομένων");
         jButtonInsertData.addActionListener(new java.awt.event.ActionListener() {
@@ -79,7 +80,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonInsertData);
-        jButtonInsertData.setBounds(60, 100, 190, 32);
+        jButtonInsertData.setBounds(60, 100, 190, 25);
 
         jButtonDeleteCountries.setText("Διαγραφή χωρών");
         jButtonDeleteCountries.addActionListener(new java.awt.event.ActionListener() {
@@ -88,7 +89,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonDeleteCountries);
-        jButtonDeleteCountries.setBounds(440, 60, 190, 32);
+        jButtonDeleteCountries.setBounds(440, 60, 190, 25);
 
         jButtonDeleteData.setText("Διαγραφή δεδομένων");
         jButtonDeleteData.addActionListener(new java.awt.event.ActionListener() {
@@ -97,22 +98,22 @@ public class FrameDataManagement extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonDeleteData);
-        jButtonDeleteData.setBounds(440, 100, 190, 32);
+        jButtonDeleteData.setBounds(440, 100, 190, 25);
 
         jCheckBoxDeaths.setSelected(true);
         jCheckBoxDeaths.setText("Θάνατοι");
         getContentPane().add(jCheckBoxDeaths);
-        jCheckBoxDeaths.setBounds(190, 170, 150, 24);
+        jCheckBoxDeaths.setBounds(190, 170, 150, 25);
 
         jCheckBoxConfirmed.setSelected(true);
         jCheckBoxConfirmed.setText("Κρούσματα");
         getContentPane().add(jCheckBoxConfirmed);
-        jCheckBoxConfirmed.setBounds(190, 200, 150, 24);
+        jCheckBoxConfirmed.setBounds(190, 200, 150, 25);
 
         jCheckBoxRecovered.setSelected(true);
         jCheckBoxRecovered.setText("Αναρώσεις");
         getContentPane().add(jCheckBoxRecovered);
-        jCheckBoxRecovered.setBounds(190, 230, 150, 24);
+        jCheckBoxRecovered.setBounds(190, 230, 150, 25);
 
         jCheckBoxLimitCountiesSelection.setSelected(true);
         jCheckBoxLimitCountiesSelection.setText("Επιλογή περιορισμένων χωρών");
@@ -141,14 +142,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    //Αν για λόγους ταχύτητας ο χρήστης επιλέξει περιορισμό χωρων, επιστρέφουμε μια λίστα μόνο με 3 χώρες 
-    private List<CountryTimeSeries> limitCountries(List<CountryTimeSeries> ltm){
-        return ltm.stream()
-                .filter(x->x.country.equals("Greece") || x.country.equals("Germany") || x.country.equals("Italy"))
-                .collect(Collectors.toList());
-    }
-    
+   
     private void jButtonInsertCountriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertCountriesActionPerformed
         DisableAllButtons();
         jTextMessages.setText("ΠΑΡΑΚΑΛΩ ΠΕΡΙΜΕΝΕΤΕ.\n Εισαγωγή χωρών σε εξέλιξη.");
@@ -157,13 +151,9 @@ public class FrameDataManagement extends javax.swing.JFrame {
 
             @Override
             protected Object doInBackground() throws Exception {
-                boolean limitedNumberOfCountris = jCheckBoxLimitCountiesSelection.isSelected();
-                //Πάρε να confirmed δεδομένα απο το API
-                List<CountryTimeSeries> ltm = api.GetTimeSeries(TimeSeriesCase.CONFIRMED,limitedNumberOfCountris);
-                if(jCheckBoxLimitCountiesSelection.isSelected())
-                    ltm=limitCountries(ltm);
-                //Αποθήκευσε τις χώρες στην βάση
-                dbOperations.AddCountriesThatAreNotInDB(ltm);
+                boolean limitedNumberOfCountries = jCheckBoxLimitCountiesSelection.isSelected();
+                //Αντληση δεδομένων(χώρες) απο το API και αποθήκευση στην βάση
+                dbOperations.StoreNewCountries(TimeSeriesCase.CONFIRMED, limitedNumberOfCountries);
                 return null;
             }
 
@@ -187,45 +177,32 @@ public class FrameDataManagement extends javax.swing.JFrame {
         String estimatedTimed = "3-8";
         if(jCheckBoxLimitCountiesSelection.isSelected())
             estimatedTimed = "1-2";
-        jTextMessages.setText("ΠΑΡΑΚΑΛΩ ΠΕΡΙΜΕΝΕΤΕ "+estimatedTimed+" λεπτά.\n Εισαγωγή δεδομένων covid σε εξέλιξη.");
+        jTextMessages.setText("ΠΑΡΑΚΑΛΩ ΠΕΡΙΜΕΝΕΤΕ "+estimatedTimed+" λεπτά.\nΕισαγωγή δεδομένων covid σε εξέλιξη.");
         //Εκτελούμε τις ενέργεις στην βάση και το API σε νήμα για να μην παγώσει το UI
         SwingWorker sw1 = new SwingWorker() {
 
             @Override
             protected Object doInBackground() throws Exception {
-                boolean limitedNumberOfCountris = jCheckBoxLimitCountiesSelection.isSelected();
+                boolean limitedNumberOfCountries = jCheckBoxLimitCountiesSelection.isSelected();
+                
                 if ((!jCheckBoxConfirmed.isSelected() && !jCheckBoxDeaths.isSelected() && !jCheckBoxRecovered.isSelected())) {
                     JOptionPane.showMessageDialog(null, "Δεν έχετε επιλέξει καμία κατηγορία δεδομένων");
                 }
-                //Αν ο χρήστης ζήτησε δεδομένα για Confirmed
+                
+                //Αν ο χρήστης ζήτησε δεδομένα για Confirmed, αποθήκευσε τα
                 if (jCheckBoxConfirmed.isSelected()) {
-                    //Πάρε να confirmed δεδομένα απο το API
-                    List<CountryTimeSeries> ltm = api.GetTimeSeries(TimeSeriesCase.CONFIRMED,limitedNumberOfCountris);
-                    if(limitedNumberOfCountris)
-                        ltm=limitCountries(ltm);
-                    //Αποθήκευσε την χώρα αν δεν υπάρχει και τα δεδομένα της
-                    dbOperations.AddCountriesThatAreNotInDB(ltm);
-                    dbOperations.AddTimeSeriesInDatabase(ltm, TimeSeriesCase.CONFIRMED);
+                    //Αντληση δεδομένων(χώρες,coviddata) για την κατηγορία CONFIRMED απο το API και αποθήκευση στην βάση
+                    dbOperations.StoreCovidData(TimeSeriesCase.CONFIRMED, limitedNumberOfCountries);
                 }
-                //Αν ο χρήστης ζήτησε δεδομένα για Deaths
+                //Αν ο χρήστης ζήτησε δεδομένα για Deaths, αποθήκευσε τα
                 if (jCheckBoxDeaths.isSelected()) {
-                    //Πάρε να deaths δεδομένα απο το API
-                    List<CountryTimeSeries> ltm = api.GetTimeSeries(TimeSeriesCase.DEATHS,limitedNumberOfCountris);
-                    if(limitedNumberOfCountris)
-                        ltm=limitCountries(ltm);
-                    //Αποθήκευσε την χώρα αν δεν υπάρχει και τα δεδομένα της
-                    dbOperations.AddCountriesThatAreNotInDB(ltm);
-                    dbOperations.AddTimeSeriesInDatabase(ltm, TimeSeriesCase.DEATHS);
+                    //Αντληση δεδομένων(χώρες,coviddata) για την κατηγορία DEATHS απο το API και αποθήκευση στην βάση
+                    dbOperations.StoreCovidData(TimeSeriesCase.DEATHS, limitedNumberOfCountries);
                 }
-                //Αν ο χρήστης ζήτησε δεδομένα για Recovered
+                //Αν ο χρήστης ζήτησε δεδομένα για Recovered, αποθήκευσε τα
                 if (jCheckBoxRecovered.isSelected()) {
-                    //Πάρε να recovered δεδομένα απο το API
-                    List<CountryTimeSeries> ltm = api.GetTimeSeries(TimeSeriesCase.RECOVERED,limitedNumberOfCountris);
-                    if(limitedNumberOfCountris)
-                        ltm=limitCountries(ltm);
-                    //Αποθήκευσε την χώρα αν δεν υπάρχει και τα δεδομένα της
-                    dbOperations.AddCountriesThatAreNotInDB(ltm);
-                    dbOperations.AddTimeSeriesInDatabase(ltm, TimeSeriesCase.RECOVERED);
+                    //Αντληση δεδομένων(χώρες,coviddata) για την κατηγορία RECOVERED απο το API και αποθήκευση στην βάση
+                    dbOperations.StoreCovidData(TimeSeriesCase.RECOVERED, limitedNumberOfCountries);
                 }
                 return null;
             }
@@ -254,7 +231,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
             @Override
             protected Object doInBackground() throws Exception {
                 //Διαγράφουμε όλες τις χώρες απο την βάση
-                dbOperations.DeleteAllCountries();
+                dbRepository.DeleteAllCountries();
                 return null;
             }
 
@@ -275,7 +252,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButtonDeleteCountriesActionPerformed
 
-    //Διαγραφή δεδομέων covid
+    //Διαγραφή δεδομένων covid
     private void jButtonDeleteDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteDataActionPerformed
         DisableAllButtons();
         jTextMessages.setText("ΠΑΡΑΚΑΛΩ ΠΕΡΙΜΕΝΕΤΕ.\n Διαγραφή δεδομένων covid σε εξέλιξη.");
@@ -284,7 +261,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
             @Override
             protected Object doInBackground() throws Exception {
                 //Διαγράφουμε όλα τα covid data απο την βάση
-                dbOperations.DeleteAllCovidData();
+                dbRepository.DeleteAllCovidData();
                 return null;
             }
 

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package helpers;
 
 import java.net.InetAddress;
@@ -22,7 +17,7 @@ import org.apache.derby.drda.NetworkServerControl;
  *
  * @author Pantelis Ioannidis
  */
-//Σύνδεση με τον server και δημιουργία Derby database αν δεν υπάρχει κατα την πρώτη εκτέλεση του προγράμματος
+//Σύνδεση με τον server και δημιουργία Derby database, αν δεν υπάρχει, κατα την πρώτη εκτέλεση του προγράμματος
 public class DatabaseUtils {
     private EntityManagerFactory emf;
     private EntityManager em;
@@ -41,25 +36,19 @@ public class DatabaseUtils {
         } catch (Exception ex) {
             Logger.getLogger(DatabaseUtils.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        
-    }
+        } 
+    }    
     
-    
-    public void InitializeDatabase () {
-        
+    public void InitializeDatabase () {   
         Connection connection=null;
         Statement statement=null;
         String SqlStatement;
         
         //Εκκίνηση του javadb (derby) server
         StartServer();
-        
         try{
-
            connection = DriverManager.getConnection(DATABASE_URL, USERNAME, PASSWORD);
            statement = connection.createStatement();
-
             // Δημιουργία του πίνακα COUNTRY
             SqlStatement = "create table COUNTRY\n" +
                         "(\n" +
@@ -96,7 +85,7 @@ public class DatabaseUtils {
             } 
             //Δεν έχει ξεκινήσει το JavaDB Server
             else if (ex.getSQLState().toUpperCase().equals("08001".toUpperCase())) {
-                 JOptionPane.showMessageDialog(null, "Αποτυχία σύνδεσης με την βάση. Ελέγξτε αν έχει ξεκινήσει ο Java DB server.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Αποτυχία σύνδεσης με την βάση. Ελέγξτε αν έχει ξεκινήσει ο Java DB server.", "Error", JOptionPane.ERROR_MESSAGE);
                 System.exit(0);
             }
             //τα υπόλοιπα sql server exception που δεν πιάσαμε στις προηγούμενες περιπτώσεις

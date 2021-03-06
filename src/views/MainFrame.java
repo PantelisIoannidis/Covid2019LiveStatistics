@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
  * @author Aris Dimakakos
  */
 
-// R1 Κεντική οθόνη επιλογών
+// R1 Κεντική οθόνη επιλογών. Δημιουργεί τα υπόλοιπα παράθυρα της εφαρμογής και τα εμφανίζει.
 public class MainFrame extends javax.swing.JFrame {
     FrameDataManagement frameDataManagement = new FrameDataManagement();
     FrameDataDisplay frameDataDisplay = new FrameDataDisplay();
@@ -74,7 +74,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonDataManagement);
-        jButtonDataManagement.setBounds(250, 140, 240, 32);
+        jButtonDataManagement.setBounds(250, 140, 240, 25);
 
         jButtonDataDisplay.setText("Προβολή δεδομένων Covid19 ανά χώρα");
         jButtonDataDisplay.addActionListener(new java.awt.event.ActionListener() {
@@ -83,7 +83,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonDataDisplay);
-        jButtonDataDisplay.setBounds(220, 200, 300, 32);
+        jButtonDataDisplay.setBounds(220, 200, 300, 25);
 
         jButtonMap.setText("Προβολή δεδομένων Covid19 σε χάρτη");
         jButtonMap.addActionListener(new java.awt.event.ActionListener() {
@@ -92,7 +92,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonMap);
-        jButtonMap.setBounds(220, 260, 300, 32);
+        jButtonMap.setBounds(220, 260, 300, 25);
 
         jButtonExit.setText("Έξοδος");
         jButtonExit.addActionListener(new java.awt.event.ActionListener() {
@@ -101,7 +101,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonExit);
-        jButtonExit.setBounds(300, 320, 150, 32);
+        jButtonExit.setBounds(300, 320, 150, 25);
 
         jLabelBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/covidwallpaper.jpg"))); // NOI18N
         getContentPane().add(jLabelBackground);
@@ -202,28 +202,6 @@ public class MainFrame extends javax.swing.JFrame {
         showAboutWindow();
     }//GEN-LAST:event_mnuAboutActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void setLookAndFeel() {
-
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows Classic".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDataDisplay;
@@ -243,38 +221,48 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuMap;
     // End of variables declaration//GEN-END:variables
 
+    //Εμφανίζει το FrameDataDisplay στην οθόνη
     private void showDataDisplay() {
+        //Αν δεν υπάρχει η κλάση δημιούργησε την
         if(frameDataDisplay==null){
             frameDataDisplay = new FrameDataDisplay();
         }
+        //ενημέρωσε τα component του frame με δεδομένα
         frameDataDisplay.populateComponents();
         frameDataDisplay.setVisible(true);
     }
 
+    //Εμφανίζει το FrameMapSelection στην οθόνη
     private void showMap() {
+        //Αν δεν υπάρχει η κλάση δημιούργησε την
         if (frameMapSelection == null){
             frameMapSelection = new FrameMapSelection();
         }
+        //ενημέρωσε τα component του frame με δεδομένα
         frameMapSelection.populateCountryComboBoxAndList();
         frameMapSelection.setVisible(true);
     }
 
+    //Εμφανίζει το FrameDataManagement στην οθόνη
     private void showDataManagement() {
+        //Αν δεν υπάρχει η κλάση δημιούργησε την
         if (frameDataManagement == null){
             frameDataManagement = new FrameDataManagement();
         }
         frameDataManagement.setVisible(true);
     }
-
-    private void exitApp() {
-        System.exit(0);
-    }
-
+    
+    //Εμφανίζει το FrameAbout στην οθόνη
     private void showAboutWindow() {
+        //Αν δεν υπάρχει η κλάση δημιούργησε την
         if (frameAbout == null){
             frameAbout = new FrameAbout();
         }
         frameAbout.setVisible(true);
+    }
+
+    private void exitApp() {
+        System.exit(0);
     }
 
     //Το Εικονίδιο στην γωνία του παραθύρου
