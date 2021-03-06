@@ -145,7 +145,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
    
     private void jButtonInsertCountriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertCountriesActionPerformed
         DisableAllButtons();
-        jTextMessages.setText("ΠΑΡΑΚΑΛΩ ΠΕΡΙΜΕΝΕΤΕ.\n Εισαγωγή χωρών σε εξέλιξη.");
+        jTextMessages.setText("ΠΑΡΑΚΑΛΩ ΠΕΡΙΜΕΝΕΤΕ.\nΕισαγωγή χωρών σε εξέλιξη.");
         //Εκτελούμε τις ενέργεις στην βάση και το API σε νήμα για να μην παγώσει το UI
         SwingWorker sw1 = new SwingWorker() {
 
@@ -165,7 +165,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
             @Override
             protected void done() {
                 EnableAllButtons();
-                jTextMessages.setText("");
+                jTextMessages.setText("Ολοκληρώθηκε η εισαγωγή χωρών");
             }
         };
 
@@ -215,7 +215,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
             @Override
             protected void done() {
                 EnableAllButtons();
-                jTextMessages.setText("");
+                jTextMessages.setText("Ολοκληρώθηκε η εισαγωγή δεδομένων covid ");
             }
         };
 
@@ -224,7 +224,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
 
     private void jButtonDeleteCountriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteCountriesActionPerformed
         DisableAllButtons();
-        jTextMessages.setText("ΠΑΡΑΚΑΛΩ ΠΕΡΙΜΕΝΕΤΕ.\n Διαγραφή χωρών σε εξέλιξη.");
+        jTextMessages.setText("ΠΑΡΑΚΑΛΩ ΠΕΡΙΜΕΝΕΤΕ.\nΔιαγραφή χωρών σε εξέλιξη.");
         //Εκτελούμε τις ενέργεις στην βάση και το API σε νήμα για να μην παγώσει το UI
         SwingWorker sw1 = new SwingWorker() {
 
@@ -243,7 +243,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
             @Override
             protected void done() {
                 EnableAllButtons();
-                jTextMessages.setText("");
+                jTextMessages.setText("Ολοκληρώθηκε η διαγραφή χωρών");
             }
         };
 
@@ -255,7 +255,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
     //Διαγραφή δεδομένων covid
     private void jButtonDeleteDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteDataActionPerformed
         DisableAllButtons();
-        jTextMessages.setText("ΠΑΡΑΚΑΛΩ ΠΕΡΙΜΕΝΕΤΕ.\n Διαγραφή δεδομένων covid σε εξέλιξη.");
+        jTextMessages.setText("ΠΑΡΑΚΑΛΩ ΠΕΡΙΜΕΝΕΤΕ.\nΔιαγραφή δεδομένων covid σε εξέλιξη.");
         //Εκτελούμε τις ενέργεις στην βάση και το API σε νήμα για να μην παγώσει το UI
         SwingWorker sw1 = new SwingWorker() {
             @Override
@@ -273,7 +273,7 @@ public class FrameDataManagement extends javax.swing.JFrame {
             @Override
             protected void done() {
                 EnableAllButtons();
-                jTextMessages.setText("");
+                jTextMessages.setText("Ολοκληρώθηκε η διαγραφή δεδομένων covid");
             }
         };
 

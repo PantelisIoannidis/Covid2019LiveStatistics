@@ -37,7 +37,7 @@ public class DbOperations {
     //Φέρνει τις χώρες απο το API και αποθήκευσε τις στην Βάση
     public void StoreNewCountries(TimeSeriesCase tmCase, boolean limitedNumberOfCountries){
         //Πάρε δεδομένα της tmCase κατηγορίας απο το API
-        List<CountryTimeSeries> ltm = api.GetTimeSeries(TimeSeriesCase.CONFIRMED,limitedNumberOfCountries);
+        List<CountryTimeSeries> ltm = api.GetTimeSeries(tmCase,limitedNumberOfCountries);
         if(limitedNumberOfCountries)
             ltm=limitCountries(ltm);
         //Αποθηκεύει τις χώρες στην βάση
@@ -47,7 +47,7 @@ public class DbOperations {
     //Φέρνει τις χρονοσειρές απο το API και αποθήκευσε τις στην Βάση
     public void StoreCovidData(TimeSeriesCase tmCase, boolean limitedNumberOfCountries){
         //Πάρε δεδομένα της tmCase κατηγορίας απο το API
-        List<CountryTimeSeries> ltm = api.GetTimeSeries(TimeSeriesCase.CONFIRMED,limitedNumberOfCountries);
+        List<CountryTimeSeries> ltm = api.GetTimeSeries(tmCase,limitedNumberOfCountries);
         if(limitedNumberOfCountries)
             ltm=limitCountries(ltm);
         //Αποθηκεύει τις χώρες στην βάση
