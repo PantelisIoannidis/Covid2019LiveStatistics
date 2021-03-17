@@ -112,7 +112,7 @@
     <Component class="javax.swing.JCheckBox" name="jCheckBoxRecovered">
       <Properties>
         <Property name="selected" type="boolean" value="true"/>
-        <Property name="text" type="java.lang.String" value="&#x391;&#x3bd;&#x3b1;&#x3c1;&#x3ce;&#x3c3;&#x3b5;&#x3b9;&#x3c2;"/>
+        <Property name="text" type="java.lang.String" value="&#x391;&#x3bd;&#x3b1;&#x3c1;&#x3c1;&#x3ce;&#x3c3;&#x3b5;&#x3b9;&#x3c2;"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
